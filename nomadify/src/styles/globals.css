@@ -41,9 +41,17 @@ body {
 }
 
 .head_text {
-  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
-  color: var(--white);
-  z-index: 999;
+  @apply font-extrabold leading-[1.15] 2xl:text-8xl xl:text-8xl lg:text-7xl md:text-5xl text-white z-50 text-4xl;
+}
+
+.button {
+  @apply font-extrabold w-60 bg-purple text-white p-4 mt-5;
+  border-radius: 5.5rem 9.6875rem;
+  transition: 0.2s ease-in;
+}
+
+.button:hover{
+  border-radius: 9.6875rem 5.5rem;
 }
 
 .custom_font {

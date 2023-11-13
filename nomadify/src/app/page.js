@@ -4,8 +4,9 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <section className='w-full flex-center flex-col'>
-      <h1 className='head_text p-40'>Pocket Guide to the <br /><span className='custom_font'>Prices</span> of Life.</h1>
+    <section className='w-full flex-center flex-col pt-40 p-10 sm:p-40'>
+      <h1 className='head_text'>Pocket Guide to the <br /><span className='custom_font'>Prices</span> of Life.</h1>
+      <button className='button text-center'>EXPLORE 🡫</button>
       
     </section>
   )
