@@ -61,3 +61,10 @@ img{
 .custom_font {
   font-family: var(--handdraw-font);
 }
+
+
+@media screen and (max-width: 900px) {
+  .world-animation {
+    display: none;
+  }
+}
