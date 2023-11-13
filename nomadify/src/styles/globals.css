@@ -45,7 +45,7 @@ img{
 }
 
 .head_text {
-  @apply font-extrabold leading-[1.15] 2xl:text-8xl xl:text-8xl lg:text-7xl md:text-5xl text-white z-50 text-4xl;
+  @apply font-extrabold leading-[1.15] 2xl:text-8xl xl:text-8xl lg:text-6xl md:text-5xl text-white z-50 text-4xl;
 }
 
 .button {
@@ -63,7 +63,7 @@ img{
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
   .world-animation {
     display: none;
   }
