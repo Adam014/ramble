@@ -1,11 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Over+the+Rainbow&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --background: #1A1A21;
+  --font: 'Acme', sans-serif;
+  --handdraw-font: 'Over the Rainbow', cursive;
+  --white: #ffff;
 }
 
 body {
   background-color: var(--background);
+  font-family: var(--font);
+}
+
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px 24px;
+  pointer-events: none;
+}
+
+.main:after {
+  content: "";
+  background-image: url("/assets/images/grid.svg");
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.app {
+  @apply relative z-10 flex flex-col max-w-7xl;
+}
+
+.head_text {
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+  color: var(--white);
+  z-index: 999;
+}
+
+.custom_font {
+  font-family: var(--handdraw-font);
 }

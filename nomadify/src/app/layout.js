@@ -14,6 +14,10 @@ export default function RootLayout({ children }) {
       <body>
         <Provider>
 
+          <div className='main'>
+            
+          </div>  
+
           <main className='app'>
             <Navbar />
             {children}
