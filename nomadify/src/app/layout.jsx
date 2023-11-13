@@ -25,14 +25,14 @@ export default function RootLayout({ children }) {
               alt='elipsse'
               width={1000}
               height={1000}
-              className='object-fit absolute right-0'
+              className='object-fit fixed right-0'
             />
             <Image 
               src="./assets/images/world-animate.svg"    
-              alt='elipsse'
-              width={700}
-              height={700}
-              className='object-fit absolute right-0 m-20 mr-40'
+              alt='animation'
+              width={600}
+              height={600}
+              className='object-fit fixed right-0 m-40 mr-40'
             />
 
             <Navbar />

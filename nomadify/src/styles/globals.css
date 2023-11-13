@@ -36,6 +36,10 @@ body {
   top: 0;
 }
 
+img{
+  pointer-events: none;
+}
+
 .app {
   @apply relative z-10 flex flex-col;
 }
