@@ -37,7 +37,7 @@ body {
 }
 
 .app {
-  @apply relative z-10 flex flex-col max-w-7xl;
+  @apply relative z-10 flex flex-col;
 }
 
 .head_text {

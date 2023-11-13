@@ -2,6 +2,7 @@ import '@styles/globals.css';
 
 import Navbar from '@components/Navbar';
 import Provider from '@components/Provider';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Nomadify',
@@ -19,6 +20,21 @@ export default function RootLayout({ children }) {
           </div>  
 
           <main className='app'>
+            <Image 
+              src="./assets/images/elipsa.svg"    
+              alt='elipsse'
+              width={1000}
+              height={1000}
+              className='object-fit absolute right-0'
+            />
+            <Image 
+              src="./assets/images/world-animate.svg"    
+              alt='elipsse'
+              width={700}
+              height={700}
+              className='object-fit absolute right-0 m-20 mr-40'
+            />
+
             <Navbar />
             {children}
           </main>
