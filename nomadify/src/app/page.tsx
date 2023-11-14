@@ -1,8 +1,13 @@
 "use client";
 
 import MapChart from "@components/Mapchart";
+import { useState } from "react";
+import { Tooltip as ReactToolTip} from "react-tooltip";
 
 export default function Home() {
+
+  const [content, setContent] = useState("");
+  console.log(content);
 
   return (
     <section className='w-full flex-center flex-col pt-40 p-10 pl-20 z-50'>
@@ -12,7 +17,8 @@ export default function Home() {
       <p className="w-1/4 text-xl mt-10">is your personal passport to the planet's <span className="custom_font">price tags</span>. It's not just a web app; it's a whisperer for your wallet. Real-time data, tailor-made recommendations, and a community of kindred travelers make Nomadify your go-to guide for worldly adventures without the financial fuss.</p>
       <div className="mt-40">
         <h2 className="text-4xl">Explore every <span className="custom_font custom_color">part</span> of the world</h2>
-        <MapChart />
+        <MapChart setTooltipContent={setContent} />
+        <ReactToolTip>{content}</ReactToolTip>
       </div>
     </section>
   )
