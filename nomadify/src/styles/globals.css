@@ -9,11 +9,13 @@
   --font: 'Acme', sans-serif;
   --handdraw-font: 'Over the Rainbow', cursive;
   --white: #ffff;
+  --purple: #F13E51;
 }
 
 body {
   background-color: var(--background);
   font-family: var(--font);
+  color: var(--white);
 }
 
 .main {
@@ -60,6 +62,10 @@ img{
 
 .custom_font {
   font-family: var(--handdraw-font);
+}
+
+.custom_color{
+  color: var(--purple);
 }
 
 
