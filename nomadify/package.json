@@ -12,6 +12,7 @@
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-simple-maps": "^3.0.0",
     "touch-cli": "^0.0.1"
   },
   "devDependencies": {
