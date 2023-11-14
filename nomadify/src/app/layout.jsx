@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
               alt='animation'
               width={600}
               height={600}
-              className='world-animation object-fit fixed right-0 m-40 mr-40 lg:mr-0 sm:mr-0 md:-mr-40 sm:-mr-40'
+              className='world-animation object-fit fixed right-0 m-40 mr-40 lg:mr-10 md:-mr-40 sm:-mr-40'
             />
 
             <Navbar />
