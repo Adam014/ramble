@@ -1,7 +1,5 @@
 "use client";
 
-import Image from 'next/image'
-
 export default function Home() {
   return (
     <section className='w-full flex-center flex-col pt-40 p-10 pl-20 z-50'>
