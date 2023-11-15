@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import MapChart from "@components/Mapchart";
 import { Tooltip as ReactToolTip} from "react-tooltip";
 import Image from "next/image";
@@ -8,9 +8,12 @@ import ScrollingImage from '@components/Scroll';
 
 export default function Home() {
 
+  // isnt showing in the tooltip, fix 
   const [content, setContent] = useState("");
-  const { isImageFixed, scrollPosition } = ScrollingImage();
   console.log(content);
+  
+  // variables for image fixed and absolute 
+  const { isImageFixed, scrollPosition } = ScrollingImage();
 
   return (
     <>

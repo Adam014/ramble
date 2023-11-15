@@ -9,8 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "14.0.2",
+    "next": "^14.0.2",
     "react": "^18",
+    "react-animated-cursor": "^2.11.2",
     "react-dom": "^18",
     "react-simple-maps": "^3.0.0",
     "react-tooltip": "^5.23.0",
