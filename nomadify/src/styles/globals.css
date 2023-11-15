@@ -42,6 +42,10 @@ img{
   pointer-events: none;
 }
 
+.app {
+  @apply flex flex-col;
+}
+
 .head_text {
   @apply font-extrabold leading-[1.15] 2xl:text-8xl xl:text-8xl lg:text-6xl md:text-5xl text-white z-50 text-4xl;
 }
