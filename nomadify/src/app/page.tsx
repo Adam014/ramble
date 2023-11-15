@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MapChart from "@components/Mapchart";
 import { Tooltip as ReactToolTip} from "react-tooltip";
 import Image from "next/image";
@@ -10,6 +10,34 @@ export default function Home() {
   const [content, setContent] = useState("");
   console.log(content);
 
+  const [isImageFixed, setIsImageFixed] = useState(true);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const maxHeightOfScroll = window.innerHeight / 5; // the max value of the scroll to be fixed
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentPosition = window.scrollY;
+
+      if (currentPosition > maxHeightOfScroll && isImageFixed) {
+        // Set the image to absolute and store the scroll position
+        setIsImageFixed(false);
+        setScrollPosition(currentPosition);
+      } else if (currentPosition <= maxHeightOfScroll && !isImageFixed) {
+        // Set the image back to fixed if user scrolls above the halfway point
+        setIsImageFixed(true);
+      }
+    };
+
+    // Attach the scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isImageFixed]); // Include isImageFixed in the dependency array to track changes
+
+
   return (
     <>
       <Image 
@@ -17,7 +45,8 @@ export default function Home() {
         alt='animation'
         width={600}
         height={600}
-        className={`world-animation object-fit absolute right-0 m-40 mr-40 lg:mr-10 md:-mr-40 sm:-mr-40`}
+        style={{ top: isImageFixed ? 0 : scrollPosition + 'px' }}
+        className={`world-animation object-fit ${isImageFixed ? 'fixed' : 'absolute'} right-0 m-40 mr-40 lg:mr-10 md:-mr-40 sm:-mr-40`}
       />
       <section className='w-full flex-center flex-col pt-40 p-10 pl-20 z-50'> 
         <h1 className='head_text'>Pocket Guide to the <br /><span className='custom_font'>Prices</span> of Life.</h1>
