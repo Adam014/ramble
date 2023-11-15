@@ -4,39 +4,13 @@ import { useState, useEffect } from 'react';
 import MapChart from "@components/Mapchart";
 import { Tooltip as ReactToolTip} from "react-tooltip";
 import Image from "next/image";
+import ScrollingImage from '@components/Scroll';
 
 export default function Home() {
 
   const [content, setContent] = useState("");
+  const { isImageFixed, scrollPosition } = ScrollingImage();
   console.log(content);
-
-  const [isImageFixed, setIsImageFixed] = useState(true);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const maxHeightOfScroll = window.innerHeight / 5; // the max value of the scroll to be fixed
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentPosition = window.scrollY;
-
-      if (currentPosition > maxHeightOfScroll && isImageFixed) {
-        // Set the image to absolute and store the scroll position
-        setIsImageFixed(false);
-        setScrollPosition(currentPosition);
-      } else if (currentPosition <= maxHeightOfScroll && !isImageFixed) {
-        // Set the image back to fixed if user scrolls above the halfway point
-        setIsImageFixed(true);
-      }
-    };
-
-    // Attach the scroll event listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isImageFixed]); // Include isImageFixed in the dependency array to track changes
-
 
   return (
     <>
