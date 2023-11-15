@@ -1,3 +1,4 @@
+
 import '@styles/globals.css';
 
 import Navbar from '@components/Navbar';
@@ -26,13 +27,6 @@ export default function RootLayout({ children }) {
               width={1000}
               height={1000}
               className='object-fit absolute right-0'
-            />
-            <Image 
-              src="./assets/images/world-animate.svg"    
-              alt='animation'
-              width={600}
-              height={600}
-              className='world-animation object-fit absolute right-0 m-40 mr-40 lg:mr-10 md:-mr-40 sm:-mr-40'
             />
 
             <Navbar />

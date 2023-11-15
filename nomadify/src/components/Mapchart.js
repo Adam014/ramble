@@ -9,7 +9,7 @@ import {
 const MapChart = ({ setTooltipContent }) => {
   return (
     <div data-tip="">
-      <ComposableMap>
+      <ComposableMap projectionConfig={{ scale: 140 }}>
           <Graticule stroke="#F13E51" />
           <Geographies geography="././features.json">
             {({ geographies }) =>
@@ -33,7 +33,7 @@ const MapChart = ({ setTooltipContent }) => {
                       outline: "none"
                     },
                     pressed: {
-                      fill: "#E08C9C",
+                      fill: "#F13E51",
                       outline: "none"
                     }
                   }}
