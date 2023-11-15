@@ -20,7 +20,7 @@ export default function Home() {
         width={600}
         height={600}
         style={{ top: isImageFixed ? 0 : scrollPosition + 'px' }}
-        className={`world-animation object-fit ${isImageFixed ? 'fixed' : 'absolute'} right-0 m-40 xl:mr-10 lg:mr-0 md:-mr-40 sm:-mr-40`}
+        className={`world-animation object-fit ${isImageFixed ? 'fixed' : 'absolute'} right-0 m-40 xl:mr-10 lg:-mr-10 md:-mr-40 sm:-mr-40`}
       />
       <section className='w-full flex-center flex-col p-10 pt-40 sm:pl-10 z-50'> 
         <h1 className='head_text'>Pocket Guide to the <br /><span className='custom_font'>Prices</span> of Life.</h1>
