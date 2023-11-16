@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import MapChart from "@components/Mapchart";
 import { Tooltip as ReactToolTip} from "react-tooltip";
 import Image from "next/image";
@@ -11,6 +11,13 @@ export default function Home() {
   // isnt showing in the tooltip, fix 
   const [content, setContent] = useState("");
   console.log(content);
+
+  const ref = useRef(null);
+
+  const handleScroll = () => {
+    ref.current?.scrollIntoView({behavior: 'smooth'});
+  };
+
   
   // variables for image fixed and absolute 
   const { isImageFixed, scrollPosition } = ScrollingImage();
@@ -27,7 +34,7 @@ export default function Home() {
       />
       <section className='w-full flex-center flex-col p-10 pt-40 sm:pl-10 z-50'> 
         <h1 className='head_text'>Pocket Guide to the <br /><span className='custom_font'>Prices</span> of Life.</h1>
-        <button className='button text-center'>EXPLORE 🡫</button>
+        <button className='button text-center' onClick={handleScroll}>EXPLORE 🡫</button>
         <h2 className="text-3xl mt-20">Nomad<span className="custom_color">ify</span></h2>
         <p className="text-xl mt-10 sm:w-1/2">is your personal passport to the planet's <span className="custom_font">price tags</span>. It's not just a web app; it's a whisperer for your wallet. Real-time data, tailor-made recommendations, and a community of kindred travelers make Nomadify your go-to guide for worldly adventures without the financial fuss.</p>
       </section>
@@ -35,7 +42,8 @@ export default function Home() {
         <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2>
         {/* TODO: update the height of the map, bugging with the scrolling */}
         {/* Fix the tooltip, isnt showing */}
-        <MapChart setTooltipContent={setContent} />
+        <div ref={ref}></div>
+        <MapChart setTooltipContent={setContent} /> 
         <ReactToolTip>{content}</ReactToolTip>
       </div>
     </>
