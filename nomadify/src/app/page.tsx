@@ -42,7 +42,7 @@ export default function Home() {
         <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2>
         {/* TODO: update the height of the map, bugging with the scrolling */}
         {/* Fix the tooltip, isnt showing */}
-        <div ref={ref} className='hidden'>Scroll to</div>
+        <div ref={ref}></div>
         <MapChart setTooltipContent={setContent} /> 
         <ReactToolTip>{content}</ReactToolTip>
       </div>
