@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useRef } from "react";
 import {
   Graticule,
   ComposableMap,
@@ -8,8 +8,9 @@ import {
 } from "react-simple-maps";
 
 const MapChart = ({ setTooltipContent }) => {
+
   return (
-    <div data-tip="">
+    <div data-tip="" ref={ref}>
       <ComposableMap projectionConfig={{ scale: 120 }}>
           <Graticule stroke="#F13E51" />
           <ZoomableGroup>
