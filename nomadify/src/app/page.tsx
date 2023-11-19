@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import MapChart from "@components/Mapchart";
-import { Tooltip as ReactToolTip} from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 import Image from "next/image";
 import ScrollingImage from '@components/Scroll';
 
@@ -10,7 +10,6 @@ export default function Home() {
 
   // isnt showing in the tooltip, fix 
   const [content, setContent] = useState("");
-  console.log(content);
 
   const ref = useRef(null);
 
@@ -37,12 +36,12 @@ export default function Home() {
         <h2 className="text-3xl mt-20">Nomad<span className="custom_color">ify</span></h2>
         <p className="text-xl mt-10 sm:w-1/2">is your personal passport to the planet's <span className="custom_font">price tags</span>. It's not just a web app; it's a whisperer for your wallet. Real-time data, tailor-made recommendations, and a community of kindred travelers make Nomadify your go-to guide for worldly adventures without the financial fuss.</p>
       </section>
-      <div className="">
+      <div className="">  
         <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2>
         {/* TODO: update the height of the map, bugging with the scrolling */}
         {/* Fix the tooltip, isnt showing */}
         <MapChart setTooltipContent={setContent} tooltipRef={ref} /> 
-        <ReactToolTip>{content}</ReactToolTip>
+        <Tooltip>{content}</Tooltip>
       </div>
     </>
   )
