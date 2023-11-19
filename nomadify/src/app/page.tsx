@@ -17,7 +17,6 @@ export default function Home() {
   const handleScroll = () => {
     ref.current?.scrollIntoView({behavior: 'smooth'});
   };
-
   
   // variables for image fixed and absolute 
   const { isImageFixed, scrollPosition } = ScrollingImage();
@@ -42,8 +41,7 @@ export default function Home() {
         <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2>
         {/* TODO: update the height of the map, bugging with the scrolling */}
         {/* Fix the tooltip, isnt showing */}
-        <div ref={ref}></div>
-        <MapChart setTooltipContent={setContent} /> 
+        <MapChart setTooltipContent={setContent} tooltipRef={ref} /> 
         <ReactToolTip>{content}</ReactToolTip>
       </div>
     </>

@@ -7,10 +7,10 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 
-const MapChart = ({ setTooltipContent }) => {
+const MapChart = ({ setTooltipContent, tooltipRef }) => {
 
   return (
-    <div data-tip="">
+    <div data-tip="" ref={tooltipRef}>
       <ComposableMap projectionConfig={{ scale: 120 }}>
           <Graticule stroke="#F13E51" />
           <ZoomableGroup>
