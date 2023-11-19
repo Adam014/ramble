@@ -14,7 +14,7 @@ const MapChart = ({ setTooltipContent, tooltipRef }) => {
       <ComposableMap projectionConfig={{ scale: 120 }}>
           <Graticule stroke="#F13E51" />
           <ZoomableGroup>
-            <Geographies geography="././features.json">
+            <Geographies geography="/features.json">
               {({ geographies }) =>
                 geographies.map((geo) => (
                   <Geography

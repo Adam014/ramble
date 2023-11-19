@@ -2,14 +2,16 @@
 
 import { useState, useRef } from 'react';
 import MapChart from "@components/Mapchart";
-import { Tooltip } from "react-tooltip";
 import Image from "next/image";
 import ScrollingImage from '@components/Scroll';
+
+import { Tooltip } from "react-tooltip";
 
 export default function Home() {
 
   // isnt showing in the tooltip, fix 
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(""); 
+  console.log(content)
 
   const ref = useRef(null);
 
@@ -40,8 +42,8 @@ export default function Home() {
         <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2>
         {/* TODO: update the height of the map, bugging with the scrolling */}
         {/* Fix the tooltip, isnt showing */}
-        <MapChart setTooltipContent={setContent} tooltipRef={ref} /> 
         <Tooltip>{content}</Tooltip>
+        <MapChart setTooltipContent={setContent} tooltipRef={ref} /> 
       </div>
     </>
   )
