@@ -11,7 +11,7 @@ export default function Home() {
 
   // isnt showing in the tooltip, fix 
   const [content, setContent] = useState(""); 
-  console.log(content)
+  console.log(content);
 
   const ref = useRef(null);
 

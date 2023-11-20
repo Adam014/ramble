@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #1A1A21;
+  --background: #000011;
   --font: 'Acme', sans-serif;
   --handdraw-font: 'Over the Rainbow', cursive;
   --white: #ffff;

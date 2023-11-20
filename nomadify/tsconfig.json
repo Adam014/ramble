@@ -30,7 +30,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/components/Mapchart.js"  ],
+, "src/components/Mapchart.js", "src/components/Globe.js"  ],
   "exclude": [
     "node_modules"
   ]
