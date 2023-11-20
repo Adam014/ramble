@@ -18,12 +18,12 @@ const MapChart = ({ setTooltipContent, tooltipRef }) => {
               {({ geographies }) =>
                 geographies.map((geo) => (
                   <Geography
-                    data-tooltip-id="my-tooltip"
+                    data-tooltip-id="my-tooltip"      
                     data-tooltip-offset={0}
                     data-tooltip-float={true}
                     key={geo.rsmKey}
                     geography={geo}
-                    onMouseEnter={() => {
+                    onMouseEnter={() => {       
                       setTooltipContent(`${geo.properties.name}`);
                     }}
                     onMouseLeave={() => {
