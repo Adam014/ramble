@@ -9,9 +9,9 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 
 export default function Home() {
 
-  // isnt showing in the tooltip, fix 
+  
+
   const [content, setContent] = useState(""); 
-  console.log(content);
 
   const ref = useRef(null);
 
@@ -41,7 +41,6 @@ export default function Home() {
       <div className="">  
         <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2>
         {/* TODO: update the height of the map, bugging with the scrolling */}
-        {/* Fix the tooltip, isnt showing */}
         <MapChart setTooltipContent={setContent} tooltipRef={ref} /> 
         <ReactTooltip id="my-tooltip">{content}</ReactTooltip>
       </div>
