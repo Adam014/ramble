@@ -5,7 +5,7 @@ import MapChart from "@components/Mapchart";
 import Image from "next/image";
 import ScrollingImage from '@components/Scroll';
 
-import { Tooltip } from "react-tooltip";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 export default function Home() {
 
@@ -42,7 +42,7 @@ export default function Home() {
         <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2>
         {/* TODO: update the height of the map, bugging with the scrolling */}
         {/* Fix the tooltip, isnt showing */}
-        <Tooltip>{content}</Tooltip>
+        <ReactTooltip id="my-tooltip">{content}</ReactTooltip>
         <MapChart setTooltipContent={setContent} tooltipRef={ref} /> 
       </div>
     </>
