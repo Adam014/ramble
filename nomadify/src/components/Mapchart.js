@@ -10,8 +10,8 @@ import {
 const MapChart = ({ setTooltipContent, tooltipRef }) => {
 
   return (
-    <div ref={tooltipRef}>
-      <ComposableMap projectionConfig={{ scale: 120 }}>
+    <div>
+      <ComposableMap projectionConfig={{ scale: 120 }} ref={tooltipRef}>
           <Graticule stroke="#F13E51" />
           <ZoomableGroup>
             <Geographies geography="/features.json">
@@ -19,6 +19,8 @@ const MapChart = ({ setTooltipContent, tooltipRef }) => {
                 geographies.map((geo) => (
                   <Geography
                     data-tooltip-id="my-tooltip"
+                    data-tooltip-offset={0}
+                    data-tooltip-float={true}
                     key={geo.rsmKey}
                     geography={geo}
                     onMouseEnter={() => {
