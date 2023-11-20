@@ -27,6 +27,7 @@ export default function Home() {
   // if(isFetching) return "Loading...";
 
   const [content, setContent] = useState(""); 
+
   // variables for image fixed and absolute 
   const { isImageFixed, scrollPosition } = ScrollingImage();
 
@@ -48,7 +49,7 @@ export default function Home() {
       </section>
       <div className="">  
         <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2>
-        {/* TODO: update the height of the map, bugging with the scrolling */}
+        {/* TODO: update the height and width of the map, bugging with the scrolling */}
         <MapChart setTooltipContent={setContent} tooltipRef={ref} /> 
         <ReactTooltip id="my-tooltip">{content}</ReactTooltip>
       </div>
