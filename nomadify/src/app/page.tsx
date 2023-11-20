@@ -11,11 +11,12 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 
 export default function Home() {
 
-  const { data: costToLive, isFetching } = useGetCostQuery({
-    city: 'Bratislava',
-    country_name: 'Slovakia',
-  });
-  console.log(costToLive);
+  // TODO: vyhazuje error, takze opravit, je potreba pridat Provider???
+  // const { data: costToLive, isFetching } = useGetCostQuery({
+  //   city: 'Bratislava',
+  //   country_name: 'Slovakia',
+  // });
+  // console.log(costToLive);
 
   const ref = useRef(null);
 
@@ -23,7 +24,7 @@ export default function Home() {
     ref.current?.scrollIntoView({behavior: 'smooth'});
   };
   
-  if(isFetching) return "Loading...";
+  // if(isFetching) return "Loading...";
 
   const [content, setContent] = useState(""); 
   // variables for image fixed and absolute 
