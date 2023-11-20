@@ -2,8 +2,8 @@
 import '@styles/globals.css';
 
 import Navbar from '@components/Navbar';
-import Provider from '@components/Provider';
 import Image from 'next/image';
+import dynamic from "next/dynamic";
 
 export const metadata = {
   title: 'Nomadify',
@@ -11,11 +11,15 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+
+  const AnimatedCursor = dynamic(() => import('react-animated-cursor'), {
+      ssr: false,
+  });
+
   return (
     <html lang="en">
       <body>
-        <Provider>
-
+          <AnimatedCursor color="241,62,81"/>
           <div className='main'>
             
           </div>  
@@ -33,7 +37,6 @@ export default function RootLayout({ children }) {
             {children}
           </main>
   
-        </Provider>
       </body>
     </html>
   )

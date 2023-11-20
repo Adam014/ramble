@@ -5,13 +5,17 @@ import MapChart from "@components/Mapchart";
 import Image from "next/image";
 import ScrollingImage from '@components/Scroll';
 
+import { useGetCostQuery } from '@components/services/api/costApi';
+
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
 export default function Home() {
 
-  
-
-  const [content, setContent] = useState(""); 
+  const { data: costToLive, isFetching } = useGetCostQuery({
+    city: 'Bratislava',
+    country_name: 'Slovakia',
+  });
+  console.log(costToLive);
 
   const ref = useRef(null);
 
@@ -19,6 +23,9 @@ export default function Home() {
     ref.current?.scrollIntoView({behavior: 'smooth'});
   };
   
+  if(isFetching) return "Loading...";
+
+  const [content, setContent] = useState(""); 
   // variables for image fixed and absolute 
   const { isImageFixed, scrollPosition } = ScrollingImage();
 
