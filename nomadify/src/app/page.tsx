@@ -11,21 +11,14 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 
 export default function Home() {
 
-  // TODO: vyhazuje error, takze opravit, je potreba pridat Provider???
-  // const { data: costToLive, isFetching } = useGetCostQuery({
-  //   city: 'Bratislava',
-  //   country_name: 'Slovakia',
-  // });
-  // console.log(costToLive);
-
+  // scrolling to the map
   const ref = useRef(null);
 
   const handleScroll = () => {
     ref.current?.scrollIntoView({behavior: 'smooth'});
   };
-  
-  // if(isFetching) return "Loading...";
 
+  // state for the state onMouseOver
   const [content, setContent] = useState(""); 
 
   // variables for image fixed and absolute 
