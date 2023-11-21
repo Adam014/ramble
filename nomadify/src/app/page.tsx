@@ -5,8 +5,6 @@ import MapChart from "@components/Mapchart";
 import Image from "next/image";
 import ScrollingImage from '@components/Scroll';
 
-import { useGetCostQuery } from '@components/services/api/costApi';
-
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
 export default function Home() {
