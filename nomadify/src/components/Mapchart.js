@@ -28,7 +28,7 @@ const MapChart = ({ setTooltipContent }) => {
                       <div>
                         ID: {geo.id} <br />
                         Country: {geo.properties.name} <br />
-                         Capital: {geo.properties?.capital}
+                        Capital: {geo.properties?.capital}
                       </div>);
                     }}
                     onMouseLeave={() => {
