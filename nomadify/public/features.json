@@ -1003,7 +1003,7 @@
             [[618]]
           ],
           "id": "RUS",
-          "properties": { "name": "Russia" }
+          "properties": { "name": "Russia", "capital": "Moscow" }
         },
         {
           "type": "Polygon",
@@ -1083,7 +1083,7 @@
           "type": "Polygon",
           "arcs": [[-564, 653, -361, -50, -244]],
           "id": "SVK",
-          "properties": { "name": "Slovakia" }
+          "properties": { "name": "Slovakia", "capital": "Bratislava"}
         },
         {
           "type": "Polygon",
