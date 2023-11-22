@@ -1,24 +1,10 @@
 "use client";
 
-import { useState, useRef } from 'react';
-import MapChart from "@components/Mapchart";
 import Image from "next/image";
 import ScrollingImage from '@components/Scroll';
-
-import { Tooltip as ReactTooltip } from "react-tooltip";
+import Link from "next/link";
 
 export default function Home() {
-
-  // scrolling to the map
-  const ref = useRef(null);
-
-  const handleScroll = () => {
-    ref.current?.scrollIntoView({behavior: 'smooth'});
-  };
-
-  // state for the state onMouseOver
-  const [content, setContent] = useState(""); 
-
   // variables for image fixed and absolute 
   const { isImageFixed, scrollPosition } = ScrollingImage();
 
@@ -34,16 +20,12 @@ export default function Home() {
       />
       <section className='w-full flex-center flex-col p-10 pt-40 sm:pl-10 z-50'> 
         <h1 className='head_text'>Pocket Guide to the <br /><span className='custom_font'>Prices</span> of Life.</h1>
-        <button className='button text-center' onClick={handleScroll}>EXPLORE 🡫</button>
+        <Link href="/map">
+          <button className='button text-center'>EXPLORE 🡢</button>
+        </Link>
         <h2 className="text-3xl mt-20">Nomad<span className="custom_color">ify</span></h2>
         <p className="text-xl mt-10 sm:w-1/2">is your personal passport to the planet's <span className="custom_font">price tags</span>. It's not just a web app; it's a whisperer for your wallet. Real-time data, tailor-made recommendations, and a community of kindred travelers make Nomadify your go-to guide for worldly adventures without the financial fuss.</p>
       </section>
-      <div className="">  
-        <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2>
-        {/* TODO: update the height and width of the map, bugging with the scrolling */}
-        <MapChart setTooltipContent={setContent} tooltipRef={ref} /> 
-        <ReactTooltip id="my-tooltip">{content}</ReactTooltip>
-      </div>
     </>
   )
 }
