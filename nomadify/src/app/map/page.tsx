@@ -5,7 +5,6 @@ import MapChart from "@components/Mapchart";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const Map = () => {
-
     // state for the state onMouseOver
     const [content, setContent] = useState(""); 
 
