@@ -7,7 +7,7 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 
-const MapChart = ({ setTooltipContent }) => {
+const MapChart = ({ setTooltipCountry, setTooltipCapital }) => {
 
   return (
     <div>
@@ -24,15 +24,18 @@ const MapChart = ({ setTooltipContent }) => {
                     key={geo.rsmKey}
                     geography={geo}
                     onMouseEnter={() => {       
-                      setTooltipContent(
-                      <div>
-                        ID: {geo.id} <br />
-                        Country: {geo.properties.name} <br />
-                        Capital: {geo.properties?.capital}
-                      </div>);
+                      // setTooltipContent(
+                      // <div>
+                      //   ID: {geo.id} <br />
+                      //   Country: {geo.properties.name} <br />
+                      //   Capital: {geo.properties?.capital}
+                      // </div>);
+                      setTooltipCountry(`${geo.properties.name}`);
+                      setTooltipCapital(`${geo.properties.capital}`);
                     }}
                     onMouseLeave={() => {
-                      setTooltipContent("");
+                      setTooltipCountry("");
+                      setTooltipCountry("");
                     }}
                     style={{
                       default: {

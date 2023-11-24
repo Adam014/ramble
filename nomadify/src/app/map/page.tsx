@@ -1,21 +1,51 @@
 "use client";
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import MapChart from "@components/Mapchart";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const Map = () => {
     // state for the state onMouseOver
-    const [content, setContent] = useState(""); 
+    const [country, setCountry] = useState("");
+    const [capital, setCapital] = useState("");
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+        try {
+            const response = await fetch('https://cost-of-living-and-prices.p.rapidapi.com/prices?city_name=Bratislava&country_name=Slovakia', {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Host': 'cost-of-living-and-prices.p.rapidapi.com',
+                'X-RapidAPI-Key': 'd6850ca347mshb135b00f6e9f6b2p109ccejsnf924080e2e9b',
+                // Add any other headers as needed
+            },
+            });
+
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+
+            const result = await response.json();
+            setData(result);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+        };
+
+        fetchData();
+    }, []);
+
+    console.log(country, capital);
 
     return (
         <>  
             {/* <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2> */}
             {/* TODO: update the height and width of the map, bugging with the scrolling */}
             <div className='relative'>
-                <MapChart setTooltipContent={setContent} /> 
+                <MapChart setTooltipCountry={setCountry} setTooltipCapital={setCapital}/> 
             </div>
-            <ReactTooltip id="my-tooltip">{content}</ReactTooltip>
+            <ReactTooltip id="my-tooltip">{country} {capital}</ReactTooltip>
         </>
     )
 }
