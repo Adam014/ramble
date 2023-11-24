@@ -322,7 +322,7 @@
           "type": "Polygon",
           "arcs": [[-49, 241, 242, 243]],
           "id": "CZE",
-          "properties": { "name": "Czechia", "capital": "Prague" }
+          "properties": { "name": "Czech Republic", "capital": "Prague" }
         },
         {
           "type": "Polygon",
