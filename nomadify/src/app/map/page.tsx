@@ -18,7 +18,6 @@ const Map = () => {
             headers: {
                 'X-RapidAPI-Host': 'cost-of-living-and-prices.p.rapidapi.com',
                 'X-RapidAPI-Key': 'd6850ca347mshb135b00f6e9f6b2p109ccejsnf924080e2e9b',
-                // Add any other headers as needed
             },
             });
 
@@ -34,9 +33,8 @@ const Map = () => {
         };
 
         fetchData();
-    }, []);
-
-    console.log(country, capital);
+    }, [data]); 
+    console.log(data)
 
     return (
         <>  

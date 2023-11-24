@@ -30,12 +30,12 @@ const MapChart = ({ setTooltipCountry, setTooltipCapital }) => {
                       //   Country: {geo.properties.name} <br />
                       //   Capital: {geo.properties?.capital}
                       // </div>);
-                      setTooltipCountry(`${geo.properties.name}`);
-                      setTooltipCapital(`${geo.properties.capital}`);
+                      setTooltipCountry(`Country: ${geo.properties.name}`);
+                      setTooltipCapital(`Capital: ${geo.properties.capital}`);
                     }}
                     onMouseLeave={() => {
                       setTooltipCountry("");
-                      setTooltipCountry("");
+                      setTooltipCapital("");
                     }}
                     style={{
                       default: {
