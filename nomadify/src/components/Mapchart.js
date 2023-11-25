@@ -23,13 +23,7 @@ const MapChart = ({ setTooltipCountry, setTooltipCapital }) => {
                     data-tooltip-float={true}
                     key={geo.rsmKey}
                     geography={geo}
-                    onMouseEnter={() => {       
-                      // setTooltipContent(
-                      // <div>
-                      //   ID: {geo.id} <br />
-                      //   Country: {geo.properties.name} <br />
-                      //   Capital: {geo.properties?.capital}
-                      // </div>);
+                    onClick={() => {       
                       setTooltipCountry(`${geo.properties.name}`);
                       setTooltipCapital(`${geo.properties.capital}`);
                     }}
