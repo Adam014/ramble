@@ -11,7 +11,7 @@ const MapChart = ({ setTooltipCountry, setTooltipCapital }) => {
   // TODO : Do when user clicks, it will redirect him to map/country that he will click, there will be shown the state and its whole cost To Live
   return (
     <>
-      <ComposableMap projectionConfig={{ scale: 110 }} >
+      <ComposableMap projectionConfig={{ scale: 130 }} >
           <Graticule stroke="#F13E51" />
           <ZoomableGroup>
             <Geographies geography="/features.json">

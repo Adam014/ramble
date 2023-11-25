@@ -12,8 +12,8 @@ const Map = () => {
 
     return (
         <>  
-            <h2 className="text-3xl p-10 pt-40">Choose your <span className="custom_font custom_color">country</span></h2>
-            <div className='relative'>
+            <h2 className="text-4xl m-10 mt-52 absolute">Choose your <span className="custom_font custom_color">country</span></h2>
+            <div className='relative flex justify-center'>
                 <MapChart 
                     setTooltipCountry={setCountry}                    
                     setTooltipCapital={setCapital}

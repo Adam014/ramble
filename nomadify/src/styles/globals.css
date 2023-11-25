@@ -68,6 +68,10 @@ img{
   color: var(--purple);
 }
 
+svg{
+  height: 60rem;
+}
+
 
 @media screen and (max-width: 700px) {
   .world-animation {
