@@ -1,17 +1,13 @@
 "use client";
 
-import React, {useState, useEffect} from 'react';
+import React, {useState } from 'react';
 import MapChart from "@components/Mapchart";
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import axios from "axios";
 
 const Map = () => {
     // state for the state onMouseOver
     const [country, setCountry] = useState("");
     const [capital, setCapital] = useState("");
-    const [data, setData] = useState(null);
-
-    // TODO : Must figure out how to use the API fetching by the hover state and capital / Maybe onClick
 
     return (
         <>  
