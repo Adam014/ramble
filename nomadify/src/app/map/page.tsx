@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import MapChart from "@components/Mapchart";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
@@ -12,7 +12,7 @@ const Map = () => {
 
     return (
         <>  
-            {/* <h2 className="text-3xl p-10 pt-40">Explore every <span className="custom_font custom_color">part</span> of the world</h2> */}
+            <h2 className="text-3xl p-10 pt-40">Choose your <span className="custom_font custom_color">country</span></h2>
             <div className='relative'>
                 <MapChart 
                     setTooltipCountry={setCountry}                    

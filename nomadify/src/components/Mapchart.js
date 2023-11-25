@@ -8,10 +8,10 @@ import {
 } from "react-simple-maps";
 
 const MapChart = ({ setTooltipCountry, setTooltipCapital }) => {
-
+  // TODO : Do when user clicks, it will redirect him to map/country that he will click, there will be shown the state and its whole cost To Live
   return (
-    <div>
-      <ComposableMap projectionConfig={{ scale: 150 }} >
+    <>
+      <ComposableMap projectionConfig={{ scale: 110 }} >
           <Graticule stroke="#F13E51" />
           <ZoomableGroup>
             <Geographies geography="/features.json">
@@ -23,7 +23,7 @@ const MapChart = ({ setTooltipCountry, setTooltipCapital }) => {
                     data-tooltip-float={true}
                     key={geo.rsmKey}
                     geography={geo}
-                    onClick={() => {       
+                    onMouseOver={() => {       
                       setTooltipCountry(`${geo.properties.name}`);
                       setTooltipCapital(`${geo.properties.capital}`);
                     }}
@@ -51,7 +51,7 @@ const MapChart = ({ setTooltipCountry, setTooltipCapital }) => {
             </Geographies>
           </ZoomableGroup>
       </ComposableMap>
-    </div>
+    </>
   );
 };
 
