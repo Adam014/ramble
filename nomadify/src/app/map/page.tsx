@@ -4,12 +4,19 @@ import React, { useState } from 'react';
 import MapChart from "@components/Mapchart";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
 
 const Map = () => {
     // state for the state onMouseOver
     const [country, setCountry] = useState("");
     const [capital, setCapital] = useState("");
     console.log(country, capital);
+
+    const router = useRouter();
+
+    const handleClick = () => {
+        router.push(`/map/${country}?capital=${capital}`)
+    }
 
     return (
         <>  
@@ -19,6 +26,7 @@ const Map = () => {
                 <MapChart 
                     setTooltipCountry={setCountry}                    
                     setTooltipCapital={setCapital}
+                    handleClick={handleClick}
                  /> 
             </div>
             <ReactTooltip id="my-tooltip">{country} {capital}</ReactTooltip>

@@ -7,8 +7,11 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 
-const MapChart = ({ setTooltipCountry, setTooltipCapital }) => {
+
+const MapChart = ({ setTooltipCountry, setTooltipCapital, handleClick }) => {
   // TODO : Do when user clicks, it will redirect him to map/country that he will click, there will be shown the state and its whole cost To Live
+
+
   return (
     <>
       <ComposableMap projectionConfig={{ scale: 130 }} >
@@ -27,6 +30,7 @@ const MapChart = ({ setTooltipCountry, setTooltipCapital }) => {
                       setTooltipCountry(`${geo.properties.name}`);
                       setTooltipCapital(`${geo.properties.capital}`);
                     }}
+                    onClick={handleClick}
                     onMouseLeave={() => {
                       setTooltipCountry("");
                       setTooltipCapital("");

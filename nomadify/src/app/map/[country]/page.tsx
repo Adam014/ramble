@@ -5,7 +5,7 @@ import React from 'react'
 const singleRecipe = () => {
   return (
     <div>
-      Ahoj
+      Single State
     </div>
   )
 }
