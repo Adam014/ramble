@@ -12,7 +12,7 @@ export default function Home() {
     <>
       {/* TODO: Add link to the image so clicking on the image will redirect you to the map */}
       <Image
-        src="./assets/images/world-animate.svg"    
+        src="./assets/images/world-animate-second.svg"    
         alt='animation'
         width={600}
         height={600}
