@@ -5,8 +5,8 @@ import { useParams } from 'next/navigation';
 
 const page = () => {
 
-  const params = useParams();
-  console.log(params);
+  const {country, capital} = useParams();
+  console.log(country, capital);
 
   return (
     <div>
