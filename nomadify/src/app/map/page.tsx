@@ -15,7 +15,7 @@ const Map = () => {
     const router = useRouter();
 
     const handleClick = () => {
-        router.push(`/map/${country}&${capital}`);
+        router.push(`/map/${country}/${capital}`);
     }
 
     return (
