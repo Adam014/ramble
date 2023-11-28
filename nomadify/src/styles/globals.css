@@ -72,6 +72,10 @@ svg{
   height: 60rem;
 }
 
+.heading-container {
+  display: inline-block;
+}
+
 @media screen and (max-width: 700px) {
   .world-animation {
     display: none;

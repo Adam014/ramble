@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
 
           <main className='app'>
             <Image 
-              src="./assets/images/elipsa.svg"    
+              src="/assets/images/elipsa.svg"    
               alt='elipsse'
               width={1000}
               height={1000}
