@@ -38,12 +38,6 @@ const page = () => {
     <div className='relative'>
       <div className="heading_container">
         <h1 className='head_text sm:pl-10 lg:pl-24 pt-24'>📍 {decodedCountry}, {decodedCapital}</h1>
-        {/* <Image 
-          src="/assets/images/underline.png" 
-          alt='underline' 
-          width={600} // Set a reasonable width, this can be adjusted based on your design
-          height={200} // Set a reasonable height, this can be adjusted based on your design      
-        /> */}
         {error && <p className='p-24'>{error}</p>}
       </div>
     </div>
