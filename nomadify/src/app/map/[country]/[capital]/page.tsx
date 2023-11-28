@@ -1,8 +1,9 @@
 "use client";
 
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { useParams } from 'next/navigation';
 // import Image from 'next/image';
+import fetchCostOfLiving from '@utils/fetchCostOfLiving';
 
 const page = () => {
 
@@ -13,7 +14,25 @@ const page = () => {
   const decodedCountry = decodeParam(country);
   const decodedCapital = decodeParam(capital);
 
-  console.log(decodedCountry, decodedCapital); 
+  const [costOfLivingData, setCostOfLivingData] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchCostOfLiving(decodedCountry, decodedCapital);
+        setCostOfLivingData(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchData();
+  }, [decodedCountry, decodedCapital]);
+
+  console.log(costOfLivingData);
+
+  // console.log(decodedCountry, decodedCapital); 
 
   return (
     <div className='relative'>
@@ -25,6 +44,7 @@ const page = () => {
           width={600} // Set a reasonable width, this can be adjusted based on your design
           height={200} // Set a reasonable height, this can be adjusted based on your design      
         /> */}
+        {error && <p className='p-24'>{error}</p>}
       </div>
     </div>
   )

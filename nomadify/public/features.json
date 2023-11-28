@@ -134,7 +134,7 @@
         "type": "Polygon",
         "arcs": [[-27, 105, -104, 106, 107, 108, 109, 110, 111, 112, 113]],
         "id": "BRA",
-        "properties": { "name": "Brazil", "capital": "Brasília" }
+        "properties": { "name": "Brazil", "capital": "Brasilia" }
         },
         {
         "type": "Polygon",
@@ -1234,7 +1234,7 @@
             [[-144, 702, -142, 703]]
           ],
           "id": "USA",
-          "properties": { "name": "United States", "capital": "Washington, D.C." }
+          "properties": { "name": "United States", "capital": "Washington" }
         },
         {
           "type": "Polygon",
