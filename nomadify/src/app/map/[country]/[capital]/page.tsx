@@ -15,8 +15,8 @@ const page = () => {
   console.log(decodedCountry, decodedCapital);
 
   return (
-    <div>
-       <h1>{decodedCountry}, {decodedCapital}</h1>
+    <div className='relative'>
+       <h1 className='head_text p-5'>{decodedCountry}, {decodedCapital}</h1>
     </div>
   )
 }

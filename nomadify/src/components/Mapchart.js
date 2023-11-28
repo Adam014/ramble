@@ -9,9 +9,6 @@ import {
 
 
 const MapChart = ({ setTooltipCountry, setTooltipCapital, handleClick }) => {
-  // TODO : Do when user clicks, it will redirect him to map/country that he will click, there will be shown the state and its whole cost To Live
-
-
   return (
     <>
       <ComposableMap projectionConfig={{ scale: 130 }} >
