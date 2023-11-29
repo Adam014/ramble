@@ -41,12 +41,12 @@ const Page = () => {
     <div className='relative'>
       <div className="heading_container">
         <h1 className='head_text sm:pl-10 lg:pl-24 pt-24'>📍 {decodedCountry}, {decodedCapital}</h1>
+        <h2 className='sm:pl-10 lg:pl-36 pt-12'>Last updated at: {costOfLivingData.exchange_rates_updated.date}</h2>
         {loading && <p className='p-24'>Loading...</p>}
         {error && <p className='p-24'>{error}</p>}
         {costOfLivingData && (
           <div>
-            {/* Render the fetched data here */}
-            {/* Example: <p>{costOfLivingData.someProperty}</p> */}
+
           </div>
         )}
       </div>
