@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import fetchCostOfLiving from '@utils/fetchCostOfLiving';
 import supabase from '@utils/db/supabaseConfig';
@@ -20,62 +20,65 @@ const Page = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Check if data exists in Supabase
-        const { data: supabaseData, error: supabaseError } = await supabase
-          .from('CountryAndCapitalCollection') // Replace with your actual Supabase collection name
-          .select()
-          .eq('country', decodedCountry)
-          .eq('capital', decodedCapital);
+  const fetchData = async () => {
+    try {
+      // Check if data exists in Supabase
+      const { data: supabaseData, error: supabaseError } = await supabase
+        .from('CountryAndCapitalCollection') // Replace with your actual Supabase collection name
+        .select()
+        .eq('country', decodedCountry)
+        .eq('capital', decodedCapital);
 
-        if (supabaseError) {
-          throw new Error('Error fetching data from Supabase');
-        }
-
-        if (supabaseData && supabaseData.length > 0) {
-          // Data exists in Supabase, use it
-          toast.success('Data loaded from Supabase!');
-          console.log('Data fetched from Supabase:', supabaseData[0]);
-          setCostOfLivingData(supabaseData[0]);
-        } else {
-          // Data does not exist in Supabase, fetch and save it
-          const newData = await fetchCostOfLiving(decodedCountry, decodedCapital);
-
-          // Save data to Supabase
-          const { error: saveError } = await supabase
-            .from('CountryAndCapitalCollection') // Replace with your actual Supabase collection name
-            .upsert([
-              {
-                country: decodedCountry,
-                capital: decodedCapital,
-                data: newData,
-              },
-            ]);
-
-          if (saveError) {
-            throw new Error('Error saving data to Supabase');
-          }
-
-          // Use the fetched data
-          toast.success('Data fetched from API and saved to Supabase!');
-          console.log('Data saved to Supabase:', newData);
-          setCostOfLivingData(newData);
-        }
-      } catch (error) {
-        if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError('An unexpected error occurred.');
-        }
-      } finally {
-        setLoading(false);
+      if (supabaseError) {
+        throw new Error('Error fetching data from Supabase');
       }
-    };
 
-    fetchData();
-  }, [decodedCountry, decodedCapital]);
+      if (supabaseData && supabaseData.length > 0) {
+        // Data exists in Supabase, use it
+        toast.success('Data loaded from Supabase!');
+        console.log('Data fetched from Supabase:', supabaseData[0]);
+        setCostOfLivingData(supabaseData[0]);
+      } else {
+        // Data does not exist in Supabase, fetch and save it
+        const newData = await fetchCostOfLiving(decodedCountry, decodedCapital);
+
+        // Save data to Supabase
+        const { error: saveError } = await supabase
+          .from('CountryAndCapitalCollection') // Replace with your actual Supabase collection name
+          .upsert([
+            {
+              country: decodedCountry,
+              capital: decodedCapital,
+              data: newData,
+            },
+          ]);
+
+        if (saveError) {
+          throw new Error('Error saving data to Supabase');
+        }
+
+        // Use the fetched data
+        toast.success('Data fetched from API and saved to Supabase!');
+        console.log('Data saved to Supabase:', newData);
+        setCostOfLivingData(newData);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unexpected error occurred.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const memoizedFetchData = useMemo(() => fetchData, [decodedCountry, decodedCapital]);
+
+  useEffect(() => {
+    memoizedFetchData();
+  }, [memoizedFetchData]);
+
 
   console.log(costOfLivingData);
 
