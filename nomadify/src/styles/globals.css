@@ -76,6 +76,10 @@ svg{
   display: inline-block;
 }
 
+code{
+  background-color: gray;
+}
+
 @media screen and (max-width: 700px) {
   .world-animation {
     display: none;
