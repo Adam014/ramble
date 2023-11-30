@@ -4,9 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import fetchCostOfLiving from '@utils/fetchCostOfLiving';
 import supabase from '@utils/db/supabaseConfig';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Page = () => {
   const { country, capital } = useParams();
@@ -100,7 +98,7 @@ const Page = () => {
           </div>
         )}
       </div>
-      <ToastContainer />
+      <Toaster />
     </div>
   );
 };

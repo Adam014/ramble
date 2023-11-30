@@ -17,8 +17,8 @@
     "react-animated-cursor": "^2.11.2",
     "react-dom": "^18",
     "react-github-btn": "^1.4.0",
+    "react-hot-toast": "^2.4.1",
     "react-simple-maps": "^3.0.0",
-    "react-toastify": "^9.1.3",
     "react-tooltip": "^5.23.0",
     "touch-cli": "^0.0.1"
   },
