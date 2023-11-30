@@ -35,7 +35,7 @@ const Page = () => {
 
         if (supabaseData && supabaseData.length > 0) {
           // Data exists in Supabase, use it
-          toast.success('Data loaded from Supabase');
+          toast.success('Data loaded from Supabase!');
           console.log('Data fetched from Supabase:', supabaseData[0]);
           setCostOfLivingData(supabaseData[0]);
         } else {
@@ -58,7 +58,7 @@ const Page = () => {
           }
 
           // Use the fetched data
-          toast.success('Data fetched from API and saved to Supabase');
+          toast.success('Data fetched from API and saved to Supabase!');
           console.log('Data saved to Supabase:', newData);
           setCostOfLivingData(newData);
         }

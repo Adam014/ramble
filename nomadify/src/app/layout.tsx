@@ -3,6 +3,7 @@ import '@styles/globals.css';
 import Navbar from '@components/Navbar';
 import Image from 'next/image';
 import dynamic from "next/dynamic";
+import { ToastContainer } from 'react-toastify';
 
 export const metadata = {
   title: 'Nomadify',
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
 
             <Navbar />
             {children}
+            <ToastContainer />
           </main>
   
       </body>
