@@ -51,6 +51,7 @@ const Page = () => {
               country: decodedCountry,
               capital: decodedCapital,
               data: newData,
+              // CreatedAt: 
             },
           ]);
 
