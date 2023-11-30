@@ -6,6 +6,7 @@ import fetchCostOfLiving from '@utils/fetchCostOfLiving';
 import supabase from '@utils/db/supabaseConfig';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const Page = () => {
   const { country, capital } = useParams();
@@ -91,6 +92,7 @@ const Page = () => {
           </div>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };
