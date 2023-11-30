@@ -30,6 +30,9 @@ const Map = () => {
                  /> 
             </div>
             <ReactTooltip id="my-tooltip">{country} {capital}</ReactTooltip>
+            <div>
+                <h4 className='text-4xl m-10'>If you can't find the <span className='custom_font custom_color'>city</span> you are looking for. Try to write in URL </h4>
+            </div>
         </>
     )
 }

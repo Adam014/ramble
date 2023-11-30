@@ -100,7 +100,7 @@ const Page = () => {
       </div>
       <Toaster />
     </div>
-  );
+  ); 
 };
 
 export default Page;
