@@ -20,11 +20,12 @@ const Page = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // function for fetching the data from API/DB
   const fetchData = async () => {
     try {
       // Check if data exists in Supabase
       const { data: supabaseData, error: supabaseError } = await supabase
-        .from('CountryAndCapitalCollection') // Replace with your actual Supabase collection name
+        .from('CountryAndCapitalCollection') 
         .select()
         .eq('country', decodedCountry)
         .eq('capital', decodedCapital);
@@ -44,7 +45,7 @@ const Page = () => {
 
         // Save data to Supabase
         const { error: saveError } = await supabase
-          .from('CountryAndCapitalCollection') // Replace with your actual Supabase collection name
+          .from('CountryAndCapitalCollection') 
           .upsert([
             {
               country: decodedCountry,
@@ -73,8 +74,11 @@ const Page = () => {
     }
   };
 
+
+  // Memoring the fetched data from DB/API
   const memoizedFetchData = useMemo(() => fetchData, [decodedCountry, decodedCapital]);
 
+  // Getting the memorized data, prevent re-getting
   useEffect(() => {
     memoizedFetchData();
   }, [memoizedFetchData]);
