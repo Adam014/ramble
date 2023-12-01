@@ -58,6 +58,7 @@ const Page = () => {
         }
 
         // Use the fetched data
+        // TODO: If the API return Error, dont save it to Supabase and return toast.error or something like that
         toast.success('Data fetched from API and saved to Supabase!');
         console.log('Data saved to Supabase:', newData);
         setCostOfLivingData(newData);
@@ -89,7 +90,7 @@ const Page = () => {
     <div className='relative'>
       <div className="heading_container">
         <h1 className='head_text sm:pl-10 lg:pl-24 pt-24'>📍 {decodedCountry}, {decodedCapital}</h1>
-        {/* TODO: Show here latest update, date and time, format it into EU date and time */}
+        {/* TODO: Show here select with currencies that get returned from the API */}
         {loading && <p className='p-24'>Loading...</p>}
         {error && <p className='p-24'>{error}</p>}
         {costOfLivingData && (
