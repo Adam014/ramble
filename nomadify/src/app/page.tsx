@@ -25,7 +25,7 @@ export default function Home() {
           <button className='button text-center'>EXPLORE 🡢</button>
         </Link>
         <h2 className="text-3xl mt-20">Nomad<span className="custom_color">ify</span></h2>
-        <p className="text-xl mt-10 sm:w-1/2">is your personal passport to the planet's <span className="custom_font">price tags</span>. It's not just a web app; it's a whisperer for your wallet. Real-time data, tailor-made recommendations, and a community of kindred travelers make Nomadify your go-to guide for worldly adventures without the financial fuss.</p>
+        <p className="text-xl mt-10 sm:w-1/2">is your personal passport to the planet's <span className="custom_font custom_color">price tags</span>. It's not just a web app; it's a whisperer for your wallet. Real-time data, tailor-made recommendations, and a community of kindred travelers make Nomadify your go-to guide for worldly adventures without the financial fuss.</p>
       </section>
     </>
   )
