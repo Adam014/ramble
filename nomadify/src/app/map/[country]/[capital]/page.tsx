@@ -29,11 +29,11 @@ const Page = () => {
         .select()
         .eq('country', decodedCountry)
         .eq('capital', decodedCapital);
-
+  
       if (supabaseError) {
         throw new Error('Error fetching data from Supabase');
       }
-
+  
       if (supabaseData && supabaseData.length > 0) {
         // Data exists in Supabase, use it
         toast.success('Data loaded from Supabase!');
@@ -41,30 +41,40 @@ const Page = () => {
         setCostOfLivingData(supabaseData[0]);
       } else {
         // Data does not exist in Supabase, fetch and save it
-        const newData = await fetchCostOfLiving(decodedCountry, decodedCapital);
-
-        // Save data to Supabase
-        const { error: saveError } = await supabase
-          .from('CountryAndCapitalCollection') 
-          .upsert([
-            {
-              country: decodedCountry,
-              capital: decodedCapital,
-              data: newData,
-              CreatedAt: fixDate(today),
-            },
-          ]);
-
-        if (saveError) {
-          throw new Error('Error saving data to Supabase');
+        try {
+          const newData = await fetchCostOfLiving(decodedCountry, decodedCapital);
+  
+          // Save data to Supabase only if the API call was successful
+          const { error: saveError } = await supabase
+            .from('CountryAndCapitalCollection') 
+            .upsert([
+              {
+                country: decodedCountry,
+                capital: decodedCapital,
+                data: newData,
+                CreatedAt: fixDate(today),
+              },
+            ]);
+  
+          if (saveError) {
+            throw new Error('Error saving data to Supabase');
+          }
+  
+          // Use the fetched data
+          toast.success('Data fetched from API and saved to Supabase!');
+          console.log('Data saved to Supabase:', newData);
+          setCostOfLivingData(newData);
+        } catch (apiError) {
+          // Handle API error without saving to Supabase
+          if (apiError instanceof Error) {
+            toast.error(apiError.message);
+          } else {
+            toast.error('An unexpected API error occurred.');
+          }
         }
-
-        // Use the fetched data
-        toast.success('Data fetched from API and saved to Supabase!');
-        console.log('Data saved to Supabase:', newData);
-        setCostOfLivingData(newData);
       }
     } catch (error) {
+      // Handle other errors
       if (error instanceof Error) {
         setError(error.message);
       } else {
@@ -73,7 +83,7 @@ const Page = () => {
     } finally {
       setLoading(false);
     }
-  };
+  };  
 
 
   // Memoring the fetched data from DB/API

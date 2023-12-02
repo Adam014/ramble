@@ -27,7 +27,7 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
     const responseData = await response.json();
     if (responseData.error) {
       // API returned an error, handle it without saving to Supabase
-      toast.error(`API Error: This town is not in our search engine, try to contact us about it!`);
+      toast.error(`API Error: Couldn't find a city with a given name or id. Try to contact us about it!`);
       throw new Error('API error occurred.');
     }
 
