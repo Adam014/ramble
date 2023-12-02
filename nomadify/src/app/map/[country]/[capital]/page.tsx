@@ -20,6 +20,7 @@ const Page = () => {
 
   const today = new Date();
 
+  // TODO: Move this to utils.ts, to prevent better code readibility and structure
   // function for fetching the data from API/DB
   const fetchData = async () => {
     try {
@@ -78,13 +79,12 @@ const Page = () => {
       if (error instanceof Error) {
         setError(error.message);
       } else {
-        setError('An unexpected error occurred.');
+        setError('An unexpected error occurred, please be patient...');
       }
     } finally {
       setLoading(false);
     }
   };  
-
 
   // Memoring the fetched data from DB/API
   const memoizedFetchData = useMemo(() => fetchData, [decodedCountry, decodedCapital]);
@@ -94,14 +94,13 @@ const Page = () => {
     memoizedFetchData();
   }, [memoizedFetchData]);
 
-
   console.log(costOfLivingData);
 
   return (
     <div className='relative'>
       <div className="heading_container">
         <h1 className='head_text sm:pl-10 lg:pl-24 pt-24'>📍 {decodedCountry}, {decodedCapital}</h1>
-        {/* TODO: Show here select with currencies that get returned from the API */}
+        {/* // TODO: Add a custom loading... */}
         {loading && <p className='p-24'>Loading...</p>}
         {error && <p className='p-24'>{error}</p>}
         {costOfLivingData && (

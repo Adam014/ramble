@@ -38,8 +38,9 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
   }
 };
 
-
 // function to refactore the date, for timezone, that is data originally fetched
 export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+
+
 
 export default fetchCostOfLiving;
