@@ -1,5 +1,4 @@
 import toast from 'react-hot-toast';
-import Link from 'next/link';
 
 const API_ENDPOINT = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
 
@@ -16,19 +15,20 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
     });
 
     if (!response.ok) {
-      if (response.status === 429) {
-        // Rate limit exceeded
-        throw new Error('API rate limit exceeded. Please try again later.');
-      } else {
-        throw new Error('Failed to fetch data from API');
-      }
+      const errorMessage =
+        response.status === 429
+          ? 'API rate limit exceeded. Please try again later.'
+          : 'API ERROR: The API is down, please be patient...';
+
+      throw new Error(errorMessage);
     }
 
     const responseData = await response.json();
+
     if (responseData.error) {
       // API returned an error, handle it without saving to Supabase
-      toast.error(`API Error: Couldn't find a city with a given name or id. Try to contact us about it!`);
-      throw new Error('API error occurred.');
+      toast.error("API ERROR: We don't seem to have this city in our data!");
+      throw new Error(`API Error: We dont seem to have this city in our data!${responseData.error.message}`);
     }
 
     return responseData;
