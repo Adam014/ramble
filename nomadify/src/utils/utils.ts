@@ -23,12 +23,7 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
   return response.json();
 };
 
-export const fixDate = (date: Date) => {
-  let dateLocal = new Date(date);
-  let newDate = new Date(
-    dateLocal.getTime() - dateLocal.getTimezoneOffset() * 60 * 1000
-  );
-  return newDate;
-};
+// function to refactore the date, for timezone, that is data originally fetched
+export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 
 export default fetchCostOfLiving;
