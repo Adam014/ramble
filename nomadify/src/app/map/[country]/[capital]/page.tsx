@@ -60,7 +60,6 @@ const Page = () => {
         }
 
         // Use the fetched data
-        // TODO: If the API return Error, dont save it to Supabase and return toast.error or something like that
         toast.success('Data fetched from API and saved to Supabase!');
         console.log('Data saved to Supabase:', newData);
         setCostOfLivingData(newData);
