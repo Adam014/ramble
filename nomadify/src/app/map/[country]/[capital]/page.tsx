@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
-import fetchCostOfLiving from '@utils/fetchCostOfLiving';
+import fetchCostOfLiving, { fixDate } from '@utils/utils';
 import supabase from '@utils/db/supabaseConfig';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -17,6 +17,8 @@ const Page = () => {
   const [costOfLivingData, setCostOfLivingData] = useState(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const today = new Date();
 
   // function for fetching the data from API/DB
   const fetchData = async () => {
@@ -49,7 +51,7 @@ const Page = () => {
               country: decodedCountry,
               capital: decodedCapital,
               data: newData,
-              // CreatedAt: 
+              CreatedAt: fixDate(today),
             },
           ]);
 
