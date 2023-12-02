@@ -6,7 +6,7 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
   const response = await fetch(url, {
     method: 'GET',
     headers: {
-		'X-RapidAPI-Key': 'd6850ca347mshb135b00f6e9f6b2p109ccejsnf924080e2e9b',
+		'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPIDAPID_KEY,
 		'X-RapidAPI-Host': 'cost-of-living-and-prices.p.rapidapi.com'
     },
   });
