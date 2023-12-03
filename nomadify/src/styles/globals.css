@@ -18,6 +18,10 @@ body {
   color: var(--white);
 }
 
+img{
+  pointer-events: none
+}
+
 .main {
   width: 100vw;
   min-height: 100vh;

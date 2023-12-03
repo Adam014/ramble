@@ -16,7 +16,8 @@ const Contact = () => {
         alt='contact-animation' 
         style={{ top: isImageFixed ? 0 : scrollPosition + 'px' }}
         className={`contact-animation object-fit ${isImageFixed ? 'fixed' : 'absolute'} left-0 md:m-40`}
-      />
+      />    
+      {/* TODO: Add here contact form */}
     </div>
   )
 }
