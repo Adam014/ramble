@@ -3,8 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { fetchData } from '@utils/utils';
-import supabase from '@utils/db/supabaseConfig';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 const Page = () => {
     const { country, capital } = useParams();
