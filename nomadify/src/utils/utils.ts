@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast';
+import supabase from './db/supabaseConfig';
 
 const API_ENDPOINT = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
 const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPID_KEY;
@@ -52,5 +53,56 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
 
 // function to refactor the date, for timezone, that is data originally fetched
 export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+
+export const fetchData = async (decodedCountry: string, decodedCapital: string) => {
+  try {
+    // Check if data exists in Supabase
+    const { data: supabaseData, error: supabaseError } = await supabase
+      .from('CountryAndCapitalCollection') 
+      .select()
+      .eq('country', decodedCountry)
+      .eq('capital', decodedCapital);
+
+    if (supabaseError) {
+      throw new Error('Error fetching data from Supabase');
+    }
+
+    if (supabaseData && supabaseData.length > 0) {
+      // Data exists in Supabase, use it
+      toast.success('Data loaded from Supabase!');
+      return supabaseData[0];
+    } else {
+      // Data does not exist in Supabase, fetch and save it
+      const newData = await fetchCostOfLiving(decodedCountry, decodedCapital);
+
+      // Save data to Supabase only if the API call was successful
+      const { error: saveError } = await supabase
+        .from('CountryAndCapitalCollection') 
+        .upsert([
+          {
+            country: decodedCountry,
+            capital: decodedCapital,
+            data: newData,
+            CreatedAt: fixDate(new Date()),
+          },
+        ]);
+
+      if (saveError) {
+        throw new Error('Error saving data to Supabase');
+      }
+
+      // Use the fetched data
+      toast.success('Data fetched from API and saved to Supabase!');
+      return newData;
+    }
+  } catch (error) {
+    // Handle other errors
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error('An unexpected error occurred, please be patient...');
+    }
+  }
+};
 
 export default fetchCostOfLiving;
