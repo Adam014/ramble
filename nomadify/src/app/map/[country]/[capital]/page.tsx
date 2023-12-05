@@ -48,6 +48,8 @@ const Page = () => {
         {costOfLivingData && (
           <div>
             <h3 className='text-4xl mt-10'>Select <span className='custom_font custom_color'>items/services</span></h3>
+            {/* TODO: Add multi select, sort by, currency option */}
+            {/* to view each Cost to Live, maybe use React Splide */}
           </div>
         )}
       </div>
