@@ -40,13 +40,15 @@ const Page = () => {
 
   return (
     <div className='relative'>
-      <div className="heading_container">
-        <h1 className='head_text sm:pl-10 lg:pl-24 pt-24'>📍 {decodedCountry}, {decodedCapital}</h1>
+      <div className="heading_container sm:pl-10 lg:pl-24 pt-24">
+        <h1 className='head_text'>{decodedCountry}, {decodedCapital}</h1>
         {/* // TODO: Add a custom loading... */}
         {loading && <p className='p-24'>Loading...</p>}
         {error && <p className='p-24'>{error}</p>}
         {costOfLivingData && (
-          <></>
+          <div>
+            <h3 className='text-4xl mt-10'>Select <span className='custom_font custom_color'>items/services</span></h3>
+          </div>
         )}
       </div>
       <Toaster />
