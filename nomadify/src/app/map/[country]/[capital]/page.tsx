@@ -6,7 +6,7 @@ import { fetchData } from '@utils/utils';
 import { Toaster } from 'react-hot-toast';
 
 const Page = () => {
-    const { country, capital } = useParams();
+  const { country, capital } = useParams();
 
   const decodeParam = (param: any) => (Array.isArray(param) ? param.join(' ') : decodeURIComponent(param));
 
