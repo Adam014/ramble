@@ -46,9 +46,7 @@ const Page = () => {
         {loading && <p className='p-24'>Loading...</p>}
         {error && <p className='p-24'>{error}</p>}
         {costOfLivingData && (
-          <div>
-            {/* TODO: Show here the cost of living data, create a design for it in figma */}
-          </div>
+          <></>
         )}
       </div>
       <Toaster />
