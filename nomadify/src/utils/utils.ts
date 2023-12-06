@@ -10,12 +10,6 @@ const ERROR_MESSAGES = {
   NOT_FOUND: "API ERROR: We don't seem to have this city in our data!",
 };
 
-interface StatsImageProps {
-  icon: string;
-  count: number;
-  label: string;
-}
-
 const fetchCostOfLiving = async (country: string, capital: string) => {
   const url = `${API_ENDPOINT}?city_name=${capital}&country_name=${country}`;
 
