@@ -1,15 +1,20 @@
 import toast from 'react-hot-toast';
 import supabase from './db/supabaseConfig';
 
+// RAPIDAPI Endpoint
 const API_ENDPOINT = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
+
+// RAPIDAPI_KEY, getting from .env
 const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPID_KEY;
 
+// Declaring error messages
 const ERROR_MESSAGES = {
   RATE_LIMIT: 'API rate limit exceeded. Please try again later.',
   GENERIC: 'API ERROR: The API is down, please be patient...',
   NOT_FOUND: "API ERROR: We don't seem to have this city in our data!",
 };
 
+// Declaring the function for getting the data from the API
 const fetchCostOfLiving = async (country: string, capital: string) => {
   const url = `${API_ENDPOINT}?city_name=${capital}&country_name=${country}`;
 
@@ -54,6 +59,7 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
 // function to refactor the date, for timezone, that is data originally fetched
 export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 
+// function for fetching the data from the DB/API
 export const fetchData = async (decodedCountry: string, decodedCapital: string) => {
   try {
     // Check if data exists in Supabase
@@ -104,5 +110,3 @@ export const fetchData = async (decodedCountry: string, decodedCapital: string) 
     }
   }
 };
-
-export default fetchCostOfLiving;

@@ -26,6 +26,7 @@ export default function Home() {
         </Link>
         <h2 className="text-5xl mt-40">Statistics</h2>
         <div className="sm:block lg:flex gap-20">
+          {/* Custom styled components for the counting up animation, better for overusage */}
           <StatsImage icon="/assets/icons/globe_pink.png" count={200} label="countries" />
           <StatsImage icon="/assets/icons/cost_pink.png" count={53} label="items/services" />
           <StatsImage icon="/assets/icons/currency_pink.png" count={17} label="currencies" />
