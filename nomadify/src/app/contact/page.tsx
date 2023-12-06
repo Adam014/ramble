@@ -35,7 +35,6 @@ const Contact = () => {
                 type="text"
                 placeholder="Last name"
                 className="w-full pl-4 pr-3 py-2 text-white bg-transparent outline-none border-b-2 shadow-sm"
-                required
             />
           </div>
           <div className="relative">
@@ -48,8 +47,15 @@ const Contact = () => {
                 className="w-full pl-12 pr-3 py-2 text-white bg-transparent outline-none border-b-2 shadow-sm"
                 required
             />
+          </div><br /><br />
+          <div className="relative">
+            <textarea
+                placeholder="Enter your message"
+                className="w-full pl-4 pr-3 py-2 text-white bg-transparent outline-none border shadow-sm"
+                required
+            />
           </div>
-          <button>Send</button>
+          <button className='mt-5 w-full bg-black h-10'>Send</button>
         </form>
       </div>
     </div>
