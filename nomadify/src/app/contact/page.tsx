@@ -5,6 +5,7 @@ import Image from 'next/image';
 import ScrollingImage from '@components/Scroll';
 
 const Contact = () => {
+  // variables from getting the scrollPosition of website and if the image is Fixed or Absolute
   const { isImageFixed, scrollPosition } = ScrollingImage();
 
   return (
