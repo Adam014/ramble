@@ -60,6 +60,17 @@ img{
   transition: 0.2s ease-in;
 }
 
+.button-contact {
+  @apply font-extrabold w-60 bg-purple text-white p-4 mt-5;
+  border-radius: 5.5rem 9.6875rem;
+  transition: 0.2s ease-in;
+  width: 100%;
+}
+
+.button-contact:hover{
+  border-radius: 9.6875rem 5.5rem;
+}
+
 .button:hover{
   border-radius: 9.6875rem 5.5rem;
 }

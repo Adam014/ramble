@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react'
-// import Image from 'next/image';
+import Image from 'next/image';
 import ScrollingImage from '@components/Scroll';
 
 const Contact = () => {
@@ -55,7 +55,8 @@ const Contact = () => {
                 required
             />
           </div><br />
-          <button className='mt-5 w-full button'>Send</button>
+          <button className='mt-5 w-full button-contact'>Send</button>
+          <p className='flex mt-10 justify-center'>Powered with <Image src="/assets/images/nomadify.svg" height={90} width={90} alt="logo" className='ml-3' /></p>
         </form>
       </div>
     </div>
