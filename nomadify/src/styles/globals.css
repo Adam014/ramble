@@ -75,6 +75,8 @@ img{
   border-radius: 9.6875rem 5.5rem;
 }
 
+
+
 .custom_font {
   font-family: var(--handdraw-font);
 }
@@ -97,6 +99,12 @@ code{
 
 @media screen and (max-width: 700px) {
   .world-animation {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .back-button {
     display: none;
   }
 }

@@ -5,6 +5,7 @@ import MapChart from "@components/Mapchart";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
+import Image from 'next/image';
 
 const Map = () => {
     // state for the state onMouseOver
@@ -21,8 +22,11 @@ const Map = () => {
     return (
         <>  
             <h2 className="text-4xl m-10">Explore <span className='custom_font custom_color'>Globally</span></h2>
-            <p className='ml-10 text-2xl w-1/2'>Say goodbye to daily routine and become a <span className='custom_font custom_color'>citizen</span> of the world! Learn, live and love every <span className='custom_font custom_color'>destination</span> with Nomadify’s cost of living comparison.</p>
-            <Link href="/" className='absolute right-0 mt-24 sm:mt-0 md:mt-10 m-10 cursor-pointer duration-200 hover:scale-125 active:scale-100'><p><span className='custom_font'>arrow</span> Return</p></Link>
+            <p className='ml-10 text-2xl sm:w-9/12 md:w-1/2'>Say goodbye to daily routine and become a <span className='custom_font custom_color'>citizen</span> of the world! Learn, live and love every <span className='custom_font custom_color'>destination</span> with Nomadify’s cost of living comparison.</p>
+            <div className='absolute top-0 right-0 mr-50 m-10 back-button'>
+                <Image src="/assets/images/circle.png" height={100} width={200} alt="circle" className='absolute -top-2' />
+                <Link href="/" className='text-xl'><h5 className='relative z-50'><span className='custom_font'>arrow</span> Return</h5></Link>
+            </div>
             <div className='relative flex justify-center -mt-40'>
                 <MapChart 
                     setTooltipCountry={setCountry}                    
