@@ -24,7 +24,8 @@ export default function Home() {
         <Link href="/map">
           <button className='button text-center'>EXPLORE 🡢</button>
         </Link>
-        <h2 className="text-5xl mt-40">Statistics</h2>
+        <h2 className="text-5xl mt-28">Unleash Your Inner Nomad</h2>
+        <p className="sm:w-11/12 md:w-1/2 pt-5">Deciding to explore the earth shouldn’t cost the earth! Can you afford that splendid solitude in Siberia or the charming chateaus of France? We’re here to turn your dreams into reality. With Nomadify, you're just a click away to know your cost.</p>
         <div className="sm:block lg:flex gap-20">
           {/* Custom styled components for the counting up animation, better for overusage */}
           <StatsImage icon="/assets/icons/globe_pink.png" count={200} label="countries" />

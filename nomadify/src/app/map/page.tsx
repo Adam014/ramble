@@ -20,9 +20,10 @@ const Map = () => {
 
     return (
         <>  
-            <h2 className="text-4xl m-10 mt-52 absolute">Choose your <span className="custom_font custom_color">country</span></h2>
+            <h2 className="text-4xl m-10">Explore <span className='custom_font custom_color'>Globally</span></h2>
+            <p className='ml-10 text-2xl w-1/2'>Say goodbye to daily routine and become a <span className='custom_font custom_color'>citizen</span> of the world! Learn, live and love every <span className='custom_font custom_color'>destination</span> with Nomadify’s cost of living comparison.</p>
             <Link href="/" className='absolute right-0 mt-24 sm:mt-0 md:mt-10 m-10 cursor-pointer duration-200 hover:scale-125 active:scale-100'><p><span className='custom_font'>arrow</span> Return</p></Link>
-            <div className='relative flex justify-center'>
+            <div className='relative flex justify-center -mt-40'>
                 <MapChart 
                     setTooltipCountry={setCountry}                    
                     setTooltipCapital={setCapital}

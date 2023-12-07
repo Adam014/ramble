@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image';
+import Link from 'next/link';
 import ScrollingImage from '@components/Scroll';
 
 const Contact = () => {
@@ -12,16 +13,16 @@ const Contact = () => {
     <div className="relative">
       <Image 
         src="/assets/images/contact-animate.svg" 
-        height={800} 
-        width={800} 
+        height={700} 
+        width={700} 
         alt='contact-animation' 
         style={{ top: isImageFixed ? 0 : scrollPosition + 'px' }}
-        className={`contact-animation object-fit ${isImageFixed ? 'fixed' : 'absolute'} right-0 mt-28 mr-40`}
+        className={`contact-animation object-fit ${isImageFixed ? 'fixed' : 'absolute'} right-0 mt-32 mr-40`}
       />    
       {/* TODO: Add here contact form */}
-      <div className='absolute top-28 lg:left-1/5'>
-        <h1 className='lg:text-6xl text-3xl relative lg:left-1/3 left-10'>Share <span className='custom_font custom_color'>ideas</span> with us!</h1>
-        <form className='relative lg:left-1/3 top-8 left-10'>
+      <div className='contact-container absolute top-28 left-20'>
+        <h1 className='lg:text-6xl text-3xl relative'>Share <span className='custom_font custom_color'>ideas</span> with us!</h1>
+        <form className='relative top-8'>
           <div className="mb-10 w-full">
             <input
                 type="email"
@@ -56,7 +57,7 @@ const Contact = () => {
             />
           </div><br />
           <button className='mt-5 w-full button-contact'>Send</button>
-          <p className='flex p-10 justify-center'>Powered with <Image src="/assets/images/nomadify.svg" height={90} width={90} alt="logo" className='ml-3' /></p>
+          <p className='flex p-10 justify-center'>Powered with <Link href="/"><Image src="/assets/images/nomadify.svg" height={90} width={90} alt="logo" className='ml-3 mt-2' /></Link></p>
         </form>
       </div>
     </div>

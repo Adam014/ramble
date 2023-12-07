@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Over+the+Rainbow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Over+the+Rainbow&family=Unbounded&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #000011;
-  --font: 'Acme', sans-serif;
+  --background: #000000;
+  --font: 'Unbounded', sans-serif;
   --handdraw-font: 'Over the Rainbow', cursive;
   --white: #ffff;
   --purple: #F13E51;
@@ -22,7 +22,7 @@ img{
   pointer-events: none
 }
 
-.main {
+/* .main {
   width: 100vw;
   min-height: 100vh;
   position: fixed;
@@ -40,7 +40,7 @@ img{
   width: 100%;
   height: 100%;
   top: 0;
-}
+} */
 
 img{
   pointer-events: none;
@@ -101,7 +101,7 @@ code{
   }
 }
 
-@media screen and (max-width: 1550px) {
+@media screen and (max-width: 1585px) {
   .contact-animation{
     height: 600px;
     width: 600px;
@@ -119,8 +119,14 @@ code{
   }
 }
 
-@media screen and (max-width: 1190px){
+@media screen and (max-width: 1234px){
   .contact-animation{
     display:none;
+  }
+  .contact-container{
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    left: 0;
   }
 }
