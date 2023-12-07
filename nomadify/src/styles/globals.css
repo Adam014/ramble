@@ -101,8 +101,26 @@ code{
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1550px) {
   .contact-animation{
-    display: none;
+    height: 600px;
+    width: 600px;
+    margin-top: 13rem;
+    margin-right: 4rem
+  }
+}
+
+@media screen and (max-width: 1375px) {
+  .contact-animation{
+    height: 500px;
+    width: 500px;
+    margin-top: 15rem;
+    margin-right: 4rem;
+  }
+}
+
+@media screen and (max-width: 1190px){
+  .contact-animation{
+    display:none;
   }
 }

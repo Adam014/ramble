@@ -6,18 +6,18 @@ import ScrollingImage from '@components/Scroll';
 
 const Contact = () => {
   // variables from getting the scrollPosition of website and if the image is Fixed or Absolute
-  // const { isImageFixed, scrollPosition } = ScrollingImage();
+  const { isImageFixed, scrollPosition } = ScrollingImage();
 
   return (
     <div className="relative">
-      {/* <Image 
+      <Image 
         src="/assets/images/contact-animate.svg" 
-        height={600} 
-        width={600} 
+        height={800} 
+        width={800} 
         alt='contact-animation' 
         style={{ top: isImageFixed ? 0 : scrollPosition + 'px' }}
-        className={`contact-animation object-fit ${isImageFixed ? 'fixed' : 'absolute'} left-0`}
-      />     */}
+        className={`contact-animation object-fit ${isImageFixed ? 'fixed' : 'absolute'} right-0 mt-28 mr-40`}
+      />    
       {/* TODO: Add here contact form */}
       <div className='absolute top-28 lg:left-1/5'>
         <h1 className='lg:text-6xl text-3xl relative lg:left-1/3 left-10'>Share <span className='custom_font custom_color'>ideas</span> with us!</h1>
