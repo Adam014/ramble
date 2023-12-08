@@ -107,6 +107,13 @@ code{
   .back-button {
     display: none;
   }
+  .links-container {
+    position:relative;
+    left: 0;
+  }
+  .map-container{
+    margin-top: -17rem;
+  }
 }
 
 @media screen and (max-width: 1585px) {

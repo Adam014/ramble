@@ -27,7 +27,20 @@ const Map = () => {
                 <Image src="/assets/images/circle1.png" height={100} width={250} alt="circle" className='absolute -top-2' />
                 <Link href="/" className='text-xl'><h5 className='relative z-50'><span className='custom_font'>arrow</span> Return</h5></Link>
             </div>
-            <div className='relative flex justify-center -mt-40'>
+            <div className='links-container text-3xl fixed right-0 p-10 top-1/3 z-50'>
+                <Link href="https://www.instagram.com/kindastxd/">
+                    <h3 className='pb-2'>Instagram</h3>
+                </Link>
+                <hr />
+                <Link href="https://twitter.com/kindastcs">
+                    <h3 className='pb-2 pt-2'>Twitter</h3>
+                </Link>
+                <hr />
+                <Link href="https://github.com/Adam014">
+                    <h3>Github</h3>
+                </Link>
+            </div>
+            <div className='relative flex justify-center -mt-40 map-container'>
                 <MapChart 
                     setTooltipCountry={setCountry}                    
                     setTooltipCapital={setCapital}
