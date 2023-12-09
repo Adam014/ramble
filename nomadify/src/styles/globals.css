@@ -60,6 +60,7 @@ img{
   @apply font-extrabold w-60 bg-purple text-white p-4 mt-5;
   border-radius: 5rem;
   transition: 0.2s ease-in;
+  margin-top: 40px;
 }
 
 .button-contact {
@@ -120,7 +121,7 @@ code{
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   .custom_object{
     display: none;
   }
