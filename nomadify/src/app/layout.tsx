@@ -1,7 +1,7 @@
 import '@styles/globals.css';
 
 import Navbar from '@components/Navbar';
-// import Image from 'next/image';
+import Image from 'next/image';
 import dynamic from "next/dynamic";
 
 export const metadata = {
@@ -25,13 +25,13 @@ export default function RootLayout({ children }) {
           </div>  
 
           <main className='app'>
-            {/* <Image 
+            <Image 
               src="/assets/images/elipsa.svg"    
               alt='elipsse'
               width={1000}
               height={1000}
               className='object-fit absolute right-0'
-            /> */}
+            />
 
             <Navbar />
             {children}
