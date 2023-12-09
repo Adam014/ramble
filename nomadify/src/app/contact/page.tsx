@@ -4,6 +4,8 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import ScrollingImage from '@components/Scroll';
+import { Toaster } from 'react-hot-toast';
+import { sendEmail } from '@utils/utils';
 
 const Contact = () => {
   // variables from getting the scrollPosition of website and if the image is Fixed or Absolute
@@ -11,6 +13,7 @@ const Contact = () => {
 
   return (
     <div className="relative">
+      <Toaster />
       <Image 
         src="/assets/images/contact-animate.svg" 
         height={700} 
@@ -22,12 +25,13 @@ const Contact = () => {
       {/* TODO: Add here contact form */}
       <div className='contact-container absolute top-28 left-20'>
         <h1 className='lg:text-6xl text-3xl relative'>Share <span className='custom_font custom_color'>ideas</span> with us!</h1>
-        <form className='relative top-8'>
+        <form className='relative top-8' onSubmit={sendEmail}>
           <div className="mb-10 w-full">
             <input
-                type="email"
+                type="text"
                 placeholder="First name"
                 className="w-full pl-4 pr-3 py-2 text-white bg-transparent outline-none border-b-2 shadow-sm"
+                name='from_name'
                 required
             />
           </div>
@@ -35,6 +39,7 @@ const Contact = () => {
             <input
                 type="text"
                 placeholder="Last name"
+                name='from_surname'
                 className="w-full pl-4 pr-3 py-2 text-white bg-transparent outline-none border-b-2 shadow-sm"
             />
           </div>
@@ -46,6 +51,7 @@ const Contact = () => {
                 type="email"
                 placeholder="Enter your email"
                 className="w-full pl-12 pr-3 py-2 text-white bg-transparent outline-none border-b-2 shadow-sm"
+                name='from_email'
                 required
             />
           </div><br /><br />
@@ -54,6 +60,7 @@ const Contact = () => {
                 placeholder="Enter your message"
                 className="w-full pl-4 pr-3 py-2 text-white bg-transparent outline-none border shadow-sm"
                 required
+                name='html_message'
             />
           </div><br />
           <button className='mt-5 w-full button-contact'>Send</button>

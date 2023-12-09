@@ -1,5 +1,6 @@
 import toast from 'react-hot-toast';
 import supabase from './db/supabaseConfig';
+import emailjs from "emailjs-com";
 
 // RAPIDAPI Endpoint
 const API_ENDPOINT = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
@@ -110,3 +111,16 @@ export const fetchData = async (decodedCountry: string, decodedCapital: string) 
     }
   }
 };
+
+export const sendEmail = (e) => {
+  e.preventDefault();
+
+  emailjs.sendForm('nomadify_contact', 'template_fnex1n8', e.target, 'jI57JPoeSeH54Dm4S')
+    .then((result) => {
+        e.target.reset();
+        toast.success("The email was sent!");
+    }, (error) => {
+        console.log(error.text);
+        toast.error("The email cannot be send...")
+    });     
+}
