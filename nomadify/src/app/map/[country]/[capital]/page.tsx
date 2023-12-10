@@ -46,6 +46,12 @@ const Page = () => {
 
   console.log(costOfLivingData);
 
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+
   return (
     <div className='relative'>
       <div className="heading_container sm:pl-10 lg:pl-24 pt-24">
@@ -54,12 +60,12 @@ const Page = () => {
         {loading && <p className='p-24'>Loading...</p>}
         {error && <p className='p-24'>{error}</p>}
         {costOfLivingData && (
-          <div>
+          <>
             <h3 className='text-4xl mt-10'>Select <span className='custom_font custom_color'>items/services</span></h3>
             {/* TODO: Add multi select, sort by, currency option */}
             {/* to view each Cost to Live, maybe use React Splide */}
             {/* Or just use simple table with each items from selected options */}
-          </div>
+          </>
         )}
       </div>
       <Toaster />

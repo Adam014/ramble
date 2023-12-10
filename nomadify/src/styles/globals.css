@@ -16,6 +16,9 @@ body {
   background-color: var(--background);
   font-family: var(--font);
   color: var(--white);
+   -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 img{
@@ -108,13 +111,11 @@ code{
   background-color: gray;
 }
 
+/* MEDIA QUERIES */
+
 @media screen and (max-width: 767px) {
   .back-button {
     display: none;
-  }
-  .links-container {
-    position:relative;
-    left: 0;
   }
   .map-container{
     margin-top: -17rem;
@@ -153,6 +154,10 @@ code{
     display: grid;
     justify-content: center;
     width: 100%;
+    left: 0;
+  }
+  .links-container {
+    position:relative;
     left: 0;
   }
 }
