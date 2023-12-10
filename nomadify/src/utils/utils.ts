@@ -112,6 +112,7 @@ export const fetchData = async (decodedCountry: string, decodedCapital: string) 
   }
 };
 
+// function for sending the email
 export const sendEmail = (e) => {
   e.preventDefault();
 
@@ -124,3 +125,23 @@ export const sendEmail = (e) => {
         toast.error("The email cannot be send...")
     });     
 }
+
+// function for getting the cost to live categories
+export const getUniqueCategories = (prices = []) => {
+  const uniqueCategoryNames = Array.from(new Set(prices.map((price) => price.category_name)));
+
+  return uniqueCategoryNames.map((categoryName) => ({
+    label: categoryName,
+    value: categoryName, 
+  }));
+};
+
+// function for getting the currencies
+export const getCurrencies = (exchangeRates = {}) => {
+  const currencies = Object.entries(exchangeRates).map(([currencyCode, exchangeRate]) => ({
+    label: currencyCode,
+    value: exchangeRate,
+  }));
+
+  return currencies;
+};

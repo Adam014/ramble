@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
-import { fetchData } from '@utils/utils';
+import { fetchData, getCurrencies, getUniqueCategories } from '@utils/utils';
 import { Toaster } from 'react-hot-toast';
 import { MultiSelect } from "react-multi-select-component";
 
@@ -45,24 +45,27 @@ const Page = () => {
     fetchDataFromUtils();
   }, [memoizedFetchData]);
 
-  const [options, setOptions] = useState([]);
+  // console.log(costOfLivingData);
+
+  // states for getting the unique cost to live categories
+  const [optionsCategory, setCategoryOptions] = useState([]);
   const [selected, setSelected] = useState([]);
 
+  // states for getting currencies
+  const [currencyOptions, setCurrencyOptions] = useState([]);
+  console.log(currencyOptions);
+  console.log(optionsCategory);
+
   useEffect(() => {
-      // Assuming costOfLivingData is an object with a 'prices' property
-      const prices = costOfLivingData?.data?.prices || [];
-      
-      // Extract unique category names
-      const uniqueCategoryNames = Array.from(new Set(prices.map((price) => price.category_name)));
+    const prices = costOfLivingData?.data?.prices || [];
+    const exchangeRates = costOfLivingData?.data?.exchange_rate || {};
 
-      // Create options array
-      const categories = uniqueCategoryNames.map((categoryName) => ({
-        label: categoryName,
-        value: categoryName, // or use some unique identifier if available
-      }));
+    const categories = getUniqueCategories(prices);
+    const currencies = getCurrencies(exchangeRates);
 
-      setOptions(categories);
-    }, [costOfLivingData]);
+    setCategoryOptions(categories);
+    setCurrencyOptions(currencies);
+  }, [costOfLivingData]);
 
   return (
     <div className='relative'>
@@ -78,7 +81,7 @@ const Page = () => {
             {/* to view each Cost to Live, maybe use React Splide */}
             {/* Or just use simple table with each items from selected options */}
             <MultiSelect
-              options={options}
+              options={optionsCategory}
               value={selected}
               onChange={setSelected}
               hasSelectAll={false}
@@ -86,6 +89,7 @@ const Page = () => {
               labelledBy="Select"
               className='select w-10/12 mt-5 text-black'
             />
+
           </>
         )}
       </div>
