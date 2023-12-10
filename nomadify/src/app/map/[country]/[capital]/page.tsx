@@ -54,18 +54,19 @@ const Page = () => {
 
   // states for getting currencies
   const [currencyOptions, setCurrencyOptions] = useState([]);
-  console.log(currencyOptions);
-  console.log(optionsCategory);
-
-  // Memoizing categories and currencies
-  const memoizedCategories = useMemo(() => getUniqueCategories(costOfLivingData?.data?.prices || []), [costOfLivingData]);
-  const memoizedCurrencies = useMemo(() => getCurrencies(costOfLivingData?.data?.exchange_rate || {}), [costOfLivingData]);
+  // console.log(currencyOptions);
+  // console.log(optionsCategory);
 
   useEffect(() => {
-    // Update state with memoized categories and currencies
-    setCategoryOptions(memoizedCategories);
-    setCurrencyOptions(memoizedCurrencies);
-  }, [memoizedCategories, memoizedCurrencies]);
+    const prices = costOfLivingData?.data?.prices || [];
+    const exchangeRates = costOfLivingData?.data?.exchange_rate || {};
+
+    const categories = getUniqueCategories(prices);
+    const currencies = getCurrencies(exchangeRates);
+
+    setCategoryOptions(categories);
+    setCurrencyOptions(currencies);
+  }, [costOfLivingData]);
 
   return (
     <div className='relative'>
