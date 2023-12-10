@@ -15,7 +15,7 @@ const Page = () => {
   const decodeParam = (param: any) => (Array.isArray(param) ? param.join(' ') : decodeURIComponent(param));
 
   // variables for the decoded parameters
-  const decodedCountry = decodeParam(country);
+  const decodedCountry = decodeParam(country);  
   const decodedCapital = decodeParam(capital);
 
   // states for the data fetching
@@ -55,7 +55,7 @@ const Page = () => {
 
   // states for getting currencies
   const [currencyOptions, setCurrencyOptions] = useState([]);
-  // console.log(currencyOptions);
+  console.log(currencyOptions);
   // console.log(optionsCategory);
 
   useEffect(() => {
@@ -79,9 +79,6 @@ const Page = () => {
         {costOfLivingData && (
           <>
             <h3 className='text-4xl mt-10'>Select <span className='custom_font custom_color'>items/services</span></h3>
-            {/* TODO: Add multi select, sort by, currency option */}
-            {/* to view each Cost to Live, maybe use React Splide */}
-            {/* Or just use simple table with each items from selected options */}
             <MultiSelect
               options={optionsCategory}
               value={selected}
@@ -89,8 +86,16 @@ const Page = () => {
               hasSelectAll={false}
               closeOnChangedValue={false}
               labelledBy="Select"
-              className='select w-10/12 mt-5 text-black'
+              className='w-10/12 mt-5 text-black'
             />
+            {/* TODO: Add default value as Dollar */}
+            <select className='select text-black p-2 mt-5'>  
+              {currencyOptions.map((currency, index) => (
+                <option key={index} value={currency.value}>
+                  {currency.label}
+                </option>
+              ))}
+            </select>
           </>
         )}
       </div>
