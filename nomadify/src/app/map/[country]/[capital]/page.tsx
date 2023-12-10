@@ -67,6 +67,7 @@ const Page = () => {
 
     setCategoryOptions(categories);
     setCurrencyOptions(currencies);
+
   }, [costOfLivingData]);
 
   return (
@@ -88,7 +89,7 @@ const Page = () => {
               labelledBy="Select"
               className='w-10/12 mt-5 text-black'
             />
-            {/* TODO: Add default value as Dollar */}
+            {/* TODO: Add default value as USD */}
             <select className='select text-black p-2 mt-5'>  
               {currencyOptions.map((currency, index) => (
                 <option key={index} value={currency.value}>
