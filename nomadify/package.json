@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-github-btn": "^1.4.0",
     "react-hot-toast": "^2.4.1",
+    "react-multi-select-component": "^4.3.4",
     "react-simple-maps": "^3.0.0",
     "react-tooltip": "^5.23.0",
     "touch-cli": "^0.0.1"

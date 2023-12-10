@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { fetchData } from '@utils/utils';
 import { Toaster } from 'react-hot-toast';
+import { MultiSelect } from "react-multi-select-component";
 
 const Page = () => {
   // getting the country and capital from the url params
@@ -44,13 +45,24 @@ const Page = () => {
     fetchDataFromUtils();
   }, [memoizedFetchData]);
 
-  console.log(costOfLivingData);
+  const [options, setOptions] = useState([]);
+  const [selected, setSelected] = useState([]);
 
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
+  useEffect(() => {
+      // Assuming costOfLivingData is an object with a 'prices' property
+      const prices = costOfLivingData?.data?.prices || [];
+      
+      // Extract unique category names
+      const uniqueCategoryNames = Array.from(new Set(prices.map((price) => price.category_name)));
+
+      // Create options array
+      const categories = uniqueCategoryNames.map((categoryName) => ({
+        label: categoryName,
+        value: categoryName, // or use some unique identifier if available
+      }));
+
+      setOptions(categories);
+    }, [costOfLivingData]);
 
   return (
     <div className='relative'>
@@ -65,6 +77,15 @@ const Page = () => {
             {/* TODO: Add multi select, sort by, currency option */}
             {/* to view each Cost to Live, maybe use React Splide */}
             {/* Or just use simple table with each items from selected options */}
+            <MultiSelect
+              options={options}
+              value={selected}
+              onChange={setSelected}
+              hasSelectAll={false}
+              closeOnChangedValue={false}
+              labelledBy="Select"
+              className='select w-10/12 mt-5 text-black'
+            />
           </>
         )}
       </div>
