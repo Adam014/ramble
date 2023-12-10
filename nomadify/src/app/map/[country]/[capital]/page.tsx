@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { fetchData, getCurrencies, getUniqueCategories } from '@utils/utils';
 import { Toaster } from 'react-hot-toast';
+
 import { MultiSelect } from "react-multi-select-component";
 
 const Page = () => {
@@ -90,7 +91,6 @@ const Page = () => {
               labelledBy="Select"
               className='select w-10/12 mt-5 text-black'
             />
-
           </>
         )}
       </div>
