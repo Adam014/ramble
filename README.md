@@ -84,7 +84,7 @@ https://nomadify-blond.vercel.app
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Background_color | ![#1A1A21](https://via.placeholder.com/10/1A1A21?text=+) #1A1A21 |
+| Background_color | ![#00000](https://via.placeholder.com/10/0000?text=+) #OOOOOO |
 | Button_color | ![#F13E51](https://via.placeholder.com/10/F13E51?text=+) #F13E51 |
 | Hover_color | ![#E08C9C](https://via.placeholder.com/10/E08C9C?text=+) #E08C9C |
 
