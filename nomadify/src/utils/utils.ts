@@ -1,6 +1,8 @@
+import { useState, useEffect, useCallback } from 'react';
 import toast from 'react-hot-toast';
 import supabase from './db/supabaseConfig';
 import emailjs from "emailjs-com";
+import { useParams } from 'next/navigation';
 
 // RAPIDAPI Endpoint
 const API_ENDPOINT = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
@@ -147,4 +149,36 @@ export const getCurrencies = (exchangeRates = {}) => {
   currencies.sort((a, b) => (a.value === 1 ? -1 : b.value === 1 ? 1 : 0));
 
   return currencies;
+};
+
+export const useDecodedParams = () => {
+  const { country, capital } = useParams();
+  const decodeParam = (param: any) => (Array.isArray(param) ? param.join(' ') : decodeURIComponent(param));
+  return {
+    decodedCountry: decodeParam(country),
+    decodedCapital: decodeParam(capital),
+  };
+};
+
+export const useDataFetching = (country: string, capital: string) => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const fetchDataFromUtils = useCallback(async () => {
+    try {
+      const result = await fetchData(country, capital);
+      setData(result);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [country, capital]);
+
+  useEffect(() => {
+    fetchDataFromUtils();
+  }, [fetchDataFromUtils]);
+
+  return { data, error, loading };
 };

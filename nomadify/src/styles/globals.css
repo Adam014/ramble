@@ -112,9 +112,12 @@ code{
 }
 
 .select {
-  width: 10%;
+  width: 8rem;
   border: unset; 
   appearance: none;
+}
+
+.select_custom_arrow {
   background-image: url("/assets/icons/arrow.png");
   background-repeat: no-repeat;
   background-position: right 0.7rem top 50%;
