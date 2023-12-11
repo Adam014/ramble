@@ -143,5 +143,8 @@ export const getCurrencies = (exchangeRates = {}) => {
     value: exchangeRate,
   }));
 
+  // Sort the currencies array to put USD at the first index
+  currencies.sort((a, b) => (a.label === 'USD' ? -1 : b.label === 'USD' ? 1 : 0));
+
   return currencies;
 };
