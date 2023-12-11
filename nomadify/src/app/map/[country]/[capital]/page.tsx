@@ -4,10 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { useDataFetching, getCurrencies, getUniqueCategories, useDecodedParams } from '@utils/utils';
 import { Toaster } from 'react-hot-toast';
 import { MultiSelect } from "react-multi-select-component";
+import Image from 'next/image';
 
 const Page = () => {
   const { decodedCountry, decodedCapital } = useDecodedParams();
   const { data: costOfLivingData, error, loading } = useDataFetching(decodedCountry, decodedCapital);
+  console.log(costOfLivingData);
 
   const [selected, setSelected] = useState([]);
   const [optionsCategory, setCategoryOptions] = useState([]);
@@ -25,7 +27,7 @@ const Page = () => {
 
   return (
     <div className='relative'>
-      <div className="heading_container pl-5 md:p-10 lg:pl-24 pt-24">
+      <div className="heading_container pl-10 md:p-10 lg:pl-24 pt-24">
         <h1 className='head_text'>{decodedCountry}, {decodedCapital}</h1>
         {loading && <p className='p-24'>Loading...</p>}
         {error && <p className='p-24'>{error}</p>}
