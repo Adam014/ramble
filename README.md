@@ -84,7 +84,7 @@ https://nomadify-blond.vercel.app
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Background_color | ![#1A1A21](https://via.placeholder.com/10/1A1A21?text=+) #1A1A21 |
+| Background_color | ![#00000](https://via.placeholder.com/10/0000?text=+) #000000 |
 | Button_color | ![#F13E51](https://via.placeholder.com/10/F13E51?text=+) #F13E51 |
 | Hover_color | ![#E08C9C](https://via.placeholder.com/10/E08C9C?text=+) #E08C9C |
 
@@ -102,7 +102,7 @@ NEXT_PUBLIC_SUPABASE_APP_URL = your_SUPABASE_url
 
 ## API Reference
 
-#### Get all items
+#### Get the Cost to Live of the capital city
 
 ```http
   GET /map/${country}/${capital}
@@ -115,6 +115,9 @@ NEXT_PUBLIC_SUPABASE_APP_URL = your_SUPABASE_url
 Fetching the Cost to Live data of the country/capital user clicks!
 
 It also works, when u type:
+
+#### Get the Cost to Live of the city you enter
+
 ```http
   GET /map/${country}/${another_city_you_can_think_of}
 ```
