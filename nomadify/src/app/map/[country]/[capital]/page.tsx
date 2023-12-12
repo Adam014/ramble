@@ -34,6 +34,7 @@ const Page = () => {
         {costOfLivingData && (
           <>
             <h3 className='text-4xl mt-10'>Select <span className='custom_font custom_color'>items/services</span></h3>
+            {/* TODO: fix bug, when the data fetches straight from the API, there are not any values in the select, nor the currencies nor the multi select of categories  */}
             <MultiSelect
               options={optionsCategory}
               value={selected}
