@@ -16,12 +16,15 @@ const Page = () => {
   const [currencyOptions, setCurrencyOptions] = useState([]);
 
   useEffect(() => {
-    // Here is the issue with the no values, first we fetch the data, that is a straight object, and then we fetches from the DB where we get it from data?.[]
-    const prices = costOfLivingData?.data?.prices || [];
-    const exchangeRates = costOfLivingData?.data?.exchange_rate || {};
+    // Determine the data source
+    const sourceData = costOfLivingData?.data || costOfLivingData || {};
+    
+    const prices = sourceData.prices || [];
+    const exchangeRates = sourceData.exchange_rate || {};
     const categories = getUniqueCategories(prices);
     const currencies = getCurrencies(exchangeRates);
 
+    // Set the state once at the end
     setCategoryOptions(categories);
     setCurrencyOptions(currencies);
   }, [costOfLivingData]);
