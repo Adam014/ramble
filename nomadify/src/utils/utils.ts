@@ -39,7 +39,7 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
         response.status === 429
           ? ERROR_MESSAGES.RATE_LIMIT
           : ERROR_MESSAGES.GENERIC;
-
+      toast.error(errorMessage);
       throw new Error(errorMessage);
     }
 
