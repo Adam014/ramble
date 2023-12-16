@@ -13,7 +13,7 @@ const Page = () => {
   const { data: costOfLivingData, error, loading } = useDataFetching(decodedCountry, decodedCapital);
   // console.log(costOfLivingData);
 
-  const costOfLivingItems = costOfLivingData?.data?.prices
+  const costOfLivingItems = costOfLivingData?.data?.prices || costOfLivingData?.prices || {};
 
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
@@ -58,7 +58,7 @@ const Page = () => {
               onChange={(e) => setSelectedCurrency(e.target.value)}
             />
             <div>
-              <ItemCard data={costOfLivingItems} />
+              {costOfLivingItems && <ItemCard data={costOfLivingItems} />}
             </div>
           </>
         ) : null}
