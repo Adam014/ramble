@@ -5,12 +5,15 @@ import { useDataFetching, getCurrencies, getUniqueCategories, useDecodedParams }
 import { Toaster } from 'react-hot-toast';
 import { MultiSelect } from "react-multi-select-component";
 import CurrencySelect from '@components/CurrencySelect';
+import ItemCard from '@components/ItemCard';
 // import Image from 'next/image';
 
 const Page = () => {
   const { decodedCountry, decodedCapital } = useDecodedParams();
   const { data: costOfLivingData, error, loading } = useDataFetching(decodedCountry, decodedCapital);
-  console.log(costOfLivingData);
+  // console.log(costOfLivingData);
+
+  const costOfLivingItems = costOfLivingData?.data?.prices
 
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
@@ -30,10 +33,6 @@ const Page = () => {
     setCategoryOptions(categories);
     setCurrencyOptions(currencies);
   }, [costOfLivingData]);
-
-  const handleCurrencyChange = useCallback((e) => {
-    setSelectedCurrency(e.target.value);
-  }, []);
 
   return (
     <div className='relative'>
@@ -58,6 +57,9 @@ const Page = () => {
               value={selectedCurrency}
               onChange={(e) => setSelectedCurrency(e.target.value)}
             />
+            <div>
+              <ItemCard data={costOfLivingItems} />
+            </div>
           </>
         ) : null}
       </div>
