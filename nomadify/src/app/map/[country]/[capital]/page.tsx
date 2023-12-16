@@ -48,7 +48,7 @@ const Page = () => {
               options={optionsCategory}
               value={selectedCategory}
               onChange={setSelectedCategory}
-              hasSelectAll={false}
+              hasSelectAll={true}
               closeOnChangedValue={false}
               labelledBy="Select"
               className='w-10/12 mt-5 text-black appearance-none'
