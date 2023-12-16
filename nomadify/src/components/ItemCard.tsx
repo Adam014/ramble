@@ -18,10 +18,10 @@ interface ItemProps {
 const ItemCard: FC<ItemProps> = ({ data }) => {
     const memoizedElements = useMemo(
         () =>
-            data.map((item) => (
+            data?.map((item) => (
+                // TODO: Refactor this design by the design in figma
                 <div key={item.good_id}>
                     <h2>{item.item_name}</h2>
-                    {/* Add more JSX elements for other properties if needed */}
                 </div>
             )),
         [data]
