@@ -53,7 +53,6 @@ const Page = () => {
               labelledBy="Select"
               className='w-10/12 mt-5 text-black appearance-none'
             />
-            {/* TODO: Add actual value of the select and then onCHange for changing */}
             <CurrencySelect
               options={currencyOptions}
               value={selectedCurrency}

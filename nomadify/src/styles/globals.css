@@ -115,10 +115,12 @@ code{
   width: 8rem;
   border: unset; 
   appearance: none;
+  background-color: #F13E51;
+  color: white;
 }
 
 .select_custom_arrow {
-  background-image: url("/assets/icons/arrow.png");
+  background-image: url("/assets/icons/arrow2.png");
   background-repeat: no-repeat;
   background-position: right 0.7rem top 50%;
   background-size: 1.5rem auto;
