@@ -11,7 +11,7 @@ import ItemCard from '@components/ItemCard';
 const Page = () => {
   const { decodedCountry, decodedCapital } = useDecodedParams();
   const { data: costOfLivingData, error, loading } = useDataFetching(decodedCountry, decodedCapital);
-  // console.log(costOfLivingData);
+  console.log(costOfLivingData);
 
   const costOfLivingItems = costOfLivingData?.data?.prices || costOfLivingData?.prices || {};
 
@@ -58,7 +58,13 @@ const Page = () => {
               onChange={(e) => setSelectedCurrency(e.target.value)}
             />
             <div>
-              {costOfLivingItems && <ItemCard data={costOfLivingItems} />}
+              {costOfLivingItems && (
+                <ItemCard
+                  data={costOfLivingItems.filter(item =>
+                    selectedCategory.some(category => category.value === item.category_name)
+                  )}
+                />
+              )}
             </div>
           </>
         ) : null}
