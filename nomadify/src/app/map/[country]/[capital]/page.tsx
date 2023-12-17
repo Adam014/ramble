@@ -9,7 +9,7 @@ import ItemCard from '@components/ItemCard';
 // import Image from 'next/image';
 
 const Page = () => {
-  const { decodedCountry, decodedCapital } = useDecodedParams();
+  const { decodedCountry = '', decodedCapital = '' }  = useDecodedParams();
   const { data: costOfLivingData, error, loading } = useDataFetching(decodedCountry, decodedCapital);
   console.log(costOfLivingData);
 
