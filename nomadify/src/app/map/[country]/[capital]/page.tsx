@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDataFetching, getCurrencies, getUniqueCategories, useDecodedParams } from '@utils/utils';
 import { Toaster } from 'react-hot-toast';
 import { MultiSelect } from "react-multi-select-component";
 import CurrencySelect from '@components/CurrencySelect';
 import ItemCard from '@components/ItemCard';
-// import Image from 'next/image';
 
 const Page = () => {
   const { decodedCountry = '', decodedCapital = '' }  = useDecodedParams();
@@ -58,7 +57,9 @@ const Page = () => {
               onChange={(e) => setSelectedCurrency(e.target.value)}
             />
             <div>
+              {/* Now checking if there are any selected categories */}
               {costOfLivingItems && selectedCategory.length > 0 ? (
+                // Filtering throught the items to show only that match the selected category
                 <ItemCard
                   data={costOfLivingItems.filter(item =>
                     selectedCategory.some(category => category.value === item.category_name)
