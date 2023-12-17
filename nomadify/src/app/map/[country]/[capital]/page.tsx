@@ -65,7 +65,7 @@ const Page = () => {
                   )}
                 />
               ) :
-                <p className='pt-24 text-xl'>Please select atleast one of the <span className='custom_font custom_color'>categories</span> in the MultiSelect</p>
+                <p className='pt-24 text-xl'>Please select at least one of the <span className='custom_font custom_color'>categories</span> in the MultiSelect</p>
               }
             </div>
           </>
