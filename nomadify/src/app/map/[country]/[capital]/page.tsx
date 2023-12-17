@@ -58,13 +58,15 @@ const Page = () => {
               onChange={(e) => setSelectedCurrency(e.target.value)}
             />
             <div>
-              {costOfLivingItems && (
+              {costOfLivingItems && selectedCategory.length > 0 ? (
                 <ItemCard
                   data={costOfLivingItems.filter(item =>
                     selectedCategory.some(category => category.value === item.category_name)
                   )}
                 />
-              )}
+              ) :
+                <p className='pt-24 text-xl'>Please select atleast one of the <span className='custom_font custom_color'>categories</span> in the MultiSelect</p>
+              }
             </div>
           </>
         ) : null}
