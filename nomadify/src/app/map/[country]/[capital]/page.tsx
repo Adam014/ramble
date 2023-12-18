@@ -37,6 +37,7 @@ const Page = () => {
     <div className='relative'>
       <div className="heading_container pl-10 md:p-10 lg:pl-24 pt-24">
         <h1 className='head_text'>{decodedCountry}, {decodedCapital}</h1>
+        {/* TODO: Custom loader */}
         {loading && <p className='p-24'>Loading...</p>}
         {error && <p className='p-24'>{error}</p>}
         {costOfLivingData ? (
