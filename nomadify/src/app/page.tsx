@@ -4,7 +4,7 @@
 // import ScrollingImage from '@components/Scroll';
 import Link from "next/link";
 import StatsImage from "@components/StatsImage";
-import Newsletter from "@components/Newsletter";
+// import Newsletter from "@components/Newsletter";
 
 export default function Home() {
 
