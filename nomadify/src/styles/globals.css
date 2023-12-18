@@ -75,6 +75,12 @@ img{
   position: absolute;
 }
 
+.button-newsletter{
+  @apply font-extrabold bg-purple text-white p-3.5 ml-4 ; 
+  border-radius: 5rem;
+  transition: 0.2s ease-in;
+}
+
 .button-contact:hover{
   border-radius: 9.6875rem 5.5rem;
 }
@@ -82,6 +88,11 @@ img{
 .button:hover{
   border-radius: 9.6875rem 5.5rem;
 }
+
+.button-newsletter:hover{
+  border-radius: 9.6875rem 5.5rem;
+}
+
 
 .custom_object{
   transform: scaleX(-1);
