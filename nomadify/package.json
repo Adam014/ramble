@@ -24,7 +24,8 @@
     "react-select": "^5.8.0",
     "react-simple-maps": "^3.0.0",
     "react-tooltip": "^5.23.0",
-    "touch-cli": "^0.0.1"
+    "touch-cli": "^0.0.1",
+    "use-count-up": "^3.0.1"
   },
   "devDependencies": {
     "@types/node": "20.9.0",
