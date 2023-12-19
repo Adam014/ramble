@@ -23,10 +23,10 @@
           <p className="sm:w-11/12 md:w-1/2 pt-2">Deciding to explore the earth shouldn’t cost the earth! Can you afford that splendid solitude in Siberia or the charming chateaus of France? We’re here to turn your dreams into reality. With Nomadify, you're just a click away to know your cost.</p>
           
           <div className="sm:block lg:flex flex-wrap">
-            <StatsImage icon="/assets/icons/globe_pink.png" count={200} count_start={100} label="countries" />
-            <StatsImage icon="/assets/icons/cost_pink.png" count={53} count_start={10} label="items/services" />
-            <StatsImage icon="/assets/icons/currency_pink.png" count={17} count_start={10} label="currencies" />
-            <StatsImage icon="/assets/icons/city_pink.png" count={8000} count_start={1000} label="cities" />
+            <StatsImage icon="/assets/icons/globe_pink.png" count={200} count_start={132} label="countries" />
+            <StatsImage icon="/assets/icons/cost_pink.png" count={53} count_start={23} label="items/services" />
+            <StatsImage icon="/assets/icons/currency_pink.png" count={17} count_start={4} label="currencies" />
+            <StatsImage icon="/assets/icons/city_pink.png" count={8000} count_start={1274} label="cities" />
           </div>
 
           {/* TODO: Add more content to the homepage */}
