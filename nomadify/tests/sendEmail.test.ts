@@ -1,0 +1,1 @@
+// TODO: Add here test for the sendingEmail function

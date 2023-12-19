@@ -4,6 +4,10 @@ import supabase from './db/supabaseConfig';
 import emailjs from "emailjs-com";
 import { useParams } from 'next/navigation';
 
+interface EmailFormEvent extends React.FormEvent<HTMLFormElement> {
+  target: HTMLFormElement;
+}
+
 // RAPIDAPI Endpoint
 const API_ENDPOINT = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
 
@@ -115,7 +119,7 @@ export const fetchData = async (decodedCountry: string, decodedCapital: string) 
 };
 
 // function for sending the email
-export const sendEmail = (e) => {
+export const sendEmail = (e: EmailFormEvent): void => {
   e.preventDefault();
 
   emailjs.sendForm('nomadify_contact', 'template_fnex1n8', e.target, 'jI57JPoeSeH54Dm4S')
@@ -182,3 +186,8 @@ export const useDataFetching = (country: string, capital: string) => {
 
   return { data, error, loading };
 };
+ 
+// TODO: ADD HERE FUNCTION FOR SAVING THE EMAIL INTO SUPABASE COLLECTION
+export const subscribeEmail = async (email: string) => {
+
+}

@@ -1,5 +1,7 @@
 import React from 'react'
 
+// TODO: COMPLETE THE NEWSLETTER COMPONENT, with saving into collection and then logic to send email every week
+
 const Newsletter = () => {
   return (
         <section className="mt-20 mx-auto px-4 md:px-8">
