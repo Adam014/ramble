@@ -126,7 +126,7 @@ It also works, when u type:
 
 ## Tech Stack
 
-**Client:** Next.js (both Typescript and Javascript for the map), TailwindCSS, 
+**Client:** Next.js (both Typescript and Javascript for the map), TailwindCSS, Jest
 
 **Database:** Supabase 
 
