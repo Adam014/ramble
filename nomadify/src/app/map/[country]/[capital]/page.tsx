@@ -35,7 +35,7 @@ const Page = () => {
 
   return (
     <div className='relative'>
-      <div className="heading_container pl-10 md:p-10 lg:pl-24 pt-24">
+      <div className="heading_container pl-5 md:p-10 lg:pl-12">
         <h1 className='head_text'>{decodedCountry}, {decodedCapital}</h1>
         {/* TODO: Custom loader */}
         {loading && <p className='text-2xl p-32 flex items-center'> <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -60,7 +60,7 @@ const Page = () => {
               value={selectedCurrency}
               onChange={(e) => setSelectedCurrency(e.target.value)}
             />
-            <div>
+            <div className='mt-10'>
               {/* Now checking if there are any selected categories */}
               {costOfLivingItems && selectedCategory.length > 0 ? (
                 // Filtering throught the items to show only that match the selected category
