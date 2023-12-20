@@ -13,6 +13,9 @@
 /.next/
 /out/
 
+# tests
+/tests
+
 # production
 /build
 .env
