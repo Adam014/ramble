@@ -108,10 +108,6 @@ NEXT_PUBLIC_SUPABASE_APP_URL = your_SUPABASE_url
   GET /map/${country}/${capital}
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
 Fetching the Cost to Live data of the country/capital user clicks!
 
 It also works, when u type:
