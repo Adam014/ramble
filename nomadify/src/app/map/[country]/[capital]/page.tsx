@@ -15,7 +15,6 @@ const Page = () => {
   const costOfLivingItems = costOfLivingData?.data?.prices || costOfLivingData?.prices || {};
 
   const [selectedCategory, setSelectedCategory] = useState([]);
-  const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [optionsCategory, setCategoryOptions] = useState([]);
 
   useEffect(() => {
