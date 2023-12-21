@@ -143,16 +143,8 @@ export const getUniqueCategories = (prices = []) => {
 };
 
 // function for getting the currencies
-export const getCurrencies = (exchangeRates = {}) => {
-  const currencies = Object.entries(exchangeRates).map(([currencyCode, exchangeRate]) => ({
-    label: currencyCode,
-    value: exchangeRate,
-  }));
+export const getCurrencies = () => {
 
-  // Sort the currencies array to put the currency with value 1 at the top
-  currencies.sort((a, b) => (a.value === 1 ? -1 : b.value === 1 ? 1 : 0));
-
-  return currencies;
 };
 
 export const useDecodedParams = () => {
@@ -186,8 +178,3 @@ export const useDataFetching = (country: string, capital: string) => {
 
   return { data, error, loading };
 };
- 
-// TODO: ADD HERE FUNCTION FOR SAVING THE EMAIL INTO SUPABASE COLLECTION
-export const subscribeEmail = async (email: string) => {
-
-}
