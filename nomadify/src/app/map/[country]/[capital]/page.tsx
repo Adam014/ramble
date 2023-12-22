@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useDataFetching, getUniqueCategories, useDecodedParams } from '@utils/utils';
+import { useDataFetching, getCurrencies, getUniqueCategories, useDecodedParams } from '@utils/utils';
 import { Toaster } from 'react-hot-toast';
 import { MultiSelect } from "react-multi-select-component";
 import CurrencySelect from '@components/CurrencySelect';
@@ -15,17 +15,22 @@ const Page = () => {
   const costOfLivingItems = costOfLivingData?.data?.prices || costOfLivingData?.prices || {};
 
   const [selectedCategory, setSelectedCategory] = useState([]);
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [optionsCategory, setCategoryOptions] = useState([]);
+  const [currencyOptions, setCurrencyOptions] = useState([]);
 
   useEffect(() => {
     // Determine the data source
     const sourceData = costOfLivingData?.data || costOfLivingData || {};
     
     const prices = sourceData.prices || [];
+    const exchangeRates = sourceData.exchange_rate || {};
     const categories = getUniqueCategories(prices);
+    const currencies = getCurrencies(exchangeRates);
 
     // Set the state once at the end
     setCategoryOptions(categories);
+    setCurrencyOptions(currencies);
   }, [costOfLivingData]);
 
   return (
@@ -50,11 +55,12 @@ const Page = () => {
               labelledBy="Select"
               className='w-10/12 mt-5 text-black appearance-none'
             />
-            {/* <CurrencySelect
-              options={}
+            {/* Implement converting currencies values */}
+            <CurrencySelect
+              options={currencyOptions}
               value={selectedCurrency}
               onChange={(e) => setSelectedCurrency(e.target.value)}
-            /> */}
+            />
             <div className='mt-10'>
               {/* Now checking if there are any selected categories */}
               {costOfLivingItems && selectedCategory.length > 0 ? (

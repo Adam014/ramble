@@ -144,8 +144,16 @@ export const getUniqueCategories = (prices = []) => {
 
 // function for getting the currencies
 // TODO: Need to refactor this function, to use the new RapidAPI to convert the currencies
-export const getCurrencies = () => {
+export const getCurrencies = (exchangeRates = {}) => {
+  const currencies = Object.entries(exchangeRates).map(([currencyCode, exchangeRate]) => ({
+    label: currencyCode,
+    value: exchangeRate,
+  }));
 
+  // Sort the currencies array to put the currency with value 1 at the top
+  currencies.sort((a, b) => (a.value === 1 ? -1 : b.value === 1 ? 1 : 0));
+
+  return currencies;
 };
 
 export const useDecodedParams = () => {
