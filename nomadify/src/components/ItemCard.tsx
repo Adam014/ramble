@@ -1,4 +1,5 @@
 import React, { FC, useMemo } from "react";
+import { getConvertedPrice } from "@utils/utils";
 
 interface Item {
     good_id: number;

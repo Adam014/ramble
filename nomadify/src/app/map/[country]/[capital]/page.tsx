@@ -10,7 +10,7 @@ import ItemCard from '@components/ItemCard';
 const Page = () => {
   const { decodedCountry = '', decodedCapital = '' }  = useDecodedParams();
   const { data: costOfLivingData, error, loading } = useDataFetching(decodedCountry, decodedCapital);
-  console.log(costOfLivingData);
+  // console.log(costOfLivingData);
 
   const costOfLivingItems = costOfLivingData?.data?.prices || costOfLivingData?.prices || {};
 

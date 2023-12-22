@@ -10,6 +10,7 @@ interface EmailFormEvent extends React.FormEvent<HTMLFormElement> {
 
 // RAPIDAPI Endpoint
 const API_ENDPOINT = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
+const API_ENDPOINT_CONVERTER = 'https://currency-conversion-and-exchange-rates.p.rapidapi.com/convert';
 
 // RAPIDAPI_KEY, getting from .env
 const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPID_KEY;
@@ -20,6 +21,10 @@ const ERROR_MESSAGES = {
   GENERIC: 'API ERROR: The API is down, please be patient...',
   NOT_FOUND: "API ERROR: We don't seem to have this city in our data!",
 };
+
+
+// function to refactor the date, for timezone, that is data originally fetched
+export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 
 // Declaring the function for getting the data from the API
 const fetchCostOfLiving = async (country: string, capital: string) => {
@@ -62,9 +67,6 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
     throw new Error('Failed to fetch data from API');
   }
 };
-
-// function to refactor the date, for timezone, that is data originally fetched
-export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 
 // function for fetching the data from the DB/API
 export const fetchData = async (decodedCountry: string, decodedCapital: string) => {
@@ -187,3 +189,39 @@ export const useDataFetching = (country: string, capital: string) => {
 
   return { data, error, loading };
 };
+
+export const getConvertedPrice = async (fromCurrency, toCurrency, amount) => {
+  const url = `${API_ENDPOINT_CONVERTER}?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`;
+
+  try {
+    if (!RAPIDAPI_KEY) {
+      throw new Error('RapidAPI key is not defined.');
+    }
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': RAPIDAPI_KEY,
+        'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com',
+      },
+    });
+
+    const responseData = await response.json();
+
+    if(responseData.error) {
+      toast.error(ERROR_MESSAGES.GENERIC);
+      throw new Error(ERROR_MESSAGES.GENERIC);
+    }
+
+    if (!response.ok) {
+      const errorMessage = response.status === 429 ? ERROR_MESSAGES.RATE_LIMIT : ERROR_MESSAGES.GENERIC;
+      toast.error(errorMessage);
+      throw new Error(errorMessage);
+    }
+
+    return responseData;  
+
+  } catch (error) {
+    console.error('API Call error: ', error);
+    throw new Error('Failed to fetch data from API');
+  }
+}
