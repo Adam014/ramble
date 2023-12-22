@@ -143,7 +143,7 @@ export const getUniqueCategories = (prices = []) => {
 };
 
 // function for getting the currencies
-// TODO: Need to refactor this function, to use the new RapidAPI to convert the currencies
+// TODO: Need to refactor this function, try to solve the logic of the converter
 export const getCurrencies = (exchangeRates = {}) => {
   const currencies = Object.entries(exchangeRates).map(([currencyCode, exchangeRate]) => ({
     label: currencyCode,

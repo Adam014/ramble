@@ -55,14 +55,13 @@ const Page = () => {
               labelledBy="Select"
               className='w-10/12 mt-5 text-black appearance-none'
             />
-            {/* Implement converting currencies values */}
+            {/* TODO: Need to resolve, how we will convert the currencies */}
             <CurrencySelect
               options={currencyOptions}
               value={selectedCurrency}
               onChange={(e) => setSelectedCurrency(e.target.value)}
             />
             <div className='mt-10'>
-              {/* Now checking if there are any selected categories */}
               {costOfLivingItems && selectedCategory.length > 0 ? (
                 // Filtering throught the items to show only that match the selected category
                 <ItemCard
