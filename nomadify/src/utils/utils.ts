@@ -125,7 +125,7 @@ export const sendEmail = (e: EmailFormEvent): void => {
   e.preventDefault();
 
   emailjs.sendForm('nomadify_contact', 'template_fnex1n8', e.target, 'jI57JPoeSeH54Dm4S')
-    .then((result) => {
+    .then(() => {
         e.target.reset();
         toast.success("The email was sent!");
     }, (error) => {
