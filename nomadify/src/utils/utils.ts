@@ -189,39 +189,3 @@ export const useDataFetching = (country: string, capital: string) => {
 
   return { data, error, loading };
 };
-
-export const getConvertedPrice = async (fromCurrency, toCurrency, amount) => {
-  const url = `${API_ENDPOINT_CONVERTER}?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`;
-
-  try {
-    if (!RAPIDAPI_KEY) {
-      throw new Error('RapidAPI key is not defined.');
-    }
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': RAPIDAPI_KEY,
-        'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com',
-      },
-    });
-
-    const responseData = await response.json();
-
-    if(responseData.error) {
-      toast.error(ERROR_MESSAGES.GENERIC);
-      throw new Error(ERROR_MESSAGES.GENERIC);
-    }
-
-    if (!response.ok) {
-      const errorMessage = response.status === 429 ? ERROR_MESSAGES.RATE_LIMIT : ERROR_MESSAGES.GENERIC;
-      toast.error(errorMessage);
-      throw new Error(errorMessage);
-    }
-
-    return responseData;  
-
-  } catch (error) {
-    console.error('API Call error: ', error);
-    throw new Error('Failed to fetch data from API');
-  }
-}

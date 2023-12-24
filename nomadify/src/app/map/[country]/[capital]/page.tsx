@@ -19,6 +19,8 @@ const Page = () => {
   const [optionsCategory, setCategoryOptions] = useState([]);
   const [currencyOptions, setCurrencyOptions] = useState([]);
 
+  console.log(currencyOptions);
+
   useEffect(() => {
     // Determine the data source
     const sourceData = costOfLivingData?.data || costOfLivingData || {};
@@ -56,11 +58,11 @@ const Page = () => {
               className='w-10/12 mt-5 text-black appearance-none'
             />
             {/* TODO: Need to resolve, how we will convert the currencies */}
-            <CurrencySelect
+            {/* <CurrencySelect
               options={currencyOptions}
               value={selectedCurrency}
               onChange={(e) => setSelectedCurrency(e.target.value)}
-            />
+            /> */}
             <div className='mt-10'>
               {costOfLivingItems && selectedCategory.length > 0 ? (
                 // Filtering throught the items to show only that match the selected category
@@ -68,6 +70,7 @@ const Page = () => {
                   data={costOfLivingItems.filter(item =>
                     selectedCategory.some(category => category.value === item.category_name)
                   )}
+                  selectedCurrency={selectedCurrency}
                 />
               ) :
                 <p className='pt-24 text-xl'>Please select at least one of the <span className='custom_font custom_color'>categories</span> in the MultiSelect</p>
