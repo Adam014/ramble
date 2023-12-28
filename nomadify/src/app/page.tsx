@@ -2,7 +2,6 @@
 
   import Link from "next/link";
   import StatsImage from "@components/StatsImage";
-  // import Newsletter from "@components/Newsletter";
 
   export default function Home() {
 
@@ -25,9 +24,6 @@
             <StatsImage icon="/assets/icons/currency_pink.png" count={17} count_start={4} label="currencies" />
             <StatsImage icon="/assets/icons/city_pink.png" count={8000} count_start={1274} label="cities" />
           </div>
-
-          {/* TODO: Add more content to the homepage */}
-          {/* <Newsletter /> */}
         </section>
       </>
     )

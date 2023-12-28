@@ -1,5 +1,6 @@
 import React from 'react'
 
+// NOT DONE
 // TODO: COMPLETE THE NEWSLETTER COMPONENT, with saving into collection and then logic to send email every week
 
 const Newsletter = () => {

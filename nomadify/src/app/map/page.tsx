@@ -11,7 +11,6 @@ const Map = () => {
     // state for the state onMouseOver
     const [country, setCountry] = useState("");
     const [capital, setCapital] = useState("");
-    // console.log(country, capital);
 
     const router = useRouter();
 

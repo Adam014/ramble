@@ -8,9 +8,6 @@ import { Toaster } from 'react-hot-toast';
 import { sendEmail } from '@utils/utils';
 
 const Contact = () => {
-  // variables from getting the scrollPosition of website and if the image is Fixed or Absolute
-  const { isImageFixed, scrollPosition } = ScrollingImage();
-
   return (
     <div className="relative">
       <Toaster />
@@ -19,8 +16,7 @@ const Contact = () => {
         height={700} 
         width={700} 
         alt='contact-animation' 
-        style={{ top: isImageFixed ? 0 : scrollPosition + 'px' }}
-        className={`contact-animation object-fit ${isImageFixed ? 'fixed' : 'absolute'} right-0 mt-32 mr-40`}
+        className={`contact-animation object-fit absolute right-0 mt-10 mr-40`}
       />    
       {/* TODO: Add here contact form */}
       <div className='contact-container absolute top-28 left-20'>
