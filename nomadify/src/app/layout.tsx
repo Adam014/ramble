@@ -3,6 +3,7 @@ import '@styles/globals.css';
 import Navbar from '@components/Navbar';
 import dynamic from "next/dynamic";
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata = {
   title: 'Nomadify',
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
           </main>
 
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
