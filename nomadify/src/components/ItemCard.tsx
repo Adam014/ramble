@@ -33,7 +33,6 @@ const ItemCard: FC<ItemProps> = ({ data, selectedCurrency }) => {
               </p>
               <p>
                 Minimum price: <span className="custom_color">$ {item.min}</span>
-                {selectedCurrency}
               </p>
             </div>
             <div className="flex justify-end mb-2">
