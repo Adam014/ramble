@@ -11,16 +11,9 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-
-  // declaring the AnimatedCursor from react-animated-cursor library
-  const AnimatedCursor = dynamic(() => import('react-animated-cursor'), {
-      ssr: false,
-  });
-
   return (
     <html lang="en">
       <body>
-          <AnimatedCursor color="241,62,81"/>
           <div className='main'>
             
           </div>  
