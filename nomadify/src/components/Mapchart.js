@@ -39,7 +39,8 @@ const MapChart = ({ setTooltipCountry, setTooltipCapital, handleClick }) => {
                       },
                       hover: {
                         fill: "#E08C9C",
-                        outline: "none"
+                        outline: "none",
+                        cursor: "pointer",
                       },
                       pressed: {
                         fill: "#F13E51",
