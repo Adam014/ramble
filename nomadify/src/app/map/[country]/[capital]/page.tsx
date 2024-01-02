@@ -1,34 +1,31 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { useDataFetching, getCurrencies, getUniqueCategories, useDecodedParams } from '@utils/utils';
+import React from 'react';
+import { useDataFetching, useDecodedParams } from '@utils/utils';
 import { Toaster } from 'react-hot-toast';
-import { MultiSelect } from "react-multi-select-component";
-import CurrencySelect from '@components/CurrencySelect';
 import ItemCard from '@components/ItemCard';
 
 const Page = () => {
   const { decodedCountry = '', decodedCapital = '' }  = useDecodedParams();
   const { data: costOfLivingData, error, loading } = useDataFetching(decodedCountry, decodedCapital);
-  // console.log(costOfLivingData);
 
+  // declaring the Items by the 
   const costOfLivingItems = costOfLivingData?.data?.prices || costOfLivingData?.prices || {};
 
-  const [selectedCurrency, setSelectedCurrency] = useState("USD");
-  const [currencyOptions, setCurrencyOptions] = useState([]);
-
-  console.log(currencyOptions);
-
-  useEffect(() => {
-    // Determine the data source
-    const sourceData = costOfLivingData?.data || costOfLivingData || {};
+  // Commenting this code out, because the currency select wont the needed, maybe 
+  // const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  // const [currencyOptions, setCurrencyOptions] = useState([]);
+  // console.log(currencyOptions);
+  // useEffect(() => {
+  //   // Determine the data source
+  //   const sourceData = costOfLivingData?.data || costOfLivingData || {};
     
-    const exchangeRates = sourceData.exchange_rate || {};
-    const currencies = getCurrencies(exchangeRates);
+  //   // const exchangeRates = sourceData.exchange_rate || {};
+  //   // // const currencies = getCurrencies(exchangeRates);
 
-    // Set the state once at the end
-    setCurrencyOptions(currencies);
-  }, [costOfLivingData]);
+  //   // // // Set the state once at the end
+  //   // // setCurrencyOptions(currencies);
+  // }, [costOfLivingData]);
 
   return (
     <div className='relative'>
@@ -42,13 +39,6 @@ const Page = () => {
         {error && <p className='p-24'>{error}</p>}
         {costOfLivingData ? (
           <>
-            <h3 className='text-4xl mt-10'><span className='custom_font'>Items/services</span></h3>
-            {/* TODO: Need to resolve, how we will convert the currencies */}
-            {/* <CurrencySelect
-              options={currencyOptions}
-              value={selectedCurrency}
-              onChange={(e) => setSelectedCurrency(e.target.value)}
-            /> */}
             <div className='mt-10'>
                 <ItemCard
                   data={costOfLivingItems}
