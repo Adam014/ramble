@@ -108,7 +108,33 @@ NEXT_PUBLIC_SUPABASE_APP_URL = your_SUPABASE_url
   GET /map/${country}/${capital}
 ```
 
-Fetching the Cost to Live data of the country/capital user clicks!
+## Summary
+The `fetchData` function is responsible for fetching data from the Supabase database. It first checks if the data exists in Supabase by querying the `CountryAndCapitalCollection` table. If the data is found, it is returned. If the data is not found, the function calls the `fetchCostOfLiving` function to fetch the data from an external API. The fetched data is then saved to Supabase and returned.
+
+## Example Usage
+```javascript
+const data = await fetchData('USA', 'Washington');
+console.log(data);
+// Output: The fetched data from Supabase or the external API
+```
+
+## Code Analysis
+### Inputs
+- `decodedCountry` (string): The decoded country name.
+- `decodedCapital` (string): The decoded capital name.
+___
+### Flow
+1. The function queries the `CountryAndCapitalCollection` table in Supabase to check if the data exists for the given country and capital.
+2. If the data is found, it is returned.
+3. If the data is not found, the function calls the `fetchCostOfLiving` function to fetch the data from an external API.
+4. The fetched data is then saved to Supabase using the `upsert` method.
+5. If the data is successfully saved, it is returned.
+6. If any errors occur during the process, appropriate error messages are thrown.
+___
+### Outputs
+- The fetched data from Supabase or the external API.
+___
+
 
 It also works, when u type:
 
