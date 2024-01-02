@@ -17,7 +17,7 @@ const StatsImage: React.FC<StatsImageProps> = ({ icon, count, count_start, label
         <h3 className='text-5xl ml-12 font-bold'>
           +<CountUp isCounting start={count_start} end={count} duration={5} thousandsSeparator=','/>
         </h3>
-        <p className='ml-16 text-gray-500'>{label}</p>
+        <p className='ml-12'>{label}</p>
       </div>
     </div>
   </div>
