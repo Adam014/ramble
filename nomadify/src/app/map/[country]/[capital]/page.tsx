@@ -14,9 +14,7 @@ const Page = () => {
 
   const costOfLivingItems = costOfLivingData?.data?.prices || costOfLivingData?.prices || {};
 
-  const [selectedCategory, setSelectedCategory] = useState([]);
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
-  const [optionsCategory, setCategoryOptions] = useState([]);
   const [currencyOptions, setCurrencyOptions] = useState([]);
 
   console.log(currencyOptions);
@@ -25,13 +23,10 @@ const Page = () => {
     // Determine the data source
     const sourceData = costOfLivingData?.data || costOfLivingData || {};
     
-    const prices = sourceData.prices || [];
     const exchangeRates = sourceData.exchange_rate || {};
-    const categories = getUniqueCategories(prices);
     const currencies = getCurrencies(exchangeRates);
 
     // Set the state once at the end
-    setCategoryOptions(categories);
     setCurrencyOptions(currencies);
   }, [costOfLivingData]);
 
@@ -47,16 +42,7 @@ const Page = () => {
         {error && <p className='p-24'>{error}</p>}
         {costOfLivingData ? (
           <>
-            <h3 className='text-4xl mt-10'>Select <span className='custom_font custom_color'>items/services</span></h3>
-            <MultiSelect
-              options={optionsCategory}
-              value={selectedCategory}
-              onChange={setSelectedCategory}
-              hasSelectAll={true}
-              closeOnChangedValue={false}
-              labelledBy="Select"
-              className='w-10/12 mt-5 text-black appearance-none'
-            />
+            <h3 className='text-4xl mt-10'><span className='custom_font'>Items/services</span></h3>
             {/* TODO: Need to resolve, how we will convert the currencies */}
             {/* <CurrencySelect
               options={currencyOptions}
@@ -64,17 +50,9 @@ const Page = () => {
               onChange={(e) => setSelectedCurrency(e.target.value)}
             /> */}
             <div className='mt-10'>
-              {costOfLivingItems && selectedCategory.length > 0 ? (
-                // Filtering throught the items to show only that match the selected category
                 <ItemCard
-                  data={costOfLivingItems.filter(item =>
-                    selectedCategory.some(category => category.value === item.category_name)
-                  )}
-                  selectedCurrency={selectedCurrency}
+                  data={costOfLivingItems}
                 />
-              ) :
-                <p className='pt-24 text-xl'>Please select at least one of the <span className='custom_font custom_color'>categories</span> in the MultiSelect</p>
-              }
             </div>
           </>
         ) : null}

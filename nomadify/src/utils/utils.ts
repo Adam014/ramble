@@ -10,7 +10,6 @@ interface EmailFormEvent extends React.FormEvent<HTMLFormElement> {
 
 // RAPIDAPI Endpoint
 const API_ENDPOINT = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
-const API_ENDPOINT_CONVERTER = 'https://currency-conversion-and-exchange-rates.p.rapidapi.com/convert';
 
 // RAPIDAPI_KEY, getting from .env
 const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPID_KEY;

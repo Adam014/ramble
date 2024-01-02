@@ -13,10 +13,9 @@ interface Item {
 
 interface ItemProps {
   data: Item[];
-  selectedCurrency: string;
 }
 
-const ItemCard: FC<ItemProps> = ({ data, selectedCurrency }) => {
+const ItemCard: FC<ItemProps> = ({ data }) => {
 
   const memoizedElements = useMemo(
     () =>
@@ -42,7 +41,7 @@ const ItemCard: FC<ItemProps> = ({ data, selectedCurrency }) => {
           </React.Fragment>
         );
       }),
-    [data, selectedCurrency]
+    [data]
   );
 
   return <>{memoizedElements}</>;
