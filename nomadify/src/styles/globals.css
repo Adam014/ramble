@@ -10,6 +10,7 @@
   --handdraw-font: 'Shadows Into Light Two', cursive;
   --white: #ffff;
   --purple: #F13E51;
+  --purple-hover: #ed6472;
 }
 
 #video-bg {
@@ -77,36 +78,35 @@ img{
 .button {
   @apply font-extrabold w-60 bg-purple text-white p-4 mt-5;
   border-radius: 5rem;
-  transition: 0.2s ease-in;
+  transition: 0.3s ease-in;
   margin-top: 40px;
 }
 
 .button-contact {
   @apply font-extrabold w-60 bg-purple text-white p-4 mt-5;
-  border-radius: 5rem;
-  transition: 0.2s ease-in;
+  transition: 0.3s ease-in;
   width: 100%;
   z-index: 99;
   position: absolute;
 }
 
-.button-newsletter{
+/* .button-newsletter{
   @apply font-extrabold bg-purple text-white p-3.5 ml-4 ; 
   border-radius: 5rem;
-  transition: 0.2s ease-in;
-}
+  transition: 0.3s ease-in;
+} */
 
 .button-contact:hover{
-  border-radius: 9.6875rem 5.5rem;
+  background-color: var(--purple-hover);
 }
 
 .button:hover{
-  border-radius: 9.6875rem 5.5rem;
+  background-color: var(--purple-hover);
 }
 
-.button-newsletter:hover{
-  border-radius: 9.6875rem 5.5rem;
-}
+/* .button-newsletter:hover{
+  background-color: var(--purple-hover);
+} */
 
 .custom_object{
   transform: scaleX(-1);
