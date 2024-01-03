@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Over+the+Rainbow&family=Unbounded&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&family=Unbounded&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +7,7 @@
 :root {
   --background: #000000;
   --font: 'Unbounded', sans-serif;
-  --handdraw-font: 'Over the Rainbow', cursive;
+  --handdraw-font: 'Shadows Into Light Two', cursive;
   --white: #ffff;
   --purple: #F13E51;
 }
@@ -118,6 +118,8 @@ img{
 
 .custom_font {
   font-family: var(--handdraw-font);
+  text-transform: uppercase;
+  padding-right: 5px;
 }
 
 .custom_color{
