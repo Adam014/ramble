@@ -21,7 +21,6 @@ const ERROR_MESSAGES = {
   NOT_FOUND: "API ERROR: We don't seem to have this city in our data!",
 };
 
-
 // function to refactor the date, for timezone, that is data originally fetched
 export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 
