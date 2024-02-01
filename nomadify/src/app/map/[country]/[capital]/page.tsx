@@ -12,7 +12,7 @@ const Page = () => {
   // declaring the Items by the 
   const costOfLivingItems = costOfLivingData?.data?.prices || costOfLivingData?.prices || {};
 
-  // Commenting this code out, because the currency select wont the needed, maybe 
+  // Commenting this code out, because the currency select wont be needed, maybe 
   // const [selectedCurrency, setSelectedCurrency] = useState("USD");
   // const [currencyOptions, setCurrencyOptions] = useState([]);
   // console.log(currencyOptions);
