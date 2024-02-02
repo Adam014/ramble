@@ -24,13 +24,13 @@ const ItemCard: FC<ItemProps> = ({ data }) => {
             <h2 className="mt-2 sm:text-xl lg:text-3xl">{item.item_name}</h2>
             <div className="sm:block md:flex gap-5 mb-2 mt-2">
               <p>
-                Maximum price: <span className="custom_color">{item.currency_code} {item.max}{item.measure === "percent" ? "%" : null}</span>
+                Maximum price: <span className="custom_color">{item.max} {item.currency_code}{item.measure === "percent" ? "%" : null}</span>
               </p>
               <p>
-                Average price: <span className="custom_color">{item.currency_code} {item.avg}{item.measure === "percent" ? "%" : null}</span>
+                Average price: <span className="custom_color">{item.avg} {item.currency_code}{item.measure === "percent" ? "%" : null}</span>
               </p>
               <p>
-                Minimum price: <span className="custom_color">{item.currency_code} {item.min}{item.measure === "percent" ? "%" : null}</span>
+                Minimum price: <span className="custom_color">{item.min} {item.currency_code}{item.measure === "percent" ? "%" : null}</span>
               </p>
             </div>
             <div className="flex justify-end mb-2">
