@@ -66,6 +66,11 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
   }
 };
 
+// TODO: Need to resolve bug with saving data into Supabase
+// When user go to Page1 with Czech Republic, Prague. It fetches data as expected and saves them into Supabase
+// Then same user types into the url only instead of /Prague, he types /Kladno and it fetches data for Kladno and saves them into Supabase
+// Then he return to the Page1 and it doesnt re-fetch the data from the API, but it saves it again into the Supabase.
+
 // function for fetching the data from the DB/API
 export const fetchData = async (decodedCountry: string, decodedCapital: string) => {
   try {
