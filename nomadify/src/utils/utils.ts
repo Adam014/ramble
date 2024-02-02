@@ -80,7 +80,6 @@ export const fetchData = async (decodedCountry: string, decodedCapital: string) 
       throw new Error('Error fetching data from Supabase');
     }
 
-    // TODO: Edit the UPSERTING values, when we get Italy/Rome data it gets them from DB, and when we try Italy/Catania it will rewrite the Italy/Rome, we need to add it as a new one
     if (supabaseData && supabaseData.length > 0) {
       // Data exists in Supabase, use it
       toast.success('Data loaded from Supabase!');
@@ -98,16 +97,19 @@ export const fetchData = async (decodedCountry: string, decodedCapital: string) 
             capital: decodedCapital,
             data: newData,
             CreatedAt: fixDate(new Date()),
+            // Add primary key and other unique columns here
+            // Example: id: generateUniqueId(),
           },
         ]);
 
       if (saveError) {
         throw new Error('Error saving data to Supabase');
       }
-
-      // Use the fetched data
-      toast.success('Data fetched from API and saved to Supabase!');
-      return newData;
+      if(!saveError){
+        // Use the fetched data
+        toast.success('Data fetched from API and saved to Supabase!');
+        return newData;
+      }
     }
   } catch (error) {
     // Handle other errors
