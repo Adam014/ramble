@@ -65,6 +65,11 @@ img{
   pointer-events: none;
 }
 
+rect{
+  height: 100px;
+  display: none;
+}
+
 .app {
   @apply flex flex-col;
 }
@@ -120,6 +125,37 @@ img{
   font-family: var(--handdraw-font);
   text-transform: uppercase;
   padding-right: 5px;
+}
+
+.input {
+  height: 40px;
+  padding: 10px;
+  transition: .2s linear;
+  border: 2.5px solid black;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.input:focus {
+  outline: none;
+  border: 0.5px solid var(--purple);
+  box-shadow: -5px -5px 0px var(--purple);
+}
+
+.input-container:hover > .icon {
+  animation: anim 1s linear infinite;
+}
+
+@keyframes anim {
+  0%,
+  100% {
+    transform: translateY(calc(-50% - 5px)) scale(1);
+  }
+
+  50% {
+    transform: translateY(calc(-50% - 5px)) scale(1.1);
+  }
 }
 
 .custom_color{
