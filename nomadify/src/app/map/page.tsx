@@ -6,6 +6,7 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
 import { NoCity } from '@components/NoCity';
+import Search from '@components/Search';
 
 const Map = () => {
     // state for the state onMouseOver
@@ -20,8 +21,10 @@ const Map = () => {
 
     return (
         <>  
+
             <h2 className="text-4xl m-10">Explore <span className='custom_font custom_color'>Globally</span></h2>
-            <p className='ml-10 text-2xl sm:w-9/12 md:w-1/2'>Say goodbye to daily routine and become a <span className='custom_font custom_color'>citizen</span> of the world! Learn, live and love every <span className='custom_font custom_color'>destination</span> with Nomadify’s cost of living comparison.</p>
+            <Search />
+            <p className='ml-10 text-2xl sm:w-9/12 md:w-1/2 mb-10'>Say goodbye to daily routine and become a <span className='custom_font custom_color'>citizen</span> of the world! Learn, live and love every <span className='custom_font custom_color'>destination</span> with Nomadify’s cost of living comparison.</p>
             {/* TODO: Add here badges, like no charge etc.. */}
             <div className='links-container text-3xl fixed right-0 p-10 top-1/3 z-50'>
                 <Link href="https://www.instagram.com/kindastxd/">
@@ -46,7 +49,7 @@ const Map = () => {
                     <span className="down-arrow-3"></span>
                 </div>
             </div>
-            <div className='relative flex justify-center -mt-40 map-container'>
+            <div className='relative flex justify-center -mt-46 map-container'>
                 <MapChart 
                     setTooltipCountry={setCountry}                    
                     setTooltipCapital={setCapital}

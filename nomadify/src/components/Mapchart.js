@@ -11,10 +11,10 @@ import {
 const MapChart = ({ setTooltipCountry, setTooltipCapital, handleClick }) => {
   return (
     <>
-      <ComposableMap projectionConfig={{ scale: 130 }} >
+      <ComposableMap projectionConfig={{ scale: 150 }} >
           <Graticule stroke="#F13E51" />
           <ZoomableGroup>
-            <Geographies geography="/features.json">
+            <Geographies geography="/map.json">
               {({ geographies }) =>
                 geographies.map((geo) => (
                   <Geography
