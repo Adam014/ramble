@@ -38,6 +38,8 @@ const Search = () => {
     }
   };
 
+  // TODO: Add search icon to the input
+
   return (
     <div className="ml-10 mb-10">
       <input
