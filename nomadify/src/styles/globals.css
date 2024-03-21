@@ -81,7 +81,7 @@ rect{
 }
 
 .button {
-  @apply font-extrabold w-60 bg-purple text-white p-4 mt-5;
+  @apply font-extrabold w-80 bg-purple text-white p-7 mt-5;
   border-radius: 5rem;
   transition: 0.3s ease-in;
   margin-top: 40px;
