@@ -135,6 +135,7 @@ rect{
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 2px;
+  color: black;
 }
 
 .input:focus {
