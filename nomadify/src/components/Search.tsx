@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import mapData from '../../public/map.json';
 import Image from 'next/image';
 import searchIcon from "../../public/assets/icons/search.png";
+import { Toaster, toast } from 'react-hot-toast';
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -35,10 +36,20 @@ const Search = () => {
 
   const handleSubmit = () => {
     const [country, capital] = searchValue.split(',').map(item => item.trim());
+
+    if(country){
+      router.push(`/map/${country}`);
+    }
+
+    let formattedCountry: string;
+    let formattedCapital: string ;
+
+    if(country && capital){
+      // Capitalize first letter of each word
+      formattedCountry = country.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+      formattedCapital = capital.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    }
   
-    // Capitalize first letter of each word
-    const formattedCountry = country.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
-    const formattedCapital = capital.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
   
     if (formattedCountry && formattedCapital) {
       router.push(`/map/${formattedCountry}/${formattedCapital}`);
@@ -47,6 +58,7 @@ const Search = () => {
 
   return (
     <div className="ml-10 mb-10">
+      <Toaster />
       <div className="relative">
         <input
           type="text"
