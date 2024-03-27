@@ -300,6 +300,9 @@ code{
     position:relative;
     left: 0;
   }
+  .input{
+    width: 90%
+  }
 }
 
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import mapData from '../../public/map.json';
+import Image from 'next/image';
+import searchIcon from "../../public/assets/icons/search.png";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -20,7 +22,7 @@ const Search = () => {
         setPlaceholder(`E.g., ${randomCountry}, ${randomCapital}`);
         setShowPlaceholder(true);
       }, 300); // Delay placeholder change to sync with CSS animation
-    }, 15000); // Change placeholder every 15 seconds
+    }, 10000); // Change placeholder every 15 seconds
 
     return () => {
       clearInterval(intervalId); // Cleanup function to clear interval when component unmounts
@@ -33,27 +35,40 @@ const Search = () => {
 
   const handleSubmit = () => {
     const [country, capital] = searchValue.split(',').map(item => item.trim());
-    if (country && capital) {
-      router.push(`/map/${country}/${capital}`);
+  
+    // Capitalize first letter of each word
+    const formattedCountry = country.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    const formattedCapital = capital.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  
+    if (formattedCountry && formattedCapital) {
+      router.push(`/map/${formattedCountry}/${formattedCapital}`);
     }
   };
 
-  // TODO: Add search icon to the input
-
   return (
     <div className="ml-10 mb-10">
-      <input
-        type="text"
-        className="input w-1/5"
-        value={searchValue}
-        placeholder={placeholder}
-        onChange={handleInputChange}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            handleSubmit();
-          }
-        }}
-      />
+      <div className="relative">
+        <input
+          type="text"
+          className="input w-1/3 h-32 pl-15" // Added padding for the icon
+          value={searchValue}
+          placeholder={placeholder}
+          onChange={handleInputChange}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+          style={{ paddingLeft: '50px' }} 
+        />
+        <Image
+          src={searchIcon}
+          alt="Search"
+          className="absolute left-3 top-1/2 transform -translate-y-1/2"
+          width={25}
+          height={25} 
+        />
+      </div>
       <style jsx>{`
         input::placeholder {
           opacity: ${showPlaceholder ? 1 : 0};
