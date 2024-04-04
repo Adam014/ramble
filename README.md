@@ -1,7 +1,7 @@
 
-# Nomadify
+# Econiqq
 
-Nomadify is your personal passport to the planet's price tags. It's not just a web app; it's a whisperer for your wallet. Real-time data, tailor-made recommendations, and a community of kindred travelers make Nomadify your go-to guide for worldly adventures without the financial fuss.
+Ecnoniqq is your personal passport to the planet's price tags. It's not just a web app; it's a whisperer for your wallet. Real-time data, tailor-made recommendations, and a community of kindred travelers make Econiqq your go-to guide for worldly adventures without the financial fuss.
 ## Badges
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
@@ -29,13 +29,13 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 Clone the project
 
 ```bash
-  git clone https://github.com/Adam014/Nomadify.git
+  git clone https://github.com/Adam014/Econiqq.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd nomadify
+  cd Econiqq
 ```
 
 Install dependencies
