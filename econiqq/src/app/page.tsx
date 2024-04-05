@@ -3,6 +3,7 @@
 import Link from "next/link";
 import StatsImage from "@components/StatsImage";
 import BackgroundVideo from "@components/BackgroundVideo";
+import statsData from "../../public/stats.json";
 
 export default function Home() {
 
@@ -22,10 +23,9 @@ export default function Home() {
           <h2 className="text-5xl mt-20 z-50 relative text-center">Unleash Your Inner Nomad</h2>
           <p className="pt-10 text-2xl text-center">Deciding to explore the earth shouldn’t cost the earth! Can you afford that splendid solitude in Siberia or the charming chateaus of France? We’re here to turn your dreams into reality. With Nomadify, you're just a click away to know your cost.</p>
           <div className="sm:block md:flex flex-wrap justify-center grid mt-2">
-            <StatsImage icon="/assets/icons/globe_pink.png" count={200} count_start={132} label="countries" />
-            <StatsImage icon="/assets/icons/cost_pink.png" count={53} count_start={23} label="items/services" />
-            <StatsImage icon="/assets/icons/currency_pink.png" count={17} count_start={4} label="currencies" />
-            <StatsImage icon="/assets/icons/city_pink.png" count={8000} count_start={1274} label="cities" />
+            {statsData.map((stat, index) => (
+                <StatsImage key={index} icon={stat.icon} count={stat.count} count_start={stat.count_start} label={stat.label} />
+            ))}
           </div>
       </section>
     </>
