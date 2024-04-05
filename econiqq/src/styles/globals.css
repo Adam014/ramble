@@ -70,6 +70,12 @@ rect{
   display: none;
 }
 
+.tag{
+  background-color: #001A64;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
 .app {
   @apply flex flex-col;
 }

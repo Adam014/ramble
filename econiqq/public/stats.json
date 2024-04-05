@@ -1,0 +1,6 @@
+[
+    { "icon": "/assets/icons/globe_pink.png", "count": 200, "count_start": 132, "label": "countries" },
+    { "icon": "/assets/icons/cost_pink.png", "count": 53, "count_start": 23, "label": "items/services" },
+    { "icon": "/assets/icons/currency_pink.png", "count": 17, "count_start": 4, "label": "currencies" },
+    { "icon": "/assets/icons/city_pink.png", "count": 8000, "count_start": 1274, "label": "cities" }
+]
