@@ -6,6 +6,8 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
 import { NoCity } from '@components/NoCity';
+import QuestionMark from "../../../public/assets/icons/question-mark.png"
+import Image from 'next/image';
 
 import tagData from '../../../public/tags.json';
 
@@ -29,14 +31,18 @@ const Map = () => {
                 <h2 className="text-4xl m-10">Explore <span className='custom_font custom_color'>Globally</span></h2>
             </div>
             <Search />
-            
-            <div className='flex ml-10'>
+
+            {/* <div className='cursor-pointer' data-tooltip-id="nocity-tooltip" >
+                <ReactTooltip id='nocity-tooltip' openOnClick={true} clickable className='custom-tooltip'><NoCity /></ReactTooltip>
+                <Image src={QuestionMark} alt='question-mark' height={20} width={20} className='ml-10'/>
+            </div> */}
+
+            <div className='flex ml-10 tags'>
                 {tagData.map((tag, index) => (
                     <Tag key={index} icon={tag.icon} label={tag.label} />
                 ))}
             </div>
 
-            {/* TODO: Add here badges, like no charge etc.. */}
             <div className='links-container text-3xl fixed right-0 p-10 top-1/3 z-50'>
                 <Link href="https://www.instagram.com/kindastxd/">
                     <h3 className='pb-2'>Instagram</h3>
@@ -68,7 +74,6 @@ const Map = () => {
                  /> 
             </div>
             <ReactTooltip id="my-tooltip">{country}, {capital}</ReactTooltip>
-            <NoCity />
         </>
     )
 }

@@ -28,6 +28,12 @@
   z-index: 999;
 }
 
+.custom-tooltip{
+  top: 350px !important;
+  /* left: 0px !important; */
+  z-index: 999;
+}
+
 body {
   background-color: var(--background);
   font-family: var(--font);
@@ -311,6 +317,24 @@ code{
   }
 }
 
+@media screen and (max-width: 635px){
+  .tags{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 635px){
+  .tags{
+    width: 85%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .tag{
+    width: 15rem;
+    margin-top: -5px;
+  }
+}
 
 /* ANIMATIONS */
 @-webkit-keyframes animated-mouse {
