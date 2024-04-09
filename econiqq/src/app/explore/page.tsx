@@ -21,9 +21,9 @@ const Map = () => {
 
     const router = useRouter();
 
-    const handleClick = () => {
-        router.push(`/map/${country}/${capital}`);
-    }
+    // const handleClick = () => {
+    //     router.push(`/map/${country}/${capital}`);
+    // }
 
     return (
         <>  
@@ -31,11 +31,6 @@ const Map = () => {
                 <h2 className="text-4xl m-10">Explore <span className='custom_font custom_color'>Globally</span></h2>
             </div>
             <Search />
-
-            {/* <div className='cursor-pointer' data-tooltip-id="nocity-tooltip" >
-                <ReactTooltip id='nocity-tooltip' openOnClick={true} clickable className='custom-tooltip'><NoCity /></ReactTooltip>
-                <Image src={QuestionMark} alt='question-mark' height={20} width={20} className='ml-10'/>
-            </div> */}
 
             <div className='flex ml-10 tags'>
                 {tagData.map((tag, index) => (
@@ -66,14 +61,6 @@ const Map = () => {
                     <span className="down-arrow-3"></span>
                 </div>
             </div>
-            <div className='relative flex justify-center -mt-46 map-container'>
-                <MapChart 
-                    setTooltipCountry={setCountry}                    
-                    setTooltipCapital={setCapital}
-                    handleClick={handleClick}
-                 /> 
-            </div>
-            <ReactTooltip id="my-tooltip">{country}, {capital}</ReactTooltip>
         </>
     )
 }

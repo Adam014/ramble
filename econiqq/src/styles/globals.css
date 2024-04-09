@@ -29,8 +29,6 @@
 }
 
 .custom-tooltip{
-  top: 350px !important;
-  /* left: 0px !important; */
   z-index: 999;
 }
 
@@ -264,12 +262,6 @@ code{
   .back-button {
     display: none;
   }
-  .map-container{
-    margin-top: -17rem;
-  }
-}
-
-@media screen and (max-width: 768px) {
   .custom_object{
     display: none;
   }
@@ -277,8 +269,18 @@ code{
     display: grid;
     justify-content: center;
   }
+  .map-container{
+    margin-top: -17rem;
+  }
+  .nomadify-logo{
+    width: 100px !important;
+    height: 100px !important;
+  }
+  .nav div{
+    padding:0;
+    padding-left: 40px;
+  }
 }
-
 
 @media screen and (max-width: 1585px) {
   .contact-animation{
@@ -315,6 +317,9 @@ code{
   .input{
     width: 90%
   }
+  .map-container{
+    margin-top: -11rem;  
+  }
 }
 
 @media screen and (max-width: 635px){
@@ -322,7 +327,27 @@ code{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 80%;
+  } 
+  .map-container{
+    margin-top: -20rem;
   }
+}
+
+@media screen and (max-width: 425px){
+  .map-tooltip-container{
+    bottom: 0;
+    left: 0;
+    padding-left: 20px;
+  }
+  .tooltip-text{
+    font-size: 8px;  
+    margin: 0;
+  }
+}
+
+.tooltip-text{
+  line-height: normal;
+  margin: 0;
 }
 
 @media screen and (max-width: 635px){
