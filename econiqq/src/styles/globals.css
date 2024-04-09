@@ -280,6 +280,9 @@ code{
     padding:0;
     padding-left: 40px;
   }
+  .map-tooltip-container{
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1585px) {
@@ -339,15 +342,6 @@ code{
     left: 0;
     padding-left: 20px;
   }
-  .tooltip-text{
-    font-size: 8px;  
-    margin: 0;
-  }
-}
-
-.tooltip-text{
-  line-height: normal;
-  margin: 0;
 }
 
 @media screen and (max-width: 635px){
