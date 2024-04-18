@@ -38,19 +38,6 @@ const Map = () => {
                 ))}
             </div>
 
-            <div className='links-container text-3xl fixed right-0 p-10 top-1/3 z-50'>
-                <Link href="https://www.instagram.com/kindastxd/">
-                    <h3 className='pb-2'>Instagram</h3>
-                </Link>
-                <hr />
-                <Link href="https://twitter.com/kindastcs">
-                    <h3 className='pb-2 pt-2'>Twitter</h3>
-                </Link>
-                <hr />
-                <Link href="https://github.com/Adam014">
-                    <h3>Github</h3>
-                </Link>
-            </div>
             <div id="mouse-scroll" className='mouse_scroll hidden'>
                 <div className="mouse">
                     <div className="mouse-in"></div>
