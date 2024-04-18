@@ -274,7 +274,8 @@ code{
   }
   .nomadify-logo{
     width: 100px !important;
-    height: 100px !important;
+    height: 100px !important; 
+    margin: 40px 0px 20px 0px;
   }
   .nav div{
     padding:0;
