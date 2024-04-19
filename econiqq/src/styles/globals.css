@@ -98,7 +98,7 @@
 .navbar-links ul li a {
   color: white;
   font-size: 3.5rem;
-  padding-left: 45px;
+  padding-left: 60px;
 }
 
 .navbar-links ul li a:hover {
@@ -350,17 +350,15 @@ code{
   .map-container{
     margin-top: -17rem;
   }
-  .nomadify-logo{
-    width: 100px !important;
-    height: 100px !important; 
-    margin: 40px 0px 20px 0px;
-  }
-  .nav div{
-    padding:0;
-    padding-left: 40px;
-  }
   .map-tooltip-container{
     display: none;
+  }
+  .nomadify-logo{
+    height: 50px !important;
+    width: 50px !important;
+  } 	
+  .hamburger svg{
+    height: 3em;
   }
 }
 
@@ -370,6 +368,15 @@ code{
     width: 600px;
     margin-top: 6rem;
     margin-right: 4rem
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar-links{
+    width: 300px;
+  }
+  .navbar-links ul li a {
+    font-size: 2rem;
   }
 }
 
@@ -420,6 +427,16 @@ code{
     bottom: 0;
     left: 0;
     padding-left: 20px;
+  } 
+}
+
+@media screen and (max-width: 320px){
+  .navbar-links{
+    width: 200px;
+  }
+  .navbar-links ul li a {
+    font-size: 1.5rem;
+    padding-left: 30px;
   }
 }
 

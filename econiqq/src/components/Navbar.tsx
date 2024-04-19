@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <div className="nav">
-      <div className="flex gap-2 flex-center justify-between p-10">
+      <div className="flex gap-2 flex-center justify-between p-10 items-center">
         <Link href="/">
           <Image
             src="/assets/images/nomadify.png"
