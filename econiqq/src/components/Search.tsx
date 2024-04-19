@@ -38,7 +38,7 @@ const Search = () => {
     const [country, capital] = searchValue.split(',').map(item => item.trim());
 
     if(country){
-      router.push(`/map/${country}`);
+      router.push(`/explore/${country}`);
     }
 
     let formattedCountry: string;
@@ -52,7 +52,7 @@ const Search = () => {
   
   
     if (formattedCountry && formattedCapital) {
-      router.push(`/map/${formattedCountry}/${formattedCapital}`);
+      router.push(`/explore/${formattedCountry}/${formattedCapital}`);
     }
   };
 

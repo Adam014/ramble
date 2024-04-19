@@ -102,8 +102,7 @@ export const fetchData = async (decodedCountry: string, decodedCapital: string) 
             capital: decodedCapital,
             data: newData,
             CreatedAt: fixDate(new Date()),
-            // Add primary key and other unique columns here
-            // Example: id: generateUniqueId(),
+            
           },
         ]);
 
