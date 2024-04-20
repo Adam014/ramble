@@ -9,7 +9,7 @@ interface EmailFormEvent extends React.FormEvent<HTMLFormElement> {
 }
 
 // RAPIDAPI Endpoint
-const API_ENDPOINT = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
+const API_ENDPOINT = 'https://nomadlist-digital-nomad-travel-api.p.rapidapi.com/cities';
 
 // RAPIDAPI_KEY, getting from .env
 const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPID_KEY;
@@ -24,9 +24,8 @@ const ERROR_MESSAGES = {
 // function to refactor the date, for timezone, that is data originally fetched
 export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 
-// Declaring the function for getting the data from the API
-const fetchCostOfLiving = async (country: string, capital: string) => {
-  const url = `${API_ENDPOINT}?city_name=${capital}&country_name=${country}`;
+export const fetchCitiesData = async () => {
+  const url = `${API_ENDPOINT}?orderBy=overall_score&order=desc&page=1&limit=25`;
 
   try {
     if (!RAPIDAPI_KEY) {
@@ -37,7 +36,7 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
       method: 'GET',
       headers: {
         'X-RapidAPI-Key': RAPIDAPI_KEY,
-        'X-RapidAPI-Host': 'cost-of-living-and-prices.p.rapidapi.com',
+        'X-RapidAPI-Host': 'nomadlist-digital-nomad-travel-api.p.rapidapi.com',
       },
     });
 
@@ -55,73 +54,38 @@ const fetchCostOfLiving = async (country: string, capital: string) => {
     if (responseData.error) {
       // API returned an error, handle it without saving to Supabase
       toast.error(ERROR_MESSAGES.NOT_FOUND);
-      throw new Error(`API Error: We don't seem to have this city in our data! ${responseData.error.message}`);
+      throw new Error(`API Error: ${responseData.error}`);
     }
+
+    // Save each city's data to Supabase
+    const citiesData = responseData.cities; // Assuming the cities data is under responseData.data
+
+    await Promise.all(citiesData.map(async city => {
+      try {
+        const { data, error } = await supabase
+          .from('cities')
+          .insert([
+            {
+              country: city.country,
+              city: city.name,
+              data: city,
+              CreatedAt: new Date(),
+            },
+          ]);
+        
+        if (error) {
+          throw new Error(`Failed to save data for ${city.name} to Supabase: ${error.message}`);
+        }
+      } catch (error) {
+        console.error('Error saving city data to Supabase:', error);
+      }
+    }));
 
     return responseData;
   } catch (error) {
     // Handle any other errors during the API call
     console.error('API Call Error:', error);
     throw new Error('Failed to fetch data from API');
-  }
-};
-
-// TODO: Need to resolve bug with saving data into Supabase
-// When user go to Page1 with Czech Republic, Prague. It fetches data as expected and saves them into Supabase
-// Then same user types into the url only instead of /Prague, he types /Kladno and it fetches data for Kladno and saves them into Supabase
-// Then he return to the Page1 and it doesnt re-fetch the data from the API, but it saves it again into the Supabase.
-
-// function for fetching the data from the DB/API
-export const fetchData = async (decodedCountry: string, decodedCapital: string) => {
-  try {
-    // Check if data exists in Supabase
-    const { data: supabaseData, error: supabaseError } = await supabase
-      .from('CountryAndCapitalCollection') 
-      .select()
-      .eq('country', decodedCountry)
-      .eq('capital', decodedCapital);
-
-    if (supabaseError) {
-      throw new Error('Error fetching data from Supabase');
-    }
-
-    if (supabaseData && supabaseData.length > 0) {
-      // Data exists in Supabase, use it
-      toast.success('Data loaded from Supabase!');
-      return supabaseData[0];
-    } else {
-      // Data does not exist in Supabase, fetch and save it
-      const newData = await fetchCostOfLiving(decodedCountry, decodedCapital);
-
-      // Save data to Supabase only if the API call was successful
-      const { error: saveError } = await supabase
-        .from('CountryAndCapitalCollection') 
-        .upsert([
-          {
-            country: decodedCountry,
-            capital: decodedCapital,
-            data: newData,
-            CreatedAt: fixDate(new Date()),
-            
-          },
-        ]);
-
-      if (saveError) {
-        throw new Error('Error saving data to Supabase');
-      }
-      if(!saveError){
-        // Use the fetched data
-        toast.success('Data fetched from API and saved to Supabase!');
-        return newData;
-      }
-    }
-  } catch (error) {
-    // Handle other errors
-    if (error instanceof Error) {
-      throw new Error(error.message);
-    } else {
-      throw new Error('An unexpected error occurred, please be patient...');
-    }
   }
 };
 
@@ -169,27 +133,4 @@ export const useDecodedParams = () => {
     decodedCountry: decodeParam(country),
     decodedCapital: decodeParam(capital),
   };
-};
-
-export const useDataFetching = (country: string, capital: string) => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const fetchDataFromUtils = useCallback(async () => {
-    try {
-      const result = await fetchData(country, capital);
-      setData(result);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [country, capital]);
-
-  useEffect(() => {
-    fetchDataFromUtils();
-  }, [fetchDataFromUtils]);
-
-  return { data, error, loading };
 };

@@ -57,7 +57,7 @@ const Search = () => {
   };
 
   return (
-    <div className="ml-10 mb-10">
+    <div className="mb-10">
       <Toaster />
       <div className="relative">
         <input

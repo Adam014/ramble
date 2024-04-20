@@ -1,38 +1,54 @@
 "use client";
 
-import React, { useState } from 'react';
-import MapChart from "@components/Mapchart";
-import { Tooltip as ReactTooltip } from "react-tooltip";
-import Link from 'next/link';
-import { useRouter } from "next/navigation";
-import { NoCity } from '@components/NoCity';
-import QuestionMark from "../../../public/assets/icons/question-mark.png"
-import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
+import supabase from '@utils/db/supabaseConfig';
 
 import tagData from '../../../public/tags.json';
 
 import Search from '@components/Search';
 import Tag from '@components/Tag';
+import CityCard from '@components/CityCard';
 
 const Map = () => {
-    // state for the state onMouseOver
-    const [country, setCountry] = useState("");
-    const [capital, setCapital] = useState("");
+    const [featuredCities, setFeaturedCities] = useState([]);
+    const [otherCities, setOtherCities] = useState([]);
+    
+    console.log(featuredCities);
 
-    const router = useRouter();
+    useEffect(() => {
+        // Fetch all cities data from Supabase
+        const fetchCities = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('cities')
+                    .select('country, city, data')
 
-    // const handleClick = () => {
-    //     router.push(`/map/${country}/${capital}`);
-    // }
+                if (error) {
+                    throw error;
+                }
+
+                if(data) {
+                    setFeaturedCities(data.slice(0, 5));
+                    setOtherCities(data.slice(5))
+                }
+
+            } catch (error) {
+                console.error('Error fetching cities:', error.message);
+            }
+        };
+
+        fetchCities();
+    }, []); // Run once on component mount
 
     return (
-        <>  
+        <div className='ml-10'>  
             <div>
-                <h2 className="text-4xl m-10">Explore <span className='custom_font custom_color'>Globally</span></h2>
+                <h2 className="text-4xl mt-10 mb-10">Explore <span className='custom_font custom_color'>Globally</span></h2>
             </div>
+
             <Search />
 
-            <div className='flex ml-10 tags'>
+            <div className='flex tags'>
                 {tagData.map((tag, index) => (
                     <Tag key={index} icon={tag.icon} label={tag.label} />
                 ))}
@@ -48,7 +64,26 @@ const Map = () => {
                     <span className="down-arrow-3"></span>
                 </div>
             </div>
-        </>
+
+            <div className='featured-items '>
+                <h1 className='text-5xl mt-10'>Featured places</h1>
+                <div className='flex'>
+                    {featuredCities.map((city, index) => (
+                        <CityCard city={city} key={index} />
+                    ))}
+                </div>
+
+            </div>
+            <div className='other-items mt-32 mb-32'>
+                <h1 className='text-5xl'>Where about?</h1>
+                {/* Add here the rest of the cities */}
+                <div className='grid grid-cols-5 '>
+                    {otherCities.map((city, index) => (
+                        <CityCard city={city} key={index} />
+                    ))}         
+                </div>
+            </div>
+        </div>
     )
 }
 

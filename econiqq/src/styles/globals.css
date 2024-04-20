@@ -77,6 +77,56 @@
   z-index: 998;
 }
 
+.city-card-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  margin-top: 40px;
+}
+
+.city-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.city-name {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.country-name {
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+.city-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.city-image {
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  z-index: 1; /* Ensure the overlay is behind the text */
+}
+
 .navbar-links.active {
   right: 0;
 }
