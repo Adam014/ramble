@@ -67,7 +67,7 @@ const Map = () => {
 
             <div className='featured-items '>
                 <h1 className='text-5xl mt-10'>Featured places</h1>
-                <div className='flex'>
+                <div className='flex featured-cities-container'>
                     {featuredCities.map((city, index) => (
                         <CityCard city={city} key={index} />
                     ))}
@@ -77,7 +77,7 @@ const Map = () => {
             <div className='other-items mt-32 mb-32'>
                 <h1 className='text-5xl'>Where about?</h1>
                 {/* Add here the rest of the cities */}
-                <div className='grid grid-cols-5 '>
+                <div className='other-cities-container grid grid-cols-5 '>
                     {otherCities.map((city, index) => (
                         <CityCard city={city} key={index} />
                     ))}         

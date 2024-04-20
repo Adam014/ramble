@@ -97,12 +97,12 @@
 }
 
 .city-name {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
 .country-name {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-top: 0;
 }
 
@@ -410,6 +410,10 @@ code{
   .hamburger svg{
     height: 3em;
   }
+  .other-cities-container, .featured-cities-container{
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    display: grid !important;
+  }
 }
 
 @media screen and (max-width: 1585px) {
@@ -421,12 +425,23 @@ code{
   }
 }
 
+@media screen and (max-width: 1600px) {
+  .other-cities-container, .featured-cities-container{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .navbar-links{
     width: 300px;
   }
   .navbar-links ul li a {
     font-size: 2rem;
+  }
+  .other-cities-container, .featured-cities-container{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;
   }
 }
 
