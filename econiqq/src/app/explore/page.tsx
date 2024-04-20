@@ -12,8 +12,6 @@ import CityCard from '@components/CityCard';
 const Map = () => {
     const [featuredCities, setFeaturedCities] = useState([]);
     const [otherCities, setOtherCities] = useState([]);
-    
-    console.log(featuredCities);
 
     useEffect(() => {
         // Fetch all cities data from Supabase
@@ -38,10 +36,10 @@ const Map = () => {
         };
 
         fetchCities();
-    }, []); // Run once on component mount
+    }, []); 
 
     return (
-        <div className='ml-10 mr-10'>  
+        <div className='ml-10 mr-5'>  
             <div>
                 <h2 className="text-4xl mt-10 mb-10">Explore <span className='custom_font custom_color'>Globally</span></h2>
             </div>
