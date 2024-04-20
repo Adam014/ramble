@@ -41,7 +41,7 @@ const Map = () => {
     }, []); // Run once on component mount
 
     return (
-        <div className='ml-10'>  
+        <div className='ml-10 mr-10'>  
             <div>
                 <h2 className="text-4xl mt-10 mb-10">Explore <span className='custom_font custom_color'>Globally</span></h2>
             </div>
