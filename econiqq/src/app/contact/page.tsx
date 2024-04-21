@@ -3,7 +3,6 @@
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
-import ScrollingImage from '@components/Scroll';
 import { Toaster } from 'react-hot-toast';
 import { sendEmail } from '@utils/utils';
 
