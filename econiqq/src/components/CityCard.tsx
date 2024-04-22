@@ -11,7 +11,7 @@ const CityCard = (city, index: number) => {
             </div>
             <div className="city-image-container">
                 <div className="overlay"></div>
-                <img src={singleCity.data.image} className="city-image" alt="city" />
+                <img src={singleCity.data.image} className="city-image rounded-xl" alt="city" />
             </div>
         </div>
     );
