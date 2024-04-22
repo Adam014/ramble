@@ -17,7 +17,6 @@ const Contact = () => {
         alt='contact-animation' 
         className={`contact-animation object-fit absolute right-0 mt-10 mr-40`}
       />    
-      {/* TODO: Add here contact form */}
       <div className='contact-container absolute top-28 left-20'>
         <h1 className='lg:text-6xl text-3xl relative'>Share <span className='custom_font custom_color'>ideas</span> with us!</h1>
         <form className='relative top-8' onSubmit={sendEmail}>
