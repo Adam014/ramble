@@ -1,7 +1,6 @@
 import React from "react";
 
 const CityCard = (city, index: number) => {
-    console.log(city)
     const singleCity = city.city
     return (
         <div className="city-card-container cursor-pointer" key={index}>

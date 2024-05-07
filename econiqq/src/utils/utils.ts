@@ -25,7 +25,7 @@ const ERROR_MESSAGES = {
 export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 
 export const fetchCitiesData = async () => {
-  const url = `${API_ENDPOINT}?orderBy=overall_score&order=desc&page=1&limit=25`;
+  const url = `${API_ENDPOINT}?page=1&limit=25`;
 
   try {
     if (!RAPIDAPI_KEY) {
@@ -133,4 +133,25 @@ export const useDecodedParams = () => {
     decodedCountry: decodeParam(country),
     decodedCapital: decodeParam(capital),
   };
+};
+
+export const fetchCities = async () => {
+  try {
+      const { data, error } = await supabase
+          .from('cities')
+          .select('country, city, data');
+
+      if (error) {
+          throw error;
+      }
+
+      if (data){
+          const sortedData = data.sort((a, b) => a?.data?.rank - b?.data?.rank);
+          return sortedData;
+      }
+
+  } catch (error) {
+      console.error('Error fetching cities:', error.message);
+      return null; // Return null in case of error
+  }
 };

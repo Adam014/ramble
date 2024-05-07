@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import supabase from '@utils/db/supabaseConfig';
+import { fetchCities, fetchCitiesData } from '@utils/utils';
 
 import tagData from '../../../public/tags.json';
 
@@ -15,27 +15,13 @@ const Map = () => {
 
     useEffect(() => {
         // Fetch all cities data from Supabase
-        const fetchCities = async () => {
-            try {
-                const { data, error } = await supabase
-                    .from('cities')
-                    .select('country, city, data')
-
-                if (error) {
-                    throw error;
-                }
-
-                if(data) {
-                    setFeaturedCities(data.slice(0, 5));
-                    setOtherCities(data.slice(5))
-                }
-
-            } catch (error) {
-                console.error('Error fetching cities:', error.message);
-            }
+        const getCities = async () => {
+            const sortedCities = await fetchCities();
+            setFeaturedCities(sortedCities.slice(0, 5)); // Set the top 5 ranked cities as featured
+            setOtherCities(sortedCities.slice(5)); // Set the rest as other cities
         };
 
-        fetchCities();
+        getCities();
     }, []); 
 
     return (
