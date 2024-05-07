@@ -139,7 +139,7 @@ export const fetchCities = async () => {
   try {
       const { data, error } = await supabase
           .from('cities')
-          .select('country, city, data');
+          .select('id, country, city, data, prices');
 
       if (error) {
           throw error;
