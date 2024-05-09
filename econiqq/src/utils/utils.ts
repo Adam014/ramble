@@ -24,8 +24,30 @@ const ERROR_MESSAGES = {
 // function to refactor the date, for timezone, that is data originally fetched
 export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 
-export const fetchCitiesData = async () => {
-  const url = `${API_ENDPOINT}?page=1&limit=25`;
+export const fetchCitiesData = async (pageNumber: number) => {
+  // Check the database for existing data for the given page number
+  try {
+    const { data: existingData, error: fetchError } = await supabase
+      .from('cities')
+      .select('id, country, city, data, pageNum')
+      .eq('pageNum', pageNumber);
+
+    if (fetchError) {
+      throw fetchError;
+    }
+
+    // If data exists for this page, return it sorted by rank
+    if (existingData && existingData.length > 0) {
+      console.log("Found the data already in DB..")
+      return existingData.sort((a, b) => a.data.rank - b.data.rank);
+    }
+  } catch (error) {
+    console.error('Error fetching existing cities:', error.message);
+    return null; // Handle fetch error by returning null
+  }
+
+  // Data not found in the database, proceed with API fetch
+  const url = `${API_ENDPOINT}?page=${pageNumber}&limit=25`;
 
   try {
     if (!RAPIDAPI_KEY) {
@@ -52,14 +74,13 @@ export const fetchCitiesData = async () => {
     const responseData = await response.json();
 
     if (responseData.error) {
-      // API returned an error, handle it without saving to Supabase
       toast.error(ERROR_MESSAGES.NOT_FOUND);
       throw new Error(`API Error: ${responseData.error}`);
     }
 
-    // Save each city's data to Supabase
-    const citiesData = responseData.cities; // Assuming the cities data is under responseData.data
+    const citiesData = responseData.cities;
 
+    // Insert new city data into the database
     await Promise.all(citiesData.map(async city => {
       try {
         const { data, error } = await supabase
@@ -69,6 +90,7 @@ export const fetchCitiesData = async () => {
               country: city.country,
               city: city.name,
               data: city,
+              pageNum: pageNumber,
               CreatedAt: new Date(),
             },
           ]);
@@ -83,7 +105,6 @@ export const fetchCitiesData = async () => {
 
     return responseData;
   } catch (error) {
-    // Handle any other errors during the API call
     console.error('API Call Error:', error);
     throw new Error('Failed to fetch data from API');
   }
@@ -133,25 +154,4 @@ export const useDecodedParams = () => {
     decodedCountry: decodeParam(country),
     decodedCapital: decodeParam(capital),
   };
-};
-
-export const fetchCities = async () => {
-  try {
-      const { data, error } = await supabase
-          .from('cities')
-          .select('id, country, city, data, prices');
-
-      if (error) {
-          throw error;
-      }
-
-      if (data){
-          const sortedData = data.sort((a, b) => a?.data?.rank - b?.data?.rank);
-          return sortedData;
-      }
-
-  } catch (error) {
-      console.error('Error fetching cities:', error.message);
-      return null; // Return null in case of error
-  }
 };

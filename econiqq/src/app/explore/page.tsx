@@ -1,7 +1,7 @@
 "use client";
 
-import React from 'react';
-import { useCities } from '@hooks/useCities'; // A new custom hook for fetching cities
+import React, { useEffect } from 'react';
+import { useCities } from '@hooks/useCities'; 
 
 import tagData from '../../../public/tags.json';
 
@@ -9,9 +9,16 @@ import Search from '@components/Search';
 import Tag from '@components/Tag';
 import CityCard from '@components/CityCard';
 import Loader from "@components/Loader";
+import { fetchCitiesData } from '@utils/utils';
 
 const Map = () => {
     const { featuredCities, otherCities, isLoading } = useCities(); // Use custom hook to manage city data
+
+    // TODO:
+    // Add pagination so every page will call this function with its number
+    // useEffect(() => {
+    //     fetchCitiesData(1);
+    // }, [])
 
     return (
         <div className='ml-10 mr-5'>  
@@ -31,6 +38,7 @@ const Map = () => {
                 <Loader />
             ) : (
                 <>
+                    {/* Add skeleton loading also, because it is glitching sometimes in loading */}
                     <div className='featured-items'>
                         <h1 className='text-5xl mt-10'>Featured places</h1>
                         <div className='flex featured-cities-container'>
@@ -49,6 +57,10 @@ const Map = () => {
                     </div>
                 </>
             )}
+
+            <div className='paging'>
+                {/* Add paging with when the page isnt already in DB to fetch the cities from API */}
+            </div>  
         </div>
     )
 }
