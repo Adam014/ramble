@@ -14,6 +14,8 @@ import ReactPaginate from 'react-paginate';
 const Map = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const { featuredCities, otherCities, isLoading } = useCities(currentPage + 1); // Use custom hook to manage city data
+    console.log(featuredCities);
+    console.log(otherCities);
 
     const handlePageClick = (event) => {
         setCurrentPage(event.selected);
@@ -57,29 +59,30 @@ const Map = () => {
                             ))}
                         </div>
                     </div>
-                    {/* Add paging with when the page isnt already in DB to fetch the cities from API */}
-                    <ReactPaginate
-                        breakLabel="..."
-                        nextLabel="next ->"
-                        previousLabel="<- previous"
-                        pageRangeDisplayed={5}
-                        pageCount={69}
-                        marginPagesDisplayed={2}
-                        containerClassName='pagination-container'
-                        activeClassName="active"
-                        breakClassName="page-item"
-                        breakLinkClassName="page-link"
-                        pageClassName="page-item"
-                        pageLinkClassName="page-link"
-                        previousClassName="page-item"
-                        previousLinkClassName="page-link"
-                        nextClassName="page-item"
-                        nextLinkClassName="page-link"
-                        onPageChange={handlePageClick}
-                        renderOnZeroPageCount={null}
-                    />
                 </>
             )}
+            {/* Add paging with when the page isnt already in DB to fetch the cities from API */}
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel="next ->"
+                previousLabel="<- previous"
+                pageRangeDisplayed={5}
+                pageCount={69}
+                marginPagesDisplayed={2}
+                containerClassName='pagination-container'
+                activeClassName="active"
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                onPageChange={handlePageClick}
+                initialPage={0}
+                renderOnZeroPageCount={null}
+            />
 
         </div>
     )
