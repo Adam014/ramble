@@ -419,6 +419,19 @@ code{
   color: var(--purple);
   animation: spin_4991 4s infinite;
 }
+.active{
+  color:#F13E51;
+}
+
+.page-item{
+  padding: 0px 5px 100px 5px;
+  font-size: 24px;
+}
+
+.pagination-container{
+  display: flex;
+  justify-content: center;
+}
 
 @keyframes spin_4991 {
   10% {

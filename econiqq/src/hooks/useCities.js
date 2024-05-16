@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { fetchCitiesData } from '@utils/utils'; // Make sure to update the import to fetchCitiesData
+import { fetchCitiesData } from '@utils/utils'; 
 
-export const useCities = (pageNumber = 1) => {
+export const useCities = (page) => {
     const [featuredCities, setFeaturedCities] = useState([]);
     const [otherCities, setOtherCities] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -9,20 +9,18 @@ export const useCities = (pageNumber = 1) => {
     useEffect(() => {
         const getCities = async () => {
             setIsLoading(true);
-            try {
-                const citiesData = await fetchCitiesData(pageNumber); // Fetch data for the current page
-                if (citiesData && citiesData.length) {
-                    setFeaturedCities(citiesData.slice(0, 5)); // Assumes top 5 cities are featured
-                    setOtherCities(citiesData.slice(5)); // Rest are other cities
-                }
-            } catch (error) {
-                console.error('Failed to fetch cities:', error);
+
+            const citiesData = await fetchCitiesData(page); // Fetch data for the current page
+
+            if (citiesData && citiesData.length) {
+                setFeaturedCities(citiesData.slice(0, 5)); // Assumes top 5 cities are featured
+                setOtherCities(citiesData.slice(5)); // Rest are other cities
             }
             setIsLoading(false);
         };
 
         getCities();
-    }, [pageNumber]); // Effect runs when pageNumber changes
+    }, [page]);
 
     return { featuredCities, otherCities, isLoading };
 };

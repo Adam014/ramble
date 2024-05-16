@@ -79,6 +79,7 @@ export const fetchCitiesData = async (pageNumber: number) => {
     }
 
     const citiesData = responseData.cities;
+    console.log("New page fetched", responseData);
 
     // Insert new city data into the database
     await Promise.all(citiesData.map(async city => {
