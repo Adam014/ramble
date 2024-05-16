@@ -57,30 +57,30 @@ const Map = () => {
                             ))}
                         </div>
                     </div>
+                    {/* Add paging with when the page isnt already in DB to fetch the cities from API */}
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel="next ->"
+                        previousLabel="<- previous"
+                        pageRangeDisplayed={5}
+                        pageCount={69}
+                        marginPagesDisplayed={2}
+                        containerClassName='pagination-container'
+                        activeClassName="active"
+                        breakClassName="page-item"
+                        breakLinkClassName="page-link"
+                        pageClassName="page-item"
+                        pageLinkClassName="page-link"
+                        previousClassName="page-item"
+                        previousLinkClassName="page-link"
+                        nextClassName="page-item"
+                        nextLinkClassName="page-link"
+                        onPageChange={handlePageClick}
+                        renderOnZeroPageCount={null}
+                    />
                 </>
             )}
 
-            {/* Add paging with when the page isnt already in DB to fetch the cities from API */}
-            <ReactPaginate
-                breakLabel="..."
-                nextLabel="next >"
-                previousLabel="< previous"
-                pageRangeDisplayed={5}
-                pageCount={69}
-                marginPagesDisplayed={2}
-                containerClassName='pagination-container'
-                activeClassName="active"
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                onPageChange={handlePageClick}
-                renderOnZeroPageCount={null}
-            />
         </div>
     )
 }
