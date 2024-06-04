@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCities } from '@hooks/useCities'; 
 
 import tagData from '../../../public/tags.json';
@@ -13,16 +13,27 @@ import ReactPaginate from 'react-paginate';
 
 const Map = () => {
     const [currentPage, setCurrentPage] = useState(0);
-    const { featuredCities, otherCities, isLoading } = useCities(currentPage + 1); // Use custom hook to manage city data
-    console.log(featuredCities);
-    console.log(otherCities);
+    const [pageRangeDisplayed, setPageRangeDisplayed] = useState(10);
+    const { featuredCities, otherCities, isLoading } = useCities(currentPage + 1); 
+    
+    useEffect(() => {
+        const updatePageRange = () => {
+            if (window.innerWidth <= 767) {
+                setPageRangeDisplayed(3);
+            } else {
+                setPageRangeDisplayed(10);
+            }
+        };
+
+        updatePageRange();
+        window.addEventListener('resize', updatePageRange);
+        
+        return () => window.removeEventListener('resize', updatePageRange);
+    }, []);
 
     const handlePageClick = (event) => {
         setCurrentPage(event.selected);
     };
-
-    // TODO:
-    // Need to resolve bug when fetching new data, the page must be refreshed to see the new cities
 
     return (
         <div className='ml-10 mr-5'>  
@@ -59,31 +70,28 @@ const Map = () => {
                             ))}
                         </div>
                     </div>
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel="next >"
+                        previousLabel="< previous"
+                        pageRangeDisplayed={pageRangeDisplayed}
+                        pageCount={55}
+                        containerClassName='pagination-container'
+                        activeClassName="active"
+                        breakClassName="page-item"
+                        breakLinkClassName="page-link"
+                        pageClassName="page-item"
+                        pageLinkClassName="page-link"
+                        previousClassName="page-item"
+                        previousLinkClassName="page-link"
+                        nextClassName="page-item"
+                        nextLinkClassName="page-link"
+                        onPageChange={handlePageClick}
+                        initialPage={currentPage}
+                        renderOnZeroPageCount={null}
+                    />
                 </>
             )}
-            {/* Add paging with when the page isnt already in DB to fetch the cities from API */}
-            <ReactPaginate
-                breakLabel="..."
-                nextLabel="next ->"
-                previousLabel="<- previous"
-                pageRangeDisplayed={5}
-                pageCount={69}
-                marginPagesDisplayed={2}
-                containerClassName='pagination-container'
-                activeClassName="active"
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                onPageChange={handlePageClick}
-                initialPage={0}
-                renderOnZeroPageCount={null}
-            />
-
         </div>
     )
 }
