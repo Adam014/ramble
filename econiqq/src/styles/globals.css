@@ -477,7 +477,6 @@ code{
 
 
 /* MEDIA QUERIES */
-
 @media screen and (max-width: 767px) {
   .back-button {
     display: none;
@@ -505,6 +504,9 @@ code{
   .other-cities-container, .featured-cities-container{
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
     display: grid !important;
+  }
+  .page-item{
+    font-size: 16px;
   }
 }
 
