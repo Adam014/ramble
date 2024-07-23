@@ -88,7 +88,7 @@ export const useDecodedParams = () => {
   const { country, capital } = useParams();
   const decodeParam = (param: any) => (Array.isArray(param) ? param.join(' ') : decodeURIComponent(param));
   return {
-    decodedCountry: decodeParam(country),
-    decodedCapital: decodeParam(capital),
+    country: decodeParam(country),
+    city: decodeParam(capital),
   };
 };
