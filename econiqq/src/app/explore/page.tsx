@@ -1,10 +1,8 @@
-"use client";
+"use client"
 
 import React, { useState, useEffect } from 'react';
 import { useCities } from '@hooks/useCities'; 
-
 import tagData from '../../../public/tags.json';
-
 import Search from '@components/Search';
 import Tag from '@components/Tag';
 import CityCard from '@components/CityCard';
@@ -14,7 +12,8 @@ import ReactPaginate from 'react-paginate';
 const Map = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [pageRangeDisplayed, setPageRangeDisplayed] = useState(10);
-    const { featuredCities, otherCities, isLoading } = useCities(currentPage + 1); 
+    const [isLoading, setIsLoading] = useState(true);
+    const { featuredCities, otherCities } = useCities(currentPage + 1); 
     
     useEffect(() => {
         const updatePageRange = () => {
@@ -31,6 +30,15 @@ const Map = () => {
         return () => window.removeEventListener('resize', updatePageRange);
     }, []);
 
+    useEffect(() => {
+        // Simulate a loading delay
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     const handlePageClick = (event) => {
         setCurrentPage(event.selected);
     };
@@ -44,16 +52,16 @@ const Map = () => {
             <Search />
 
             <div className='flex tags'>
-                {tagData.map((tag, index) => (
-                    <Tag key={index} icon={tag.icon} label={tag.label} />
-                ))}
+                {isLoading 
+                    ? <></>
+                    : tagData.map((tag, index) => <Tag key={index} icon={tag.icon} label={tag.label} />)
+                }
             </div>
 
             {isLoading ? (
-                <Loader />
+                    <Loader />
             ) : (
                 <>
-                    {/* Add skeleton loading also, because it is glitching sometimes in loading */}
                     <div className='featured-items'>
                         <h1 className='text-5xl mt-10'>Featured places</h1>
                         <div className='flex featured-cities-container'>
