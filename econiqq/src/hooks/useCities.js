@@ -9,12 +9,23 @@ export const useCities = (page) => {
     useEffect(() => {
         const getCities = async () => {
             setIsLoading(true);
+            const cacheKey = `cities-page-${page}`;
+            const cachedData = localStorage.getItem(cacheKey);
 
-            const citiesData = await fetchCitiesData(page); // Fetch data for the current page
-
-            if (citiesData && citiesData.length) {
-                setFeaturedCities(citiesData.slice(0, 5)); // Assumes top 5 cities are featured
-                setOtherCities(citiesData.slice(5)); // Rest are other cities
+            if (cachedData) {
+                const citiesData = JSON.parse(cachedData);
+                setFeaturedCities(citiesData.featuredCities);
+                setOtherCities(citiesData.otherCities);
+            } else {
+                const citiesData = await fetchCitiesData(page);
+                
+                if (citiesData && citiesData.length) {
+                    const featured = citiesData.slice(0, 5);
+                    const other = citiesData.slice(5);
+                    setFeaturedCities(featured);
+                    setOtherCities(other);
+                    localStorage.setItem(cacheKey, JSON.stringify({ featuredCities: featured, otherCities: other }));
+                }
             }
             setIsLoading(false);
         };

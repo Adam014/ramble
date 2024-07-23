@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useCities } from '@hooks/useCities'; 
 import tagData from '../../../public/tags.json';
 import Search from '@components/Search';
@@ -13,8 +14,8 @@ const Map = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [pageRangeDisplayed, setPageRangeDisplayed] = useState(10);
     const [isLoading, setIsLoading] = useState(true);
-    const { featuredCities, otherCities } = useCities(currentPage + 1); 
-    
+    const { featuredCities, otherCities, isLoading: citiesLoading } = useCities(currentPage + 1);
+
     useEffect(() => {
         const updatePageRange = () => {
             if (window.innerWidth <= 767) {
@@ -31,13 +32,18 @@ const Map = () => {
     }, []);
 
     useEffect(() => {
-        // Simulate a loading delay
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 3000);
 
         return () => clearTimeout(timer);
     }, []);
+
+    useEffect(() => {
+        if (!citiesLoading) {
+            setIsLoading(false);
+        }
+    }, [citiesLoading]);
 
     const handlePageClick = (event) => {
         setCurrentPage(event.selected);
@@ -66,7 +72,9 @@ const Map = () => {
                         <h1 className='text-5xl mt-10'>Featured places</h1>
                         <div className='flex featured-cities-container'>
                             {featuredCities.map((city, index) => (
-                                <CityCard city={city} key={index} />
+                                <Link href={`/explore/${city.country}/${city.city}`} key={index}>
+                                    <CityCard city={city} />
+                                </Link>
                             ))}
                         </div>
                     </div>
@@ -74,7 +82,9 @@ const Map = () => {
                         <h1 className='text-5xl'>Where about?</h1>
                         <div className='other-cities-container grid grid-cols-5'>
                             {otherCities.map((city, index) => (
-                                <CityCard city={city} key={index} />
+                                <Link href={`/explore/${city.country}/${city.city}`} key={index}>
+                                    <CityCard city={city} />
+                                </Link>
                             ))}
                         </div>
                     </div>
