@@ -47,6 +47,26 @@ export const fetchCitiesData = async (pageNumber: number) => {
   }
 };
 
+export const fetchCityData = async (country, city) => {
+  try {
+    const { data: existingData, error: fetchError } = await supabase
+      .from('cities')
+      .select('id, country, city, data')
+      .eq('country', country)
+      .eq('city', city)
+      .single(); // Fetch a single row
+
+    if (fetchError) {
+      throw fetchError;
+    }
+
+    return existingData || null; // Return the fetched data or null if not found
+  } catch (error) {
+    console.error('Error fetching city data:', error.message);
+    return null; // Handle fetch error by returning null
+  }
+};
+
 // function for sending the email
 export const sendEmail = (e: EmailFormEvent): void => {
   e.preventDefault();
