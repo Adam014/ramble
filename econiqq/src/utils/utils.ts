@@ -24,6 +24,7 @@ const ERROR_MESSAGES = {
 // function to refactor the date, for timezone, that is data originally fetched
 export const fixDate = (date: Date): Date => new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 
+// WE NEED THIS FUNCTION FASTER 
 export const fetchCitiesData = async (pageNumber: number) => {
   // Check the database for existing data for the given page number
   try {

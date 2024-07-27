@@ -38,6 +38,7 @@ const Page = () => {
             }
         </div>
       </div>  
+      {/* TODO: Here comes the slider/carousel with cards*/}
     </div>
   );
 };
