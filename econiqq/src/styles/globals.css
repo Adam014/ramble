@@ -433,6 +433,22 @@ code{
   justify-content: center;
 }
 
+.city-single-container{
+  height: 82vh;
+}
+
+.city-single-title-container{
+  display: grid;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 30rem;
+  padding-left: 10rem;
+}
+
+.city-single-title{
+  font-size: 4.75rem;
+}
+
 @keyframes spin_4991 {
   10% {
     -webkit-transform: translateY(-102%);
