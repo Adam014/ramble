@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useDecodedParams, fetchCityData } from '@utils/utils';
 import Tag from '@components/Tag';
 import tagData from '../../../../../public/tags-single.json';
+import Loader from '@components/Loader';
 
 const Page = () => {
   const { country = '', city = '' }  = useDecodedParams();
@@ -23,14 +24,8 @@ const Page = () => {
   }, [country, city]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
-
-  if (!cityData) {
-    return <div>City not found.</div>;
-  }
-
-  console.log(cityData.data.image)
 
   return (
     <div className='city-single-container'>
