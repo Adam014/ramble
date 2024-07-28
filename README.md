@@ -35,7 +35,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd Econiqq
+  cd econiqq
 ```
 
 Install dependencies
@@ -73,48 +73,43 @@ NEXT_PUBLIC_SUPABASE_APP_URL = your_SUPABASE_url
 
 ## API Reference
 
-#### Get the Cost to Live of the capital city
+#### Get the details of the city
 
 ```http
   GET /map/${country}/${capital}
 ```
 
 ## Summary
-The `fetchData` function is responsible for fetching data from the Supabase database. It first checks if the data exists in Supabase by querying the `CountryAndCapitalCollection` table. If the data is found, it is returned. If the data is not found, the function calls the `fetchCostOfLiving` function to fetch the data from an external API. The fetched data is then saved to Supabase and returned.
+Defines three asynchronous functions to fetch city data from a Supabase database. The functions handle fetching data for a specific page number, a specific city, and all cities within a specific country.
 
 ## Example Usage
-```javascript
-const data = await fetchData('USA', 'Washington');
-console.log(data);
-// Output: The fetched data from Supabase or the external API
+```
+const pageNumber = 1;
+const citiesData = await fetchCitiesData(pageNumber);
+console.log(citiesData);
+
+const country = 'USA';
+const city = 'New York';
+const cityData = await fetchCityData(country, city);
+console.log(cityData);
+
+const citiesByCountry = await fetchCitiesByCountry(country);
+console.log(citiesByCountry);
 ```
 
 ## Code Analysis
-### Inputs
-- `decodedCountry` (string): The decoded country name.
-- `decodedCapital` (string): The decoded capital name.
-___
-### Flow
-1. The function queries the `CountryAndCapitalCollection` table in Supabase to check if the data exists for the given country and capital.
-2. If the data is found, it is returned.
-3. If the data is not found, the function calls the `fetchCostOfLiving` function to fetch the data from an external API.
-4. The fetched data is then saved to Supabase using the `upsert` method.
-5. If the data is successfully saved, it is returned.
-6. If any errors occur during the process, appropriate error messages are thrown.
-___
-### Outputs
-- The fetched data from Supabase or the external API.
-___
-
-
-It also works, when u type:
-
-#### Get the Cost to Live of the city you enter
-
-```http
-  GET /map/${country}/${another_city_you_can_think_of}
-```
-
+1. Inputs
+- pageNumber: A number representing the page of data to fetch.
+- country: A string representing the country name.
+- city: A string representing the city name.
+2. Flow
+- fetchCitiesData checks for existing data for a given page number and returns it sorted by rank.
+_ fetchCityData fetches data for a specific city and country.
+- fetchCitiesByCountry fetches all cities data for a specific country.
+3. Outputs
+- fetchCitiesData: Returns sorted city data for the given page number or null if an error occurs.
+- fetchCityData: Returns data for the specified city or null if not found or an error occurs.
+- fetchCitiesByCountry: Returns an array of cities data for the specified country or an empty array if not found or an error occurs.
 
 ## Authors
 
@@ -145,4 +140,3 @@ For support, email adam.stadnik@seznam.cz or contact me via the web!
 ## Feedback
 
 If you have any feedback, please reach out to me at adam.stadnik@seznam.cz
-
