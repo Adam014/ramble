@@ -1,20 +1,50 @@
 "use client"
 
 import { NoCity } from '@components/NoCity';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetchCitiesByCountry, useDecodedParams } from '@utils/utils';
+import CityCard from '@components/CityCard';
+import Loader from '@components/Loader';
+import Link from 'next/link';
 
-// TODO: Need to edit this page, when only country is submitted
-// Add carts with the towns of the country (country, capital, time, photo, and click button to redirect to the town)
-// To je chytry tyvole
+const Country = () => {
+  const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { country } = useDecodedParams();
 
-const country = () => {
+  useEffect(() => {
+    if (country) {
+      const getCities = async () => {
+        setLoading(true);
+        const citiesData = await fetchCitiesByCountry(country);
+        setCities(citiesData);
+        setLoading(false);
+      };
+
+      getCities();
+    }
+  }, [country]);
+
   return (
-    <>    
-      <div className='absolute top-1/3'>
-        <NoCity />
+    <>
+      <div className='absolute top-1/4'>
+        <h1 className='text-5xl text-center'>So, what now?</h1>
+        {loading ? (
+          <Loader /> 
+        ) : cities.length > 0 ? (
+          <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10'>
+            {cities.map((city) => (
+               <Link href={`/explore/${city.country}/${city.city}`}>
+                <CityCard key={city.id} city={city} />
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <NoCity />
+        )}
       </div>
     </>
-  )
+  );
 }
 
-export default country;
+export default Country;
