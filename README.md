@@ -57,6 +57,7 @@ Start the server
 | Background_color | ![#00000](https://via.placeholder.com/10/0000?text=+) #000000 |
 | Button_color | ![#F13E51](https://via.placeholder.com/10/F13E51?text=+) #F13E51 |
 | Hover_color | ![#E08C9C](https://via.placeholder.com/10/E08C9C?text=+) #E08C9C |
+| Tag_color | ![#001a64](https://via.placeholder.com/10/001a64?text=+) #001a64 |
 
 
 ## Environment Variables
