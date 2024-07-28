@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
       "@*": ["./src/*"]
     },
@@ -29,9 +25,10 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/components/Mapchart.js", "src/components/Globe.js", "src/utils/api.js"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "src/components/Mapchart.js",
+    "src/components/Globe.js",
+    "src/utils/api.js"
+  ],
+  "exclude": ["node_modules"]
 }

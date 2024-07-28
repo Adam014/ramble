@@ -5,148 +5,148 @@
       "type": "GeometryCollection",
       "geometries": [
         {
-        "type": "Polygon",
-        "arcs": [[0, 1, 2, 3, 4, 5]],
-        "id": "AFG",
-        "properties": { "name": "Afghanistan", "capital": "Kabul" }
+          "type": "Polygon",
+          "arcs": [[0, 1, 2, 3, 4, 5]],
+          "id": "AFG",
+          "properties": { "name": "Afghanistan", "capital": "Kabul" }
         },
         {
-        "type": "MultiPolygon",
-        "arcs": [[[6, 7, 8, 9]], [[10, 11, 12]]],
-        "id": "AGO",
-        "properties": { "name": "Angola", "capital": "Luanda" }
+          "type": "MultiPolygon",
+          "arcs": [[[6, 7, 8, 9]], [[10, 11, 12]]],
+          "id": "AGO",
+          "properties": { "name": "Angola", "capital": "Luanda" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[13, 14, 15, 16, 17]],
-        "id": "ALB",
-        "properties": { "name": "Albania", "capital": "Tirana" }
+          "type": "Polygon",
+          "arcs": [[13, 14, 15, 16, 17]],
+          "id": "ALB",
+          "properties": { "name": "Albania", "capital": "Tirana" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[18, 19, 20, 21, 22]],
-        "id": "ARE",
-        "properties": { "name": "United Arab Emirates", "capital": "Abu Dhabi" }
+          "type": "Polygon",
+          "arcs": [[18, 19, 20, 21, 22]],
+          "id": "ARE",
+          "properties": { "name": "United Arab Emirates", "capital": "Abu Dhabi" }
         },
         {
-        "type": "MultiPolygon",
-        "arcs": [[[23, 24]], [[25, 26, 27, 28, 29, 30]]],
-        "id": "ARG",
-        "properties": { "name": "Argentina", "capital": "Buenos Aires" }
+          "type": "MultiPolygon",
+          "arcs": [[[23, 24]], [[25, 26, 27, 28, 29, 30]]],
+          "id": "ARG",
+          "properties": { "name": "Argentina", "capital": "Buenos Aires" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[31, 32, 33, 34, 35]],
-        "id": "ARM",
-        "properties": { "name": "Armenia", "capital": "Yerevan" }
+          "type": "Polygon",
+          "arcs": [[31, 32, 33, 34, 35]],
+          "id": "ARM",
+          "properties": { "name": "Armenia", "capital": "Yerevan" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[36]],
-        "id": "ATF",
-        "properties": { "name": "French Southern Territories", "capital": "" }
+          "type": "Polygon",
+          "arcs": [[36]],
+          "id": "ATF",
+          "properties": { "name": "French Southern Territories", "capital": "" }
         },
         {
-        "type": "MultiPolygon",
-        "arcs": [[[37]], [[38]]],
-        "id": "AUS",
-        "properties": { "name": "Australia", "capital": "Canberra" }
+          "type": "MultiPolygon",
+          "arcs": [[[37]], [[38]]],
+          "id": "AUS",
+          "properties": { "name": "Australia", "capital": "Canberra" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]],
-        "id": "AUT",
-        "properties": { "name": "Austria", "capital": "Vienna" }
+          "type": "Polygon",
+          "arcs": [[39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]],
+          "id": "AUT",
+          "properties": { "name": "Austria", "capital": "Vienna" }
         },
         {
-        "type": "MultiPolygon",
-        "arcs": [[[50, -35]], [[51, 52, -33, 53, 54]]],
-        "id": "AZE",
-        "properties": { "name": "Azerbaijan", "capital": "Baku" }
+          "type": "MultiPolygon",
+          "arcs": [[[50, -35]], [[51, 52, -33, 53, 54]]],
+          "id": "AZE",
+          "properties": { "name": "Azerbaijan", "capital": "Baku" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[55, 56, 57, 58]],
-        "id": "BDI",
-        "properties": { "name": "Burundi", "capital": "Bujumbura" }
+          "type": "Polygon",
+          "arcs": [[55, 56, 57, 58]],
+          "id": "BDI",
+          "properties": { "name": "Burundi", "capital": "Bujumbura" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[59, 60, 61, 62, 63]],
-        "id": "BEL",
-        "properties": { "name": "Belgium", "capital": "Brussels" }
+          "type": "Polygon",
+          "arcs": [[59, 60, 61, 62, 63]],
+          "id": "BEL",
+          "properties": { "name": "Belgium", "capital": "Brussels" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[64, 65, 66, 67, 68]],
-        "id": "BEN",
-        "properties": { "name": "Benin", "capital": "Porto-Novo" }
+          "type": "Polygon",
+          "arcs": [[64, 65, 66, 67, 68]],
+          "id": "BEN",
+          "properties": { "name": "Benin", "capital": "Porto-Novo" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[69, 70, 71, -67, 72, 73]],
-        "id": "BFA",
-        "properties": { "name": "Burkina Faso", "capital": "Ouagadougou" }
+          "type": "Polygon",
+          "arcs": [[69, 70, 71, -67, 72, 73]],
+          "id": "BFA",
+          "properties": { "name": "Burkina Faso", "capital": "Ouagadougou" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[74, 75, 76]],
-        "id": "BGD",
-        "properties": { "name": "Bangladesh", "capital": "Dhaka" }
+          "type": "Polygon",
+          "arcs": [[74, 75, 76]],
+          "id": "BGD",
+          "properties": { "name": "Bangladesh", "capital": "Dhaka" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[77, 78, 79, 80, 81, 82]],
-        "id": "BGR",
-        "properties": { "name": "Bulgaria", "capital": "Sofia" }
+          "type": "Polygon",
+          "arcs": [[77, 78, 79, 80, 81, 82]],
+          "id": "BGR",
+          "properties": { "name": "Bulgaria", "capital": "Sofia" }
         },
         {
-        "type": "MultiPolygon",
-        "arcs": [[[83]], [[84]], [[85]]],
-        "id": "BHS",
-        "properties": { "name": "Bahamas", "capital": "Nassau" }
+          "type": "MultiPolygon",
+          "arcs": [[[83]], [[84]], [[85]]],
+          "id": "BHS",
+          "properties": { "name": "Bahamas", "capital": "Nassau" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[86, 87, 88, 89]],
-        "id": "BIH",
-        "properties": { "name": "Bosnia and Herzegovina", "capital": "Sarajevo" }
+          "type": "Polygon",
+          "arcs": [[86, 87, 88, 89]],
+          "id": "BIH",
+          "properties": { "name": "Bosnia and Herzegovina", "capital": "Sarajevo" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[90, 91, 92, 93, 94, 95, 96, 97]],
-        "id": "BLR",
-        "properties": { "name": "Belarus", "capital": "Minsk" }
+          "type": "Polygon",
+          "arcs": [[90, 91, 92, 93, 94, 95, 96, 97]],
+          "id": "BLR",
+          "properties": { "name": "Belarus", "capital": "Minsk" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[98, 99, 100]],
-        "id": "BLZ",
-        "properties": { "name": "Belize", "capital": "Belmopan" }
+          "type": "Polygon",
+          "arcs": [[98, 99, 100]],
+          "id": "BLZ",
+          "properties": { "name": "Belize", "capital": "Belmopan" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[101, 102, 103, 104, -31]],
-        "id": "BOL",
-        "properties": { "name": "Bolivia", "capital": "Sucre" }
+          "type": "Polygon",
+          "arcs": [[101, 102, 103, 104, -31]],
+          "id": "BOL",
+          "properties": { "name": "Bolivia", "capital": "Sucre" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[-27, 105, -104, 106, 107, 108, 109, 110, 111, 112, 113]],
-        "id": "BRA",
-        "properties": { "name": "Brazil", "capital": "Brasilia" }
+          "type": "Polygon",
+          "arcs": [[-27, 105, -104, 106, 107, 108, 109, 110, 111, 112, 113]],
+          "id": "BRA",
+          "properties": { "name": "Brazil", "capital": "Brasilia" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[114, 115]],
-        "id": "BRN",
-        "properties": { "name": "Brunei", "capital": "Bandar Seri Begawan" }
+          "type": "Polygon",
+          "arcs": [[114, 115]],
+          "id": "BRN",
+          "properties": { "name": "Brunei", "capital": "Bandar Seri Begawan" }
         },
         {
-        "type": "Polygon",
-        "arcs": [[116, 117]],
-        "id": "BTN",
-        "properties": { "name": "Bhutan", "capital": "Thimphu" }
+          "type": "Polygon",
+          "arcs": [[116, 117]],
+          "id": "BTN",
+          "properties": { "name": "Bhutan", "capital": "Thimphu" }
         },
         {
           "type": "Polygon",
@@ -215,37 +215,8 @@
             [[173]],
             [
               [
-                174,
-                175,
-                176,
-                177,
-                178,
-                179,
-                180,
-                181,
-                182,
-                183,
-                184,
-                185,
-                186,
-                187,
-                -118,
-                188,
-                189,
-                190,
-                191,
-                -4,
-                192,
-                193,
-                194,
-                195,
-                196,
-                197,
-                198,
-                199,
-                200,
-                201,
-                202
+                174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, -118, 188,
+                189, 190, 191, -4, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202
               ]
             ]
           ],
@@ -266,25 +237,7 @@
         },
         {
           "type": "Polygon",
-          "arcs": [
-            [
-              216,
-              217,
-              218,
-              219,
-              -56,
-              220,
-              221,
-              222,
-              -10,
-              223,
-              -13,
-              224,
-              -127,
-              225,
-              226
-            ]
-          ],
+          "arcs": [[216, 217, 218, 219, -56, 220, 221, 222, -10, 223, -13, 224, -127, 225, 226]],
           "id": "COD",
           "properties": { "name": "Democratic Republic of Congo", "capital": "Kinshasa" }
         },
@@ -392,9 +345,7 @@
         },
         {
           "type": "Polygon",
-          "arcs": [
-            [288, 289, -274, -254, 290, 291, 292, 293, 294, 295, 296, 297, -277]
-          ],
+          "arcs": [[288, 289, -274, -254, 290, 291, 292, 293, 294, 295, 296, 297, -277]],
           "id": "ETH",
           "properties": { "name": "Ethiopia", "capital": "Addis Ababa" }
         },
@@ -600,9 +551,7 @@
         },
         {
           "type": "Polygon",
-          "arcs": [
-            [420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, -195, 433]
-          ],
+          "arcs": [[420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, -195, 433]],
           "id": "KAZ",
           "properties": { "name": "Kazakhstan", "capital": "Astana" }
         },
@@ -788,9 +737,7 @@
         },
         {
           "type": "Polygon",
-          "arcs": [
-            [-72, -486, -261, -462, 524, 525, 526, 527, 528, -213, 529, -68]
-          ],
+          "arcs": [[-72, -486, -261, -462, 524, 525, 526, 527, 528, -213, 529, -68]],
           "id": "NER",
           "properties": { "name": "Niger", "capital": "Niamey" }
         },
@@ -856,15 +803,7 @@
         },
         {
           "type": "MultiPolygon",
-          "arcs": [
-            [[549]],
-            [[550]],
-            [[551]],
-            [[552]],
-            [[553]],
-            [[554]],
-            [[555]]
-          ],
+          "arcs": [[[549]], [[550]], [[551]], [[552]], [[553]], [[554]], [[555]]],
           "id": "PHL",
           "properties": { "name": "Philippines", "capital": "Manila" }
         },
@@ -930,62 +869,10 @@
             [[582]],
             [
               [
-                -181,
-                583,
-                584,
-                585,
-                -177,
-                586,
-                -175,
-                587,
-                -202,
-                588,
-                -200,
-                589,
-                -198,
-                -499,
-                590,
-                591,
-                -496,
-                592,
-                -494,
-                593,
-                -492,
-                -196,
-                -433,
-                594,
-                -431,
-                595,
-                596,
-                -428,
-                597,
-                -426,
-                598,
-                599,
-                600,
-                -55,
-                601,
-                -322,
-                602,
-                -320,
-                603,
-                604,
-                605,
-                606,
-                607,
-                608,
-                609,
-                610,
-                611,
-                -95,
-                612,
-                -93,
-                -474,
-                -287,
-                613,
-                614,
-                -299,
-                615
+                -181, 583, 584, 585, -177, 586, -175, 587, -202, 588, -200, 589, -198, -499, 590,
+                591, -496, 592, -494, 593, -492, -196, -433, 594, -431, 595, 596, -428, 597, -426,
+                598, 599, 600, -55, 601, -322, 602, -320, 603, 604, 605, 606, 607, 608, 609, 610,
+                611, -95, 612, -93, -474, -287, 613, 614, -299, 615
               ]
             ],
             [[616]],
@@ -1147,10 +1034,7 @@
         },
         {
           "type": "MultiPolygon",
-          "arcs": [
-            [[-324, -36, -393, 671, -400, -659, 672]],
-            [[-341, -80, 673]]
-          ],
+          "arcs": [[[-324, -36, -393, 671, -400, -659, 672]], [[-341, -80, 673]]],
           "id": "TUR",
           "properties": { "name": "Turkey", "capital": "Ankara" }
         },
@@ -1162,23 +1046,7 @@
         },
         {
           "type": "Polygon",
-          "arcs": [
-            [
-              -436,
-              675,
-              676,
-              -500,
-              677,
-              678,
-              679,
-              680,
-              -221,
-              -59,
-              681,
-              -620,
-              682
-            ]
-          ],
+          "arcs": [[-436, 675, 676, -500, 677, 678, 679, 680, -221, -59, 681, -620, 682]],
           "id": "TZA",
           "properties": { "name": "Tanzania", "capital": "Dodoma" }
         },
@@ -1192,21 +1060,7 @@
           "type": "Polygon",
           "arcs": [
             [
-              685,
-              -611,
-              686,
-              -609,
-              687,
-              688,
-              689,
-              -605,
-              690,
-              -572,
-              -477,
-              -571,
-              -362,
-              -654,
-              -563,
+              685, -611, 686, -609, 687, 688, 689, -605, 690, -572, -477, -571, -362, -654, -563,
               -97
             ]
           ],
@@ -1292,16 +1146,7 @@
         },
         {
           "type": "MultiPolygon",
-          "arcs": [
-            [[713]],
-            [[714]],
-            [[715]],
-            [[716]],
-            [[717]],
-            [[718]],
-            [[719]],
-            [[720]]
-          ],
+          "arcs": [[[713]], [[714]], [[715]], [[716]], [[717]], [[718]], [[719]], [[720]]],
           "id": "CPV",
           "properties": { "name": "Cape Verde", "capital": "Praia" }
         },
@@ -1379,15 +1224,7 @@
         },
         {
           "type": "MultiPolygon",
-          "arcs": [
-            [[744]],
-            [[745]],
-            [[746]],
-            [[747]],
-            [[748]],
-            [[749]],
-            [[750]]
-          ],
+          "arcs": [[[744]], [[745]], [[746]], [[747]], [[748]], [[749]], [[750]]],
           "id": "TUV",
           "properties": { "name": "Tuvalu", "capital": "Funafuti" }
         },

@@ -1,10 +1,6 @@
 import React from 'react'
 import { EmblaOptionsType } from 'embla-carousel'
-import {
-  PrevButton,
-  NextButton,
-  usePrevNextButtons
-} from './EmblaCarouselArrowButtons'
+import { PrevButton, NextButton, usePrevNextButtons } from './EmblaCarouselArrowButtons'
 import useEmblaCarousel from 'embla-carousel-react'
 
 type PropType = {
@@ -16,12 +12,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick
-  } = usePrevNextButtons(emblaApi)
+  const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } =
+    usePrevNextButtons(emblaApi)
 
   return (
     <section className="embla">
@@ -37,10 +29,18 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
       <div className="embla__controls">
         <div className="embla__buttons__left">
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} className="embla__button embla__button--prev" />
+          <PrevButton
+            onClick={onPrevButtonClick}
+            disabled={prevBtnDisabled}
+            className="embla__button embla__button--prev"
+          />
         </div>
         <div className="embla__buttons__right">
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} className="embla__button embla__button--next" />
+          <NextButton
+            onClick={onNextButtonClick}
+            disabled={nextBtnDisabled}
+            className="embla__button embla__button--next"
+          />
         </div>
       </div>
     </section>
