@@ -83,7 +83,7 @@ NEXT_PUBLIC_SUPABASE_APP_URL = your_SUPABASE_url
 Defines three asynchronous functions to fetch city data from a Supabase database. The functions handle fetching data for a specific page number, a specific city, and all cities within a specific country.
 
 ## Example Usage
-```
+```js
 const pageNumber = 1;
 const citiesData = await fetchCitiesData(pageNumber);
 console.log(citiesData);
