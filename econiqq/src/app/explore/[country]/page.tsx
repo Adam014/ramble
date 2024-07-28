@@ -15,29 +15,37 @@ const Country = () => {
   useEffect(() => {
     if (country) {
       const getCities = async () => {
-        setLoading(true);
         const citiesData = await fetchCitiesByCountry(country);
         setCities(citiesData);
-        setLoading(false);
       };
 
       getCities();
     }
   }, [country]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <div className='absolute top-1/4'>
-        <h1 className='text-5xl text-center'>So, what now?</h1>
         {loading ? (
           <Loader /> 
         ) : cities.length > 0 ? (
-          <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10'>
-            {cities.map((city) => (
-               <Link href={`/explore/${city.country}/${city.city}`}>
-                <CityCard key={city.id} city={city} />
-              </Link>
-            ))}
+          <div>
+            <h1 className='text-5xl text-center'>So, what now?</h1>
+            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10'>
+              {cities.map((city) => (
+                <Link href={`/explore/${city.country}/${city.city}`}>
+                  <CityCard key={city.id} city={city} />
+                </Link>
+              ))}
+            </div>
           </div>
         ) : (
           <NoCity />
