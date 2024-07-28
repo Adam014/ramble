@@ -25,7 +25,7 @@ export default function Home() {
         <p className="pt-10 text-2xl text-center mt-10">
           Deciding to explore the earth shouldn’t cost the earth! Can you afford that splendid
           solitude in Siberia or the charming chateaus of France? We’re here to turn your dreams
-          into reality. With Nomadify, you're just a click away to know your cost.
+          into reality. With Ramble, you're just a click away to know your cost.
         </p>
         <div className="sm:block md:flex flex-wrap justify-center grid">
           {statsData.map((stat, index) => (
