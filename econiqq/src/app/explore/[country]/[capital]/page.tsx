@@ -5,6 +5,18 @@ import { useDecodedParams, fetchCityData } from '@utils/utils';
 import Tag from '@components/Tag';
 import tagData from '../../../../../public/tags-single.json';
 import Loader from '@components/Loader';
+import '../../../../styles/embla.css'
+import EmblaCarousel from '@components/EmblaCarousel'
+import { EmblaOptionsType } from 'embla-carousel'
+
+const OPTIONS: EmblaOptionsType = { loop: true }
+const SLIDE_CONTENT = [
+  "Welcome to the first slide!",
+  "Here's some interesting info for the second slide.",
+  "Don't miss out on this for the third slide.",
+  "Check this out on the fourth slide.",
+  "Finally, the fifth slide has this to offer."
+]
 
 const Page = () => {
   const { country = '', city = '' }  = useDecodedParams();
@@ -27,6 +39,8 @@ const Page = () => {
     return <Loader />;
   }
 
+  console.log(cityData.data.descriptionFromReview) 
+
   return (
     <div className='city-single-container'>
       <div className='city-single-title-container'>
@@ -38,7 +52,7 @@ const Page = () => {
             }
         </div>
       </div>  
-      {/* TODO: Here comes the slider/carousel with cards*/}
+      <EmblaCarousel slides={SLIDE_CONTENT} options={OPTIONS} />
     </div>
   );
 };
