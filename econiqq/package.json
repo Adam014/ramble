@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "pre-push": "next test"
+    "pre-push": "next test",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
@@ -19,6 +20,7 @@
     "emailjs-com": "^3.2.0",
     "embla-carousel-react": "^8.1.7",
     "next": "^14.0.3",
+    "prettier": "^3.3.3",
     "react": "^18.2.0",
     "react-animated-cursor": "^2.11.2",
     "react-countup": "^6.5.0",
