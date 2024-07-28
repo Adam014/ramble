@@ -169,6 +169,10 @@ body {
   user-select: none; /* Standard syntax */
 }
 
+.breadcrumb-url-segment:hover{
+  color: var(--purple-hover)
+}
+
 img{
   pointer-events: none
 }
@@ -488,6 +492,9 @@ code{
 /* MEDIA QUERIES */
 @media screen and (max-width: 767px) {
   .back-button {
+    display: none;
+  }
+  .breadcrumb{
     display: none;
   }
   .custom_object{

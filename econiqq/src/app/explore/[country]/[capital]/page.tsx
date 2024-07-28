@@ -39,8 +39,6 @@ const Page = () => {
     return <Loader />;
   }
 
-  console.log(cityData.data.descriptionFromReview) 
-
   return (
     <div className='city-single-container'>
       <div className='city-single-title-container'>
