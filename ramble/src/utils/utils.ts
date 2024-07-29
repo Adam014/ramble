@@ -86,6 +86,43 @@ export const fetchCitiesByCountry = async (country) => {
   }
 }
 
+
+interface CountryCityCount {
+  countryCount: number;
+  cityCount: number;
+}
+
+export const fetchCountryCityCounts = async (): Promise<CountryCityCount> => {
+  try {
+    // Fetch unique countries count
+    const { data: countryData, error: countryError } = await supabase
+      .from('cities')
+      .select('country', { count: 'exact' })
+
+    console.log(countryData);
+
+    if (countryError) {
+      throw countryError
+    }
+
+    const countryCount = countryData?.length || 0
+
+    // Fetch total cities count
+    const { count: cityCount, error: citiesError } = await supabase
+      .from('cities')
+      .select('*', { count: 'exact', head: true })
+
+    if (citiesError) {
+      throw citiesError
+    }
+
+    return { countryCount, cityCount: cityCount || 0 }
+  } catch (error) {
+    console.error('Error fetching country and city counts:', error.message)
+    return { countryCount: 0, cityCount: 0 }
+  }
+}
+
 // function for sending the email
 export const sendEmail = (e: EmailFormEvent): void => {
   e.preventDefault()
