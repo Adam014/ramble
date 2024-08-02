@@ -78,6 +78,7 @@ export const fetchCityPriceDataFromAPI = async (country: string, city: string) =
 };
 
 // TODO: When the city is not in DB, use the toast NOT_FOUND but view the city bcs the api for detailed prices might be there -> dont show the first slide with overview
+// Later with user account, users will be able to enter the overview info, images etc
 export const fetchCityData = async (country: string, city: string) => {
   try {
     // Check for existing data
