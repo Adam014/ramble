@@ -77,7 +77,7 @@ export const fetchCityPriceDataFromAPI = async (country: string, city: string) =
   }
 };
 
-// Smart function to fetch city data, checking for existing prices first
+// TODO: When the city is not in DB, use the toast NOT_FOUND but view the city bcs the api for detailed prices might be there -> dont show the first slide with overview
 export const fetchCityData = async (country: string, city: string) => {
   try {
     // Check for existing data
