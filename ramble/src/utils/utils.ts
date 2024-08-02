@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback } from 'react'
 import toast from 'react-hot-toast'
 import supabase from './db/supabaseConfig'
 import emailjs from 'emailjs-com'
@@ -8,18 +7,12 @@ interface EmailFormEvent extends React.FormEvent<HTMLFormElement> {
   target: HTMLFormElement
 }
 
-// RAPIDAPI Endpoint
-const API_ENDPOINT = 'https://nomadlist-digital-nomad-travel-api.p.rapidapi.com/cities'
-
-// RAPIDAPI_KEY, getting from .env
-const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPID_KEY
-
-// Declaring error messages
+const API_ENDPOINT_TEMPLATE = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
+const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPI_KEY;
 const ERROR_MESSAGES = {
-  RATE_LIMIT: 'API rate limit exceeded. Please try again later.',
-  GENERIC: 'API ERROR: The API is down, please be patient...',
-  NOT_FOUND: "API ERROR: We don't seem to have this city in our data!"
-}
+  RATE_LIMIT: 'API rate limit exceeded, we cant provide you detailed prices right now. Please try again later.',
+  NOT_FOUND: "API ERROR: We don't seem to have this city detailed prices in our data!"
+};
 
 // function to refactor the date, for timezone, that is data originally fetched
 export const fixDate = (date: Date): Date =>
@@ -49,30 +42,92 @@ export const fetchCitiesData = async (pageNumber: number) => {
   }
 }
 
-export const fetchCityData = async (country, city) => {
+// Function to fetch city price data using country and city
+export const fetchCityPriceDataFromAPI = async (country: string, city: string) => {
+  const url = `${API_ENDPOINT_TEMPLATE}?city_name=${encodeURIComponent(city)}&country_name=${encodeURIComponent(country)}`;
+  
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': RAPIDAPI_KEY,
+      'x-rapidapi-host': 'cost-of-living-and-prices.p.rapidapi.com'
+    }
+  };
+
   try {
-    const { data: existingData, error: fetchError } = await supabase
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      // Handle specific errors
+      let errorMessage;
+      if (response.status === 404) {
+        errorMessage = ERROR_MESSAGES.NOT_FOUND;
+        toast.error(ERROR_MESSAGES.NOT_FOUND);
+      } else if (response.status === 429) {
+        errorMessage = ERROR_MESSAGES.RATE_LIMIT;
+        toast.error(ERROR_MESSAGES.RATE_LIMIT);
+      }
+      throw new Error(errorMessage);
+    }
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    // Display only the specific error message
+    console.error('Error fetching city price data:', error.message);
+    return null;
+  }
+};
+
+// Smart function to fetch city data, checking for existing prices first
+export const fetchCityData = async (country: string, city: string) => {
+  try {
+    // Check for existing data
+    let { data: existingData, error: fetchError } = await supabase
       .from('cities')
-      .select('id, country, city, data')
+      .select('id, country, city, data, prices')
       .eq('country', country)
       .eq('city', city)
-      .single() // Fetch a single row
+      .single(); // Fetch a single row
 
     if (fetchError) {
-      throw fetchError
+      throw fetchError;
     }
 
-    return existingData || null // Return the fetched data or null if not found
+    // If prices exist and are not null, return them
+    if (existingData && existingData.prices) {
+      console.log('Returning existing prices from DB...');
+      return existingData;
+    }
+
+    // If prices are null or do not exist, fetch from API
+    const pricesData = await fetchCityPriceDataFromAPI(country, city);
+    if (pricesData) {
+      // Update the database with the fetched prices
+      const { data: updatedData, error: updateError } = await supabase
+        .from('cities')
+        .update({ prices: pricesData })
+        .eq('id', existingData.id)
+        .single();
+
+      if (updateError) {
+        throw updateError;
+      }
+
+      console.log('Prices updated from API and saved to DB.');
+      return updatedData;
+    }
+
+    return existingData || null; // Return the existing data if prices could not be fetched
   } catch (error) {
-    console.error('Error fetching city data:', error.message)
-    return null // Handle fetch error by returning null
+    console.error('Error fetching city data:', error.message);
+    return null; // Handle fetch error by returning null
   }
-}
+};
+
 export const fetchCitiesByCountry = async (country) => {
   try {
     const { data: citiesData, error: fetchError } = await supabase
       .from('cities')
-      .select('id, country, city, data')
+      .select('id, country, city, data, prices')
       .eq('country', country)
 
     if (fetchError) {
@@ -98,8 +153,6 @@ export const fetchCountryCityCounts = async (): Promise<CountryCityCount> => {
     const { data: countryData, error: countryError } = await supabase
       .from('cities')
       .select('country', { count: 'exact' })
-
-    console.log(countryData);
 
     if (countryError) {
       throw countryError

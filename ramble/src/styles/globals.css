@@ -67,6 +67,28 @@
   stroke-dashoffset: -32.42;
 }
 
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tags-single{
+  justify-content: center !important;
+  padding-top: 10px;
+}
+
+.tag {
+  background-color: #001a64;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
 .navbar-links {
   position: fixed;
   top: 0;
@@ -148,7 +170,7 @@
 
 .navbar-links ul li a {
   color: white;
-  font-size: 3.5rem;
+  font-size: 3rem;
   padding-left: 60px;
 }
 
@@ -179,12 +201,17 @@ img {
 }
 
 .city-single-title-container {
-  height: 100%;
-  padding-left: 10rem;
+  height: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .city-single-title {
-  font-size: 4.75rem;
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
 }
 
 /* .main {

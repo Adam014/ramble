@@ -75,6 +75,11 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
+            <Link href="/contact" onClick={closeMenu}>
+              ROADTRIPS
+            </Link>
+          </li>
+          <li>
             <Link href="/explore" onClick={closeMenu}>
               EXPLORE
             </Link>

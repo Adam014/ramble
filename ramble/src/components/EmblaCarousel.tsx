@@ -3,15 +3,18 @@ import { EmblaOptionsType } from 'embla-carousel'
 import { PrevButton, NextButton, usePrevNextButtons } from './EmblaCarouselArrowButtons'
 import useEmblaCarousel from 'embla-carousel-react'
 
+type SlideType = {
+  title: string
+  content: React.ReactNode
+}
+
 type PropType = {
-  slides: string[]
+  slides: SlideType[]
   options?: EmblaOptionsType
 }
 
-const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props
+const EmblaCarousel: React.FC<PropType> = ({ slides, options }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
-
   const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } =
     usePrevNextButtons(emblaApi)
 
@@ -19,14 +22,16 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((content, index) => (
+          {slides.map((slide, index) => (
             <div className="embla__slide" key={index}>
-              <div className="embla__slide__content">{content}</div>
+              <div className="embla__slide__content">
+                <h2 className='pt-4'>{slide.title}</h2>
+                <div>{slide.content}</div>
+              </div>
             </div>
           ))}
         </div>
       </div>
-
       <div className="embla__controls">
         <div className="embla__buttons__left">
           <PrevButton

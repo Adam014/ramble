@@ -19,9 +19,10 @@
 }
 
 .embla__slide {
-  flex: 0 0 var(--slide-size);
+  flex: 0 0 100%;
   min-width: 0;
-  height: 28rem;
+  height: auto;
+  min-height: 500px; /* Ensures slides are tall enough on mobile */
   padding-left: var(--slide-spacing);
   background-color: #0d0d0d;
   border-radius: 10px;
@@ -49,6 +50,139 @@
   right: 0;
   transform: translateY(-50%);
   padding: 0 1rem;
+}
+
+.city-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+
+.city-detail-item {
+  background-color: #222;
+  padding: 0.75rem;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.detail-title {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: #f8b400;
+  font-size: 1.1rem;
+}
+
+.detail-content {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .city-details-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  
+  .detail-title {
+    font-size: 1rem;
+  }
+  
+  .detail-content {
+    font-size: 0.85rem;
+  }
+  
+  .embla__slide h2 {
+    font-size: 1.5rem;
+  }
+  
+  .embla__slide p {
+    font-size: 1.2rem;
+  }
+}
+
+
+.embla__slide__content {
+  padding: 2rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+}
+
+.embla__slide h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.embla__slide p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .city-single-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .embla{
+    padding: 20px;
+  }
+
+  .tags {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .embla__slide__content {
+    padding: 1rem;
+  }
+
+  .embla__slide h2 {
+    font-size: 1.25rem;
+  }
+
+  .embla__slide p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .city-single-title {
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  .tags {
+    gap: 0.3rem;
+  }
+
+  .embla__slide {
+    min-height: 400px; /* Further reduce for smaller screens */
+  }
+
+  .embla__slide__content {
+    padding: 0.5rem;
+  }
+
+  .embla__slide h2 {
+    font-size: 1.1rem;
+  }
+
+  .embla__slide p {
+    font-size: 0.85rem;
+  }
 }
 
 .embla__buttons {
@@ -84,8 +218,8 @@
 }
 
 .embla__button__svg {
-  width: 35%;
-  height: 35%;
+  width: 80%;
+  height: 80%;
 }
 
 .embla__dots {
