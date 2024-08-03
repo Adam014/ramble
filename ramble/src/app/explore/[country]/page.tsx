@@ -39,7 +39,7 @@ const Country = () => {
         ) : cities.length > 0 ? (
           <div>
             <h1 className="text-5xl text-center">So, what now?</h1>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-6 gap-4 p-10">
               {cities.map((city) => (
                 <Link href={`/explore/${city.country}/${city.city}`}>
                   <CityCard key={city.id} city={city} />

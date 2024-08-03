@@ -9,6 +9,9 @@ module.exports = {
     extend: {
       colors: {
         purple: '#F13E51'
+      },
+      screens: {
+        '3xl': '1600px'
       }
     }
   },
