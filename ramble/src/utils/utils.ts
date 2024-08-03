@@ -11,7 +11,9 @@ const API_ENDPOINT_TEMPLATE = 'https://cost-of-living-and-prices.p.rapidapi.com/
 const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPID_KEY;
 const ERROR_MESSAGES = {
   RATE_LIMIT: 'API rate limit exceeded, we cant provide you detailed prices right now. Please try again later.',
-  NOT_FOUND: "API ERROR: We don't seem to have this city detailed prices in our data!"
+  NOT_FOUND_GENERIC: "API ERROR: We don't seem to have this city in our data!",
+  NOT_FOUND_COST_TO_LIVE: "API ERROR: We don't seem to have this city cost to live in our data!",
+  NOT_FOUND_DATA: "API ERROR: We don't seem to have this city overview data in our data!"
 };
 
 // function to refactor the date, for timezone, that is data originally fetched
@@ -59,8 +61,8 @@ export const fetchCityPriceDataFromAPI = async (country: string, city: string) =
       // Handle specific errors
       let errorMessage;
       if (response.status === 404) {
-        errorMessage = ERROR_MESSAGES.NOT_FOUND;
-        toast.error(ERROR_MESSAGES.NOT_FOUND);
+        errorMessage = ERROR_MESSAGES.NOT_FOUND_GENERIC;
+        toast.error(ERROR_MESSAGES.NOT_FOUND_GENERIC);
       } else if (response.status === 429) {
         errorMessage = ERROR_MESSAGES.RATE_LIMIT;
         toast.error(ERROR_MESSAGES.RATE_LIMIT);
@@ -76,7 +78,7 @@ export const fetchCityPriceDataFromAPI = async (country: string, city: string) =
   }
 };
 
-// TODO: When the city is not in DB, use the toast NOT_FOUND but view the city bcs the api for detailed prices might be there -> dont show the first slide with overview
+// TODO:
 // Later with user account, users will be able to enter the overview info, images etc
 export const fetchCityData = async (country: string, city: string) => {
   try {
@@ -95,6 +97,10 @@ export const fetchCityData = async (country: string, city: string) => {
 
     // If existing data has prices, return it
     if (existingData?.prices) {
+      // Check if data is null and show toast if necessary
+      if (!existingData.data) {
+        toast.error(ERROR_MESSAGES.NOT_FOUND_DATA);
+      }
       return existingData;
     }
 
@@ -103,6 +109,8 @@ export const fetchCityData = async (country: string, city: string) => {
 
     if (!pricesData) {
       console.error('Error fetching prices from API.');
+      // Show toast error for prices being null
+      toast.error(ERROR_MESSAGES.NOT_FOUND_COST_TO_LIVE);
       return existingData || null;
     }
 
@@ -124,6 +132,11 @@ export const fetchCityData = async (country: string, city: string) => {
         console.error('Error inserting new city data:', insertError.message);
         return null;
       }
+
+      // Check if data is null and show toast if necessary
+      if (!newData.data) {
+        toast.error(ERROR_MESSAGES.NOT_FOUND_DATA);
+      }
       return newData;
     }
 
@@ -135,6 +148,8 @@ export const fetchCityData = async (country: string, city: string) => {
 
     if (updateError) {
       console.error('Error updating prices in DB:', updateError.message);
+      // Show toast error for prices being null
+      toast.error(ERROR_MESSAGES.NOT_FOUND_COST_TO_LIVE);
       return existingData || null;
     }
 
@@ -149,6 +164,12 @@ export const fetchCityData = async (country: string, city: string) => {
       console.error('Error fetching updated city data:', fetchUpdatedError.message);
       return existingData || null;
     }
+
+    // Check if data is null and show toast if necessary
+    if (!updatedData.data) {
+      toast.error(ERROR_MESSAGES.NOT_FOUND_DATA);
+    }
+
     return updatedData;
 
   } catch (error) {

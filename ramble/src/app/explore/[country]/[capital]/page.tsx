@@ -12,6 +12,8 @@ import { Toaster } from "react-hot-toast";
 
 const OPTIONS: EmblaOptionsType = { loop: true };
 
+// TODO: Need to refactor this holy fuck
+
 const Page = () => {
   const { country = "", city = "" } = useDecodedParams();
   const [cityData, setCityData] = useState(null);
