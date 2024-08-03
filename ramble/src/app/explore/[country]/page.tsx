@@ -33,16 +33,16 @@ const Country = () => {
 
   return (
     <>
-      <div className="absolute top-1/4">
+      <div className="absolute top-1/4 w-full">
         {loading ? (
           <Loader />
         ) : cities.length > 0 ? (
           <div>
-            <h1 className="text-5xl text-center">So, what now?</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-6 gap-4 p-10">
+            <h1 className="text-5xl country-title">So, where to now?</h1>
+            <div className="city-grid">
               {cities.map((city) => (
-                <Link href={`/explore/${city.country}/${city.city}`}>
-                  <CityCard key={city.id} city={city} />
+                <Link href={`/explore/${city.country}/${city.city}`} key={city.id}>
+                  <CityCard city={city} />
                 </Link>
               ))}
             </div>

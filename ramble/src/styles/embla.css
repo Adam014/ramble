@@ -130,6 +130,113 @@
   line-height: 1.4;
 }
 
+.price-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  max-height: 38rem; 
+  overflow-y: scroll; 
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+  position: relative; 
+}
+
+.price-details-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.price-detail-item {
+  background-color: #222;
+  padding: 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.price-item-name {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: #f8b400;
+  font-size: 0.9rem;
+  text-align: center;
+  background-color: #333;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  width: 100%; /* Make the width consistent */
+  height: 7rem; /* Fixed height for uniformity */
+  max-height: 7rem; /* Allow multi-line with a max height */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap; /* Allow text to wrap to the next line */
+  word-wrap: break-word; /* Break long words */
+}
+
+.price-item-name::before {
+  content: attr(data-emoji);
+  position: absolute;
+  top: -5px;
+  left: -10px;
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+.price-values {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.price-value {
+  color: #e0e0e0;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.price-value-bold {
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.price-detail-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  animation: bounce 1s infinite;
+  z-index: 10;
+  font-size: 1.5rem;
+  color: #f8b400;
+}
+
 @media (max-width: 768px) {
   .city-single-title {
     font-size: 2.5rem;
@@ -156,12 +263,27 @@
   .embla__slide p {
     font-size: 0.9rem;
   }
+  .price-item-name {
+    font-size: 0.8rem;
+  }
+  
+  .price-value {
+    font-size: 0.7rem;
+  }
 }
 
 @media (max-width: 480px) {
   .city-single-title {
     font-size: 1.6rem;
     line-height: 1;
+  }
+
+  .price-item-name {
+    font-size: 0.75rem;
+  }
+
+  .price-value {
+    font-size: 0.65rem;
   }
 
   .tags {

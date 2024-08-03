@@ -8,7 +8,7 @@ interface EmailFormEvent extends React.FormEvent<HTMLFormElement> {
 }
 
 const API_ENDPOINT_TEMPLATE = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
-const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPI_KEY;
+const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPID_KEY;
 const ERROR_MESSAGES = {
   RATE_LIMIT: 'API rate limit exceeded, we cant provide you detailed prices right now. Please try again later.',
   NOT_FOUND: "API ERROR: We don't seem to have this city detailed prices in our data!"
@@ -33,7 +33,6 @@ export const fetchCitiesData = async (pageNumber: number) => {
 
     // If data exists for this page, return it sorted by rank
     if (existingData && existingData.length > 0) {
-      console.log('Found the data already in DB..')
       return existingData.sort((a, b) => a.data.rank - b.data.rank)
     }
   } catch (error) {
@@ -81,46 +80,80 @@ export const fetchCityPriceDataFromAPI = async (country: string, city: string) =
 // Later with user account, users will be able to enter the overview info, images etc
 export const fetchCityData = async (country: string, city: string) => {
   try {
-    // Check for existing data
-    let { data: existingData, error: fetchError } = await supabase
+    // Attempt to fetch existing data from the database
+    const { data: existingData, error: fetchError } = await supabase
       .from('cities')
       .select('id, country, city, data, prices')
       .eq('country', country)
       .eq('city', city)
-      .single(); // Fetch a single row
+      .single();
 
-    if (fetchError) {
-      throw fetchError;
+    if (fetchError && fetchError.code !== 'PGRST116') { // PGRST116 indicates no row found
+      console.error('Error fetching city data:', fetchError.message);
+      return null;
     }
 
-    // If prices exist and are not null, return them
-    if (existingData && existingData.prices) {
-      console.log('Returning existing prices from DB...');
+    // If existing data has prices, return it
+    if (existingData?.prices) {
       return existingData;
     }
 
-    // If prices are null or do not exist, fetch from API
+    // Fetch prices from the API
     const pricesData = await fetchCityPriceDataFromAPI(country, city);
-    if (pricesData) {
-      // Update the database with the fetched prices
-      const { data: updatedData, error: updateError } = await supabase
-        .from('cities')
-        .update({ prices: pricesData })
-        .eq('id', existingData.id)
-        .single();
 
-      if (updateError) {
-        throw updateError;
-      }
-
-      console.log('Prices updated from API and saved to DB.');
-      return updatedData;
+    if (!pricesData) {
+      console.error('Error fetching prices from API.');
+      return existingData || null;
     }
 
-    return existingData || null; // Return the existing data if prices could not be fetched
+    // If city data doesn't exist, insert new record with current timestamp
+    if (!existingData) {
+      const { data: newData, error: insertError } = await supabase
+        .from('cities')
+        .insert([{
+          country,
+          city,
+          data: null,
+          prices: pricesData,
+          createdAt: new Date().toISOString() // Set current timestamp
+        }])
+        .select('id, country, city, data, prices')
+        .single();
+
+      if (insertError) {
+        console.error('Error inserting new city data:', insertError.message);
+        return null;
+      }
+      return newData;
+    }
+
+    // If city data exists but prices are missing, update the record
+    const { error: updateError } = await supabase
+      .from('cities')
+      .update({ prices: pricesData })
+      .eq('id', existingData.id);
+
+    if (updateError) {
+      console.error('Error updating prices in DB:', updateError.message);
+      return existingData || null;
+    }
+
+    // Retrieve the updated data from the database
+    const { data: updatedData, error: fetchUpdatedError } = await supabase
+      .from('cities')
+      .select('id, country, city, data, prices')
+      .eq('id', existingData.id)
+      .single();
+
+    if (fetchUpdatedError) {
+      console.error('Error fetching updated city data:', fetchUpdatedError.message);
+      return existingData || null;
+    }
+    return updatedData;
+
   } catch (error) {
     console.error('Error fetching city data:', error.message);
-    return null; // Handle fetch error by returning null
+    return null;
   }
 };
 

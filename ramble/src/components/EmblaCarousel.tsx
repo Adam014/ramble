@@ -25,7 +25,7 @@ const EmblaCarousel: React.FC<PropType> = ({ slides, options }) => {
           {slides.map((slide, index) => (
             <div className="embla__slide" key={index}>
               <div className="embla__slide__content">
-                <h2 className='pt-4'>{slide.title}</h2>
+                <h2 className='pb-4'>{slide.title}</h2>
                 <div>{slide.content}</div>
               </div>
             </div>
