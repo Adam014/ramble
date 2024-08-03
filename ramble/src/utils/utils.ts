@@ -115,7 +115,7 @@ export const fetchCityData = async (country: string, city: string) => {
           city,
           data: null,
           prices: pricesData,
-          createdAt: new Date().toISOString() // Set current timestamp
+          CreatedAt: new Date().toISOString() // Set current timestamp
         }])
         .select('id, country, city, data, prices')
         .single();
