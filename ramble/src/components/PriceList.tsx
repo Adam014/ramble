@@ -1,5 +1,8 @@
-import React from 'react';
-import { getEmojiForCategory } from "@utils/utils"
+// src/components/PriceList.tsx
+
+import React, { useMemo } from 'react';
+import { getEmojiForCategory } from "@utils/utils";
+import { useSearchParams } from 'next/navigation';
 
 interface PriceItem {
   good_id: string;
@@ -17,11 +20,21 @@ interface PriceListProps {
 }
 
 const PriceList: React.FC<PriceListProps> = ({ cityCost }) => {
+  const searchParams = useSearchParams();
+  const selectedCategories = useMemo(() => {
+    const categoryParam = searchParams.get('category');
+    return categoryParam ? categoryParam.split(',') : [];
+  }, [searchParams]);
+
+  const filteredCityCost = cityCost.filter(price =>
+    selectedCategories.length === 0 || selectedCategories.includes(price.category_name)
+  );
+
   return (
-    <>
-      {cityCost.map((price) => (
+    <div className='price-details-grid'>
+      {filteredCityCost.map((price) => (
         <div key={price.good_id} className="price-detail-item">
-          <div className="price-item-name">
+          <div className="price-item-name" data-emoji={getEmojiForCategory(price.category_name)}>
             {getEmojiForCategory(price.category_name)}
             {price.item_name}
           </div>
@@ -32,7 +45,7 @@ const PriceList: React.FC<PriceListProps> = ({ cityCost }) => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

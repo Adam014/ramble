@@ -296,3 +296,19 @@ export const getEmojiForCategory = (categoryName: string): string => {
 
   return emojiMap[categoryName] || "❓";
 };
+
+export const categories = Object.keys({
+  "Buy Apartment": "🏠",
+  "Childcare": "🧒",
+  "Clothing And Shoes": "👗",
+  "Markets": "🛒",
+  "Rent Per Month": "🏢",
+  "Restaurants": "🍽️",
+  "Salaries And Financing": "💰",
+  "Sports And Leisure": "🎾",
+  "Transportation": "🚗",
+  "Utilities Per Month": "⚡",
+}).map((category) => ({
+  label: category,
+  value: category,
+}));

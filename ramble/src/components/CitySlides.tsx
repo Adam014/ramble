@@ -1,3 +1,5 @@
+// src/components/CitySlides.tsx
+
 import React from "react";
 import PriceList from "./PriceList";
 
@@ -69,18 +71,15 @@ const CitySlides = ({ cityData, cityCost }) => {
           </div>
         </div>
       ),
+      filterable: false,
     });
   }
 
   if (cityCost && cityCost.length > 0) {
     SLIDE_CONTENT.push({
       title: "Cost to Live 💰",
-      content: (
-        <div className="price-details-grid">
-          <PriceList cityCost={cityCost} />
-          <div className="scroll-indicator">⬇️</div>
-        </div>
-      ),
+      content: <PriceList cityCost={cityCost} />, // Remove static categories
+      filterable: true,
     });
   }
 
