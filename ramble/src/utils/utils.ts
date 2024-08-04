@@ -279,3 +279,20 @@ export const useDecodedParams = () => {
     city: decodeParam(capital)
   }
 }
+
+export const getEmojiForCategory = (categoryName: string): string => {
+  const emojiMap: { [key: string]: string } = {
+    "Buy Apartment": "🏠",
+    "Childcare": "🧒",
+    "Clothing And Shoes": "👗",
+    "Markets": "🛒",
+    "Rent Per Month": "🏢",
+    "Restaurants": "🍽️",
+    "Salaries And Financing": "💰",
+    "Sports And Leisure": "🎾",
+    "Transportation": "🚗",
+    "Utilities Per Month": "⚡",
+  };
+
+  return emojiMap[categoryName] || "❓";
+};
