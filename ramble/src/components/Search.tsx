@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import mapData from '../../public/map.json'
 import Image from 'next/image'
 import searchIcon from '../../public/assets/icons/search.png'
-import { Toaster, toast } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState('')

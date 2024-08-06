@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&family=Unbounded&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +8,7 @@
 :root {
   --background: #000000;
   --font: 'Unbounded', sans-serif;
-  --handdraw-font: 'Shadows Into Light Two', cursive;
+  --handdraw-font: "Indie Flower", cursive;;
   --white: #ffff;
   --purple: #f13e51;
   --purple-hover: #ed6472;
@@ -331,6 +332,11 @@ rect {
   background-color: var(--purple-hover);
 } */
 
+/* .input-container{
+  display: flex;
+  justify-content: center;
+} */
+
 .custom_object {
   transform: scaleX(-1);
   position: absolute;
@@ -339,23 +345,30 @@ rect {
   z-index: -99;
 }
 
+.title-description{
+  font-family: var(--handdraw-font);
+}
+
 .custom_font {
   font-family: var(--handdraw-font);
   text-transform: uppercase;
   padding-right: 5px;
 }
 
-.input {
+.input, .input-title {
   height: 40px;
   padding: 10px;
   transition: 0.2s linear;
-  border: 2.5px solid black;
   font-size: 14px;
   letter-spacing: 2px;
   color: black;
 }
 
-.input:focus {
+.input-title{
+  padding: 30px !important;
+}
+
+.input:focus, .input-title:focus {
   outline: none;
   border: 0.5px solid var(--purple);
   box-shadow: -5px -5px 0px var(--purple);
@@ -585,6 +598,9 @@ code {
 
   .city-info .country-name {
     font-size: 0.8rem; /* Smaller font for mobile */
+  }
+  .title-description{
+    padding: 2.5rem 0rem 2.5rem 0rem;
   }
 }
 
