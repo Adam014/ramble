@@ -83,7 +83,7 @@ export default function Home() {
             />
             <button
               onClick={handleSubmit}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-red-500 hover:bg-red-700 text-white font-bold rounded-full py-2 px-4 transition-all"
+              className="title-button absolute right-4 top-1/2 transform -translate-y-1/2 bg-red-500 hover:bg-red-700 text-white font-bold rounded-full py-2 px-4 transition-all"
             >
               Go
             </button>
