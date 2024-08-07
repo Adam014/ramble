@@ -2,26 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import StatsImage from '@components/StatsImage';
 import mapData from '../../public/map.json'
 import BackgroundVideo from '@components/BackgroundVideo';
-import statsData from '../../public/stats.json';
-import { fetchCountryCityCounts } from '@utils/utils';
+import TagsSection from '@components/TagsSection';
 
 export default function Home() {
-  const [counts, setCounts] = useState({ countryCount: 0, cityCount: 0 });
   const router = useRouter();
   const [searchValue, setSearchValue] = useState('');
   const [placeholder, setPlaceholder] = useState('E.g., Czech Republic, Prague')
   const [showPlaceholder, setShowPlaceholder] = useState(true)
-
-  useEffect(() => {
-    const getCounts = async () => {
-      const { countryCount, cityCount } = await fetchCountryCityCounts();
-      setCounts({ countryCount, cityCount });
-    };
-    getCounts();
-  }, []);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     // Function to update placeholder every 15 seconds
@@ -41,6 +31,17 @@ export default function Home() {
       clearInterval(intervalId) // Cleanup function to clear interval when component unmounts
     }
   }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > window.innerHeight);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
@@ -68,61 +69,50 @@ export default function Home() {
 
   return (
     <>
-      <section className="w-full flex flex-col items-center p-10 pt-10 relative z-50">
-        <BackgroundVideo />
-        <h1 className="text-6xl font-bold text-center">Explore. Dream. Ramble.</h1>
-        <div className="flex justify-center mt-20 w-full">
-          <div className="relative w-full max-w-xl">
-            <input
-              type="text"
-              value={searchValue}
-              onChange={handleInputChange}
-              onKeyPress={handleKeyPress}
-              placeholder={placeholder}
-              className="input-title w-full p-8 text-lg text-black border-none shadow-lg transition-all"
-            />
-            <button
-              onClick={handleSubmit}
-              className="title-button absolute right-4 top-1/2 transform -translate-y-1/2 bg-red-500 hover:bg-red-700 text-white font-bold rounded-full py-2 px-4 transition-all"
-            >
-              Go
-            </button>
+      <BackgroundVideo />
+      <div className={`title-container ${isScrolled ? 'black-bg' : ''}`}>
+        <section className="w-full flex flex-col items-center p-10 pt-10 relative z-50">
+          <h1 className="text-6xl font-bold text-center">Explore. Dream. Ramble.</h1>
+          <div className="flex justify-center mt-20 w-full">
+            <div className="input-container relative w-full max-w-3xl pt-20">
+              <input
+                type="text"
+                value={searchValue}
+                onChange={handleInputChange}
+                onKeyPress={handleKeyPress}
+                placeholder={placeholder}
+                className="input-title w-full p-8 text-lg text-black border-none shadow-lg transition-all"
+              />
+              <button
+                onClick={handleSubmit}
+                className="title-button absolute right-4 transform -translate-y-1/2 bg-red-500 hover:bg-red-700 text-white font-bold rounded-full py-2 px-4 transition-all"
+              >
+                Go
+              </button>
+            </div>
           </div>
-        </div>
-        {/* <h2 className="text-5xl mt-20 z-50 relative text-center">Catch the trade winds in your sails.</h2> */}
-        <p className="title-description p-10 text-4xl w-full text-center mt-10">
-          "Easily explore new destinations and find out the cost of living with our app. Plan your travels and budget effortlessly—discover where to go and what to expect!"
-        </p>
-        <div className="sm:block md:flex flex-wrap justify-center grid">
-          <StatsImage
-            icon="/assets/icons/globe_pink.png"
-            count={counts.countryCount}
-            count_start={0}
-            label="countries"
-          />
-          {statsData.map((stat, index) => (
-            <StatsImage
-              key={index}
-              icon={stat.icon}
-              count={stat.count}
-              count_start={stat.count_start}
-              label={stat.label}
-            />
-          ))}
-          <StatsImage
-            icon="/assets/icons/city_pink.png"
-            count={counts.cityCount}
-            count_start={0}
-            label="cities"
-          />
-        </div>
-        <style jsx>{`
-          input::placeholder {
-            opacity: ${showPlaceholder ? 1 : 0};
-            transition: opacity 0.3s ease-in-out;
-          }
-      `}</style>
-      </section>
+          <p className="title-description p-10 text-4xl w-full text-center mt-10">
+            "Easily explore new destinations and find out the cost of living with our app. Plan your travels and budget effortlessly—discover where to go and what to expect!"
+          </p>
+          <div id="mouse-scroll">
+            <div className="mouse">
+              <div className="mouse-in"></div>
+            </div>
+            <div>
+                <span className="down-arrow-1"></span>
+                <span className="down-arrow-2"></span>
+                <span className="down-arrow-3"></span>
+            </div>
+          </div>
+          <style jsx>{`
+            input::placeholder {
+              opacity: ${showPlaceholder ? 1 : 0};
+              transition: opacity 0.3s ease-in-out;
+            }
+          `}</style>
+        </section>
+      </div>
+      <TagsSection />
     </>
   );
 }

@@ -10,5 +10,11 @@
     "count": 17,
     "count_start": 4,
     "label": "currencies"
+  },
+  {
+    "icon": "/assets/icons/city_pink.png",
+    "count": 8000,
+    "count_start": 1024,
+    "label": "cities"
   }
 ]
