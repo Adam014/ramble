@@ -69,6 +69,8 @@ export default function Home() {
 
   return (
     <>
+
+      {/* looks like shit now, need to finish this */}
       <BackgroundVideo />
       <div className={`title-container ${isScrolled ? 'black-bg' : ''}`}>
         <section className="w-full flex flex-col items-center p-10 pt-10 relative z-50">
