@@ -8,7 +8,10 @@ Ramble is your personal passport to the planet's price tags. It's not just a web
 
 ## Getting Started
 
-First, run the development server:
+If you are wondering WTF are these commits titles?!
+- I am creating commits titles based on what i am listening to, mostly music, because why not.
+
+1. First, run the development server:
 
 ```bash
 npm run dev
