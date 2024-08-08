@@ -273,6 +273,10 @@ img {
   pointer-events: none;
 }
 
+.city-single-container{
+  padding-bottom: 5rem;
+}
+
 .city-single-title-container {
   height: auto;
   padding-left: 2rem;
