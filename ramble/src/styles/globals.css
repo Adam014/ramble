@@ -395,6 +395,7 @@ rect {
 
 .input-title{
   padding: 30px !important;
+  border-radius: 15px;
 }
 
 .input:focus, .input-title:focus {
