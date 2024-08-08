@@ -6,10 +6,12 @@ Ramble is your personal passport to the planet's price tags. It's not just a web
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-## Getting Started
+## Commits titles
 
 If you are wondering WTF are these commits titles?!
 - I am creating commits titles based on what i am listening to, mostly music, because why not.
+
+## Getting Started
 
 1. First, run the development server:
 
