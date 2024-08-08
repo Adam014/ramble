@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #000000;
+  --background: #060606;
   --font: 'Unbounded', sans-serif;
   --handdraw-font: "Indie Flower", cursive;;
   --white: #ffff;
@@ -15,8 +15,13 @@
   --default-background-color: #333333; /* New default background color */
 }
 
-body{
-  height: 200vh;
+body {
+  background-color: var(--background);
+  font-family: var(--font);
+  color: var(--white);
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 #video-bg {
@@ -30,14 +35,19 @@ body{
 
 .tags-container{
   z-index: 999;
-  background-color: #000000;
   height: 30rem;
   display: grid;
   align-items: center;
 }
 
-.tags-h1 {
+.tags-h1, .featured-h1 {
   font-size: 3.5rem;
+  letter-spacing: 3px;
+}
+
+.featured-h1{
+  text-align: left;
+  padding-left: 10rem;
 }
 
 .nav {
@@ -237,15 +247,6 @@ body{
   z-index: 999;
 }
 
-body {
-  background-color: var(--background);
-  font-family: var(--font);
-  color: var(--white);
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-}
-
 .breadcrumb-url-segment:hover {
   color: var(--purple-hover);
 }
@@ -364,7 +365,6 @@ rect {
   width: 100%;
   height: 83vh; /* Full viewport height */
   overflow: hidden;
-  background: black;
 }
 
 .title-description{
@@ -799,7 +799,7 @@ code {
 }
 
 @media screen and (max-width: 840px) {
-  .tags-h1{
+  .tags-h1, .featured-h1{
     font-size: 2.5rem;
     padding-top: 5rem;
   }

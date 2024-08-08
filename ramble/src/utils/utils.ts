@@ -312,3 +312,5 @@ export const categories = Object.keys({
   label: category,
   value: category,
 }));
+
+// TODO: create function to return top 3 cities with the lowest ranks, maybe implement that every 15 minutes it will change onto another 3 cities idk for now

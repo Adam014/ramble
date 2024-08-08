@@ -10,7 +10,7 @@ const TagsSection = () => {
   const [startCount, setStartCount] = useState(false);
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.8,
   });
 
   useEffect(() => {

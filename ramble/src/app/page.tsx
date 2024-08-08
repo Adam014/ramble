@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import mapData from '../../public/map.json'
 import BackgroundVideo from '@components/BackgroundVideo';
 import TagsSection from '@components/TagsSection';
+import FeaturedDestinations from '@components/FeaturedDestinations';
 
 export default function Home() {
   const router = useRouter();
@@ -115,6 +116,7 @@ export default function Home() {
         </section>
       </div>
       <TagsSection />
+      <FeaturedDestinations />
     </>
   );
 }
