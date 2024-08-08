@@ -8,6 +8,7 @@ import Search from '@components/Search'
 import Tag from '@components/Tag'
 import CityCard from '@components/CityCard'
 import Loader from '@components/Loader'
+import Footer from '@components/Footer'
 import ReactPaginate from 'react-paginate'
 
 const Map = () => {
@@ -50,70 +51,74 @@ const Map = () => {
   }
 
   return (
-    <div className="ml-10 mr-5">
-      <div>
-        <h2 className="text-4xl mt-10 mb-10">
-          Explore <span className="custom_font custom_color">Globally</span>
-        </h2>
-      </div>
+    <>
 
-      <Search />
+      <div className="ml-10 mr-5">
+        <div>
+          <h2 className="text-4xl mt-10 mb-10">
+            Explore <span className="custom_font custom_color">Globally</span>
+          </h2>
+        </div>
 
-      <div className="flex tags">
+        <Search />
+
+        <div className="flex tags">
+          {isLoading ? (
+            <></>
+          ) : (
+            tagData.map((tag, index) => <Tag key={index} icon={tag.icon} label={tag.label} />)
+          )}
+        </div>
+
         {isLoading ? (
-          <></>
+          <Loader />
         ) : (
-          tagData.map((tag, index) => <Tag key={index} icon={tag.icon} label={tag.label} />)
+          <>
+            <div className="featured-items">
+              <h1 className="text-5xl mt-10">Featured places</h1>
+              <div className="flex featured-cities-container">
+                {featuredCities.map((city, index) => (
+                  <Link href={`/explore/${city.country}/${city.city}`} key={index}>
+                    <CityCard city={city} />
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="other-items mt-32 mb-32">
+              <h1 className="text-5xl">Where about?</h1>
+              <div className="other-cities-container grid grid-cols-5">
+                {otherCities.map((city, index) => (
+                  <Link href={`/explore/${city.country}/${city.city}`} key={index}>
+                    <CityCard city={city} />
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel="next >"
+              previousLabel="< previous"
+              pageRangeDisplayed={pageRangeDisplayed}
+              pageCount={55}
+              containerClassName="pagination-container"
+              activeClassName="active"
+              breakClassName="page-item"
+              breakLinkClassName="page-link"
+              pageClassName="page-item"
+              pageLinkClassName="page-link"
+              previousClassName="page-item"
+              previousLinkClassName="page-link"
+              nextClassName="page-item"
+              nextLinkClassName="page-link"
+              onPageChange={handlePageClick}
+              initialPage={currentPage}
+              renderOnZeroPageCount={null}
+            />
+          </>
         )}
       </div>
-
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <div className="featured-items">
-            <h1 className="text-5xl mt-10">Featured places</h1>
-            <div className="flex featured-cities-container">
-              {featuredCities.map((city, index) => (
-                <Link href={`/explore/${city.country}/${city.city}`} key={index}>
-                  <CityCard city={city} />
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div className="other-items mt-32 mb-32">
-            <h1 className="text-5xl">Where about?</h1>
-            <div className="other-cities-container grid grid-cols-5">
-              {otherCities.map((city, index) => (
-                <Link href={`/explore/${city.country}/${city.city}`} key={index}>
-                  <CityCard city={city} />
-                </Link>
-              ))}
-            </div>
-          </div>
-          <ReactPaginate
-            breakLabel="..."
-            nextLabel="next >"
-            previousLabel="< previous"
-            pageRangeDisplayed={pageRangeDisplayed}
-            pageCount={55}
-            containerClassName="pagination-container"
-            activeClassName="active"
-            breakClassName="page-item"
-            breakLinkClassName="page-link"
-            pageClassName="page-item"
-            pageLinkClassName="page-link"
-            previousClassName="page-item"
-            previousLinkClassName="page-link"
-            nextClassName="page-item"
-            nextLinkClassName="page-link"
-            onPageChange={handlePageClick}
-            initialPage={currentPage}
-            renderOnZeroPageCount={null}
-          />
-        </>
-      )}
-    </div>
+      <Footer />
+    </>
   )
 }
 
