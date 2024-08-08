@@ -1,0 +1,22 @@
+[
+    {
+        "href": "https://ramble-blond.vercel.app",
+        "name": "Home"
+    },
+    {
+        "href": "https://ramble-blond.vercel.app/map",
+        "name": "Map"
+    },
+    {
+        "href": "javascript:void()",
+        "name": "Roadtrips"
+    },
+    {
+        "href": "https://ramble-blond.vercel.app/explore",
+        "name": "Explore"
+    },
+    {
+        "href": "https://ramble-blond.vercel.app/contact",
+        "name": "Contact"
+    }
+]
