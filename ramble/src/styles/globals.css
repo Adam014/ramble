@@ -56,7 +56,7 @@ footer{
   height: auto;
   display: grid;
   align-items: center;
-  padding-bottom: 5rem;
+  padding: 5rem 0rem 5rem 0rem;
 }
 
 .tags-h1, .featured-h1 {
