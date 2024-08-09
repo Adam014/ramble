@@ -53,9 +53,10 @@ footer{
 
 .tags-container{
   z-index: 888;
-  height: 30rem;
+  height: auto;
   display: grid;
   align-items: center;
+  padding-bottom: 5rem;
 }
 
 .tags-h1, .featured-h1 {
