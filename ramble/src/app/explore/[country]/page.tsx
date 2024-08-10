@@ -32,12 +32,12 @@ const Country = () => {
   }, [])
 
   return (
-    <>
-      <div className="absolute top-1/4 w-full">
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow flex flex-col">
         {loading ? (
           <Loader />
         ) : cities.length > 0 ? (
-          <div>
+          <div className="flex-grow">
             <h1 className="text-5xl country-title">So, where to now?</h1>
             <div className="city-grid">
               {cities.map((city) => (
@@ -51,8 +51,8 @@ const Country = () => {
           <NoCity />
         )}
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
 export default Country

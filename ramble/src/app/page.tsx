@@ -6,7 +6,6 @@ import mapData from '../../public/map.json'
 import BackgroundVideo from '@components/BackgroundVideo';
 import TagsSection from '@components/TagsSection';
 import FeaturedDestinations from '@components/FeaturedDestinations';
-import Footer from '@components/Footer';
 
 export default function Home() {
   const router = useRouter();
@@ -117,8 +116,7 @@ export default function Home() {
         </section>
       </div>
       <TagsSection />
-      {/* <FeaturedDestinations /> */}  	
-      <Footer />
+      {/* <FeaturedDestinations />  	 */}
     </>
   );
 }

@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation'
 import { NoCity } from '@components/NoCity'
 import QuestionMark from '../../../public/assets/icons/question-mark.png'
 import Image from 'next/image'
-import Footer from '@components/Footer'
 
 const page = () => {
   // state for the state onMouseOver
@@ -49,7 +48,6 @@ const page = () => {
           {country}, {capital}
         </ReactTooltip>
       </div>
-      <Footer />
     </>
   )
 }

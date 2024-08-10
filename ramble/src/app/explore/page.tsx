@@ -8,7 +8,6 @@ import Search from '@components/Search'
 import Tag from '@components/Tag'
 import CityCard from '@components/CityCard'
 import Loader from '@components/Loader'
-import Footer from '@components/Footer'
 import ReactPaginate from 'react-paginate'
 
 const Map = () => {
@@ -117,7 +116,6 @@ const Map = () => {
           </>
         )}
       </div>
-      <Footer />
     </>
   )
 }
