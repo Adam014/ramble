@@ -313,4 +313,82 @@ export const categories = Object.keys({
   value: category,
 }));
 
-// TODO: create function to return top 3 cities with the lowest ranks, maybe implement that every 15 minutes it will change onto another 3 cities idk for now
+const calculateInterestScore = (city) => {
+  const { data } = city;
+  let score = 0;
+
+  // Increase score based on certain criteria
+  if (data.internet_score >= 4) score += 10; // Good internet
+  if (data.safety_level >= 4) score += 8; // High safety
+  if (data.cost_score <= 3) score += 7; // Affordable cost of living
+  if (data.air_quality_score >= 4) score += 5; // Good air quality
+  if (data.likes_score >= 4) score += 4; // Popularity
+  if (data.overall_score >= 4) score += 10; // Overall score
+  if (data.population < 500000) score += 3; // Smaller cities get a slight boost
+  if (data.rank <= 10) score += 5; // High rank is desirable
+
+  return score;
+};
+
+// Function to select a random item based on weights
+const weightedRandom = (items) => {
+  const totalWeight = items.reduce((total, item) => total + item.interestScore, 0);
+  const randomNum = Math.random() * totalWeight;
+  let weightSum = 0;
+
+  for (const item of items) {
+    weightSum += item.interestScore;
+    if (randomNum < weightSum) {
+      return item;
+    }
+  }
+};
+
+// Main function to select 3 unique cities
+const selectFeaturedCities = (cities) => {
+  // Filter out cities with incomplete data
+  const validCities = cities.filter(city => city.data && city.country && city.city);
+
+  // Calculate interest scores for each city
+  const scoredCities = validCities.map(city => ({
+    ...city,
+    interestScore: calculateInterestScore(city),
+  }));
+
+  // Select 3 unique cities from different countries using weighted randomness
+  const selectedCities = [];
+  const countriesUsed = new Set();
+
+  while (selectedCities.length < 3 && scoredCities.length > 0) {
+    const city = weightedRandom(scoredCities);
+    if (!countriesUsed.has(city.country)) {
+      selectedCities.push(city);
+      countriesUsed.add(city.country);
+    }
+    // Remove the selected city from the pool to prevent it from being selected again
+    scoredCities.splice(scoredCities.indexOf(city), 1);
+  }
+
+  return selectedCities;
+};
+
+export const fetchAndSelectFeaturedCities = async () => {
+  try {
+    const { data: cities, error } = await supabase
+      .from('cities')
+      .select('id, country, city, data');
+
+    if (error) {
+      console.error('Error fetching cities:', error.message);
+      return [];
+    }
+
+    // Pass the fetched cities to the selection algorithm
+    const featuredCities = selectFeaturedCities(cities);
+
+    return featuredCities;
+  } catch (error) {
+    console.error('Error in fetchAndSelectFeaturedCities:', error.message);
+    return [];
+  }
+};
