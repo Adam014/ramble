@@ -359,7 +359,7 @@ const selectFeaturedCities = (cities) => {
   const selectedCities = [];
   const countriesUsed = new Set();
 
-  while (selectedCities.length < 3 && scoredCities.length > 0) {
+  while (selectedCities.length < 4 && scoredCities.length > 0) {
     const city = weightedRandom(scoredCities);
     if (!countriesUsed.has(city.country)) {
       selectedCities.push(city);

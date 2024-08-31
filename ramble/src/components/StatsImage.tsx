@@ -11,7 +11,7 @@ interface StatsImageProps {
 }
 
 const StatsImage: React.FC<StatsImageProps> = ({ icon, count, count_start, label, startCount }) => (
-  <div className="flex w-96">
+  <div className="flex w-96 stats">
     <div className="flex items-center mt-12">
       <Image src={icon} height={80} width={80} alt={`${label}-icon`} />
       <div>

@@ -476,6 +476,7 @@ code {
 .card {
   padding: 2rem 2rem;
 }
+
 .loader {
   color: white;
   font-weight: 500;
@@ -499,6 +500,52 @@ code {
   position: absolute;
   inset: 0;
   z-index: 20;
+}
+
+.city-image {
+  width: 20rem;
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.featured-city-info h3 {
+  font-size: 1.5rem;
+  padding: 10px 0px 10px 0px;
+}
+
+.featured-city-country {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.country-with-arrow {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 5px;
+}
+
+.country-name {
+  padding-left: 8px;
+  font-size: 1rem;
+  white-space: nowrap; /* Ensures the text doesn't wrap */
+}
+
+.arrow {
+  font-size: 1.2rem;
+  margin-left: 8px;
+  color: white;
+  position: relative;
+  padding-left: 10px;
+}
+
+.featured-cities {
+  display: flex;
+  justify-content: left;
+  padding-left: 10.3rem;
+  gap: 30px;
 }
 
 .word {
@@ -761,6 +808,9 @@ code {
   .page-item {
     font-size: 14px;
   }
+  .stats{
+    padding: 5px;
+  }
 }
 
 .contact-animation{
@@ -773,6 +823,14 @@ code {
     width: 600px;
     margin-top: -3rem;
     margin-right: 4rem;
+  } 
+  .featured-h1{
+    text-align: center;
+    padding-left: 0;
+  }
+  .featured-cities{
+    justify-content: center;
+    padding: 0;
   }
 }
 
@@ -802,11 +860,34 @@ code {
   }
 }
 
+/* Responsive Layout for screens under 1375px */
 @media screen and (max-width: 1375px) {
   .contact-animation {
     height: 500px;
     width: 500px;
     margin-right: 4rem;
+  }
+  
+  .featured-h1 {
+    font-size: 3rem;
+  }
+
+  .featured-cities {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px;
+    padding-left: 0; 
+    padding: 30px;
+  }
+
+  .featured-city-card {
+    width: 100%;  
+  }
+
+  .featured-city-card img {
+    width: 100%;
+    height: auto; 
+    border-radius: 20px;
   }
 }
 
@@ -849,6 +930,15 @@ code {
 @media screen and (max-width: 656px) {
   .title-container{
     height: 90vh;
+  }   
+  .featured-cities{
+    grid-template-columns: repeat(1, 1fr); 
+  }
+  .featured-city-card {
+    width: 100%;  
+  }
+  .featured-h1{
+    font-size: 2rem !important;
   }
 }
 
@@ -873,6 +963,6 @@ code {
 @media screen and (max-width: 840px) {
   .tags-h1, .featured-h1{
     font-size: 2.5rem;
-    padding-top: 5rem;
+    padding: 5rem 1rem 0rem 1rem
   }
 }

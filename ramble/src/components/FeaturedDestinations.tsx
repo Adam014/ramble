@@ -44,8 +44,8 @@ useEffect(() => {
       animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
       transition={{ duration: 0.8 }}
     >
-      <div className='featured-container pt-36'>
-        <h1 className='featured-h1'>Featured destinations by our nomads</h1>
+      <div className='featured-container'>
+        <h1 className='featured-h1 pb-10'>Featured destinations by our nomads</h1>
         <div className="featured-cities">
           {featuredCities.map((city) => (
             <FeaturedCityCard key={city.id} city={city} />
