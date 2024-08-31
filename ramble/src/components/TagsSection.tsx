@@ -2,39 +2,22 @@ import React, { useState, useEffect } from 'react';
 import StatsImage from './StatsImage';
 import statsData from '../../public/stats.json';
 import { fetchCountryCityCounts } from '@utils/utils';
-import { useInView } from 'react-intersection-observer';
-import { motion } from 'framer-motion';
 
 const TagsSection = () => {
   const [counts, setCounts] = useState({ countryCount: 0, cityCount: 0 });
   const [startCount, setStartCount] = useState(false);
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.8,
-  });
 
   useEffect(() => {
     const getCounts = async () => {
       const { countryCount, cityCount } = await fetchCountryCityCounts();
       setCounts({ countryCount, cityCount });
+      setStartCount(true)
     };
     getCounts();
   }, []);
 
-  useEffect(() => {
-    if (inView) {
-      setStartCount(true);
-    }
-  }, [inView]);
-
   return (
-    <motion.section
-      ref={ref}
-      className="tags-container"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
-      transition={{ duration: 0.8 }}
-    >
+    <div className='pb-20 pt-20'>
       <h1 className='tags-h1 text-center'>What you get with us?</h1>
       <div className="sm:block md:flex flex-wrap justify-center grid">
         <StatsImage
@@ -55,7 +38,7 @@ const TagsSection = () => {
           />
         ))}
       </div>
-    </motion.section>
+    </div>
   );
 };
 
