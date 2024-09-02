@@ -60,7 +60,8 @@ footer {
 }
 
 .featured-city-card{
-  position: relative;
+  position: relative; 
+  transition: transform 0.3s ease-in-out;
 }
 
 .image-container {
@@ -220,7 +221,7 @@ footer {
   transition: transform 0.3s ease-in-out;
 }
 
-.city-card-container:hover {
+.city-card-container:hover, .featured-city-card:hover {
   transform: scale(1.05); /* Slight scaling effect on hover */
 }
 
