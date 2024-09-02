@@ -1,33 +1,29 @@
 import React from 'react'
-import navsLink from "../../public/navsLink.json"
+import navsLink from '../../../public/navsLink.json'
 import Image from 'next/image'
 
 const Footer = () => {
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
+  const currentDate = new Date()
+  const currentYear = currentDate.getFullYear()
 
-    return (
-        <footer className="pt-10">
-            <div className="p-10 mx-auto px-4md:px-8">
-                <div className="justify-between sm:flex">
-                    <div className="space-y-6">
-                        <Image src="/assets/images/nomadify.png" width={80} height={80} alt='footer-logo'/>
-                        <p className="max-w-md">
-                            Ramble is your personal passport to the planet's price tags. 
-                        </p>
-                        <ul className="flex flex-wrap items-center gap-4 text-sm sm:text-base">
-                            {
-                                navsLink.map((item, idx) => (
-                                    <li className="text-gray-200 footer-links duration-150">
-                                        <a key={idx} href={item.href}>
-                                            {item.name}
-                                        </a>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </div>
-                    {/* <div className="mt-6">
+  return (
+    <footer className="pt-10">
+      <div className="p-10 mx-auto px-4md:px-8">
+        <div className="justify-between sm:flex">
+          <div className="space-y-6">
+            <Image src="/assets/images/nomadify.png" width={80} height={80} alt="footer-logo" />
+            <p className="max-w-md">Ramble is your personal passport to the planet's price tags.</p>
+            <ul className="flex flex-wrap items-center gap-4 text-sm sm:text-base">
+              {navsLink.map((item, idx) => (
+                <li className="text-gray-200 footer-links duration-150">
+                  <a key={idx} href={item.href}>
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* <div className="mt-6">
                         <p className="text-gray-700 font-semibold">Get the app</p>
                         <div className="flex items-center gap-3 mt-3 sm:block">
                             <a href="javascript:void()">
@@ -38,13 +34,13 @@ const Footer = () => {
                             </a>
                         </div>
                     </div> */}
-                </div>
-                <div className="mt-10 py-10 border-t md:text-center">
-                    <p>© {currentYear} Ramble. All rights reserved. ©</p>
-                </div>
-            </div>
-        </footer>
-    )
+        </div>
+        <div className="mt-10 py-10 border-t md:text-center">
+          <p>© {currentYear} Ramble. All rights reserved. ©</p>
+        </div>
+      </div>
+    </footer>
+  )
 }
 
 export default Footer

@@ -61,7 +61,6 @@
   margin-top: 1rem;
 }
 
-
 .city-detail-item {
   background-color: #222;
   padding: 0.75rem;
@@ -91,24 +90,23 @@
     grid-template-columns: 1fr;
     padding: 1rem;
   }
-  
+
   .detail-title {
     font-size: 1rem;
   }
-  
+
   .detail-content {
     font-size: 0.85rem;
   }
-  
+
   .embla__slide h2 {
     font-size: 1.5rem;
   }
-  
+
   .embla__slide p {
     font-size: 1.2rem;
   }
 }
-
 
 .embla__slide__content {
   padding: 2rem;
@@ -132,15 +130,15 @@
 
 .price-details-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
   padding: 1rem;
   border-radius: 8px;
-  max-height: 38rem; 
-  overflow-y: scroll; 
-  scrollbar-width: none; 
-  -ms-overflow-style: none; 
-  position: relative; 
+  max-height: 38rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
 }
 
 .price-details-grid::-webkit-scrollbar {
@@ -184,7 +182,11 @@
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
   40% {
@@ -234,7 +236,7 @@
     line-height: 1.1;
   }
 
-  .embla{
+  .embla {
     padding: 20px;
   }
 
@@ -257,7 +259,7 @@
   .price-item-name {
     font-size: 0.8rem;
   }
-  
+
   .price-value {
     font-size: 0.7rem;
   }
@@ -387,16 +389,16 @@
 }
 
 .embla__slide__header h2 {
-  flex-grow: 1; 
+  flex-grow: 1;
   text-align: center;
-  margin: 0; 
+  margin: 0;
 }
 
 .multi-select {
   position: absolute;
-  right: 0; 
+  right: 0;
   min-width: 200px;
-  max-width: 400px; 
+  max-width: 400px;
   color: black;
   padding-bottom: 1rem;
 }
@@ -411,10 +413,10 @@
   }
 
   .multi-select {
-    position: static; 
-    margin-top: 10px; 
+    position: static;
+    margin-top: 10px;
     width: 80%;
-    max-width: none; 
+    max-width: none;
   }
 }
 
@@ -455,7 +457,7 @@
   color: #555;
 }
 
-.multi-select .dropdown-container .dropdown-heading svg{
+.multi-select .dropdown-container .dropdown-heading svg {
   height: auto !important;
 }
 

@@ -1,18 +1,18 @@
-"use client"
+'use client'
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import mapData from '../../public/map.json'
-import BackgroundVideo from '@components/BackgroundVideo';
-import TagsSection from '@components/TagsSection';
-import FeaturedDestinations from '@components/FeaturedDestinations';
+import BackgroundVideo from '@components/titlepage_sections/BackgroundVideo'
+import TagsSection from '@components/titlepage_sections/TagsSection'
+import FeaturedDestinations from '@components/titlepage_sections/FeaturedDestinations'
 
 export default function Home() {
-  const router = useRouter();
-  const [searchValue, setSearchValue] = useState('');
+  const router = useRouter()
+  const [searchValue, setSearchValue] = useState('')
   const [placeholder, setPlaceholder] = useState('E.g., Czech Republic, Prague')
   const [showPlaceholder, setShowPlaceholder] = useState(true)
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     // Function to update placeholder every 15 seconds
@@ -35,42 +35,41 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > window.innerHeight);
-    };
+      setIsScrolled(window.scrollY > window.innerHeight)
+    }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   const handleInputChange = (e) => {
-    setSearchValue(e.target.value);
-  };
+    setSearchValue(e.target.value)
+  }
 
   const handleSubmit = () => {
-    const [country, city] = searchValue.split(',').map((item) => item.trim());
+    const [country, city] = searchValue.split(',').map((item) => item.trim())
 
     if (country) {
-      router.push(`/explore/${country}`);
+      router.push(`/explore/${country}`)
     }
 
     if (country && city) {
-      const formattedCountry = country.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
-      const formattedCity = city.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
-      router.push(`/explore/${formattedCountry}/${formattedCity}`);
+      const formattedCountry = country.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
+      const formattedCity = city.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
+      router.push(`/explore/${formattedCountry}/${formattedCity}`)
     }
-  };
+  }
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      handleSubmit();
+      handleSubmit()
     }
-  };
+  }
 
   return (
     <>
-
       {/* looks like shit now, need to finish this */}
       <BackgroundVideo />
       <div className={`title-container ${isScrolled ? 'black-bg' : ''}`}>
@@ -95,16 +94,17 @@ export default function Home() {
             </div>
           </div>
           <p className="title-description p-10 text-4xl w-full text-center mt-10">
-            "Easily explore new destinations and find out the cost of living with our app. Plan your travels and budget effortlessly—discover where to go and what to expect!"
+            "Easily explore new destinations and find out the cost of living with our app. Plan your
+            travels and budget effortlessly—discover where to go and what to expect!"
           </p>
           <div id="mouse-scroll">
             <div className="mouse">
               <div className="mouse-in"></div>
             </div>
             <div>
-                <span className="down-arrow-1"></span>
-                <span className="down-arrow-2"></span>
-                <span className="down-arrow-3"></span>
+              <span className="down-arrow-1"></span>
+              <span className="down-arrow-2"></span>
+              <span className="down-arrow-3"></span>
             </div>
           </div>
           <style jsx>{`
@@ -116,7 +116,7 @@ export default function Home() {
         </section>
       </div>
       <TagsSection />
-      <FeaturedDestinations />  	
+      <FeaturedDestinations />
     </>
-  );
+  )
 }

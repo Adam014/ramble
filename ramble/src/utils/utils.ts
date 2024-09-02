@@ -7,14 +7,15 @@ interface EmailFormEvent extends React.FormEvent<HTMLFormElement> {
   target: HTMLFormElement
 }
 
-const API_ENDPOINT_TEMPLATE = 'https://cost-of-living-and-prices.p.rapidapi.com/prices';
-const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPID_KEY;
+const API_ENDPOINT_TEMPLATE = 'https://cost-of-living-and-prices.p.rapidapi.com/prices'
+const RAPIDAPI_KEY = process.env.NEXT_PUBLIC_RAPIDAPID_KEY
 const ERROR_MESSAGES = {
-  RATE_LIMIT: 'API rate limit exceeded, we cant provide you detailed prices right now. Please try again later.',
+  RATE_LIMIT:
+    'API rate limit exceeded, we cant provide you detailed prices right now. Please try again later.',
   NOT_FOUND_GENERIC: "API ERROR: We don't seem to have this city in our data!",
   NOT_FOUND_COST_TO_LIVE: "API ERROR: We don't seem to have this city cost to live in our data!",
   NOT_FOUND_DATA: "API ERROR: We don't seem to have this city overview data in our data!"
-};
+}
 
 // function to refactor the date, for timezone, that is data originally fetched
 export const fixDate = (date: Date): Date =>
@@ -45,38 +46,38 @@ export const fetchCitiesData = async (pageNumber: number) => {
 
 // Function to fetch city price data using country and city
 export const fetchCityPriceDataFromAPI = async (country: string, city: string) => {
-  const url = `${API_ENDPOINT_TEMPLATE}?city_name=${encodeURIComponent(city)}&country_name=${encodeURIComponent(country)}`;
-  
+  const url = `${API_ENDPOINT_TEMPLATE}?city_name=${encodeURIComponent(city)}&country_name=${encodeURIComponent(country)}`
+
   const options = {
     method: 'GET',
     headers: {
       'x-rapidapi-key': RAPIDAPI_KEY,
       'x-rapidapi-host': 'cost-of-living-and-prices.p.rapidapi.com'
     }
-  };
+  }
 
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(url, options)
     if (!response.ok) {
       // Handle specific errors
-      let errorMessage;
+      let errorMessage
       if (response.status === 404) {
-        errorMessage = ERROR_MESSAGES.NOT_FOUND_GENERIC;
-        toast.error(ERROR_MESSAGES.NOT_FOUND_GENERIC);
+        errorMessage = ERROR_MESSAGES.NOT_FOUND_GENERIC
+        toast.error(ERROR_MESSAGES.NOT_FOUND_GENERIC)
       } else if (response.status === 429) {
-        errorMessage = ERROR_MESSAGES.RATE_LIMIT;
-        toast.error(ERROR_MESSAGES.RATE_LIMIT);
+        errorMessage = ERROR_MESSAGES.RATE_LIMIT
+        toast.error(ERROR_MESSAGES.RATE_LIMIT)
       }
-      throw new Error(errorMessage);
+      throw new Error(errorMessage)
     }
-    const result = await response.json();
-    return result;
+    const result = await response.json()
+    return result
   } catch (error) {
     // Display only the specific error message
-    console.error('Error fetching city price data:', error.message);
-    return null;
+    console.error('Error fetching city price data:', error.message)
+    return null
   }
-};
+}
 
 // TODO:
 // Later with user account, users will be able to enter the overview info, images etc
@@ -88,69 +89,72 @@ export const fetchCityData = async (country: string, city: string) => {
       .select('id, country, city, data, prices')
       .eq('country', country)
       .eq('city', city)
-      .single();
+      .single()
 
-    if (fetchError && fetchError.code !== 'PGRST116') { // PGRST116 indicates no row found
-      console.error('Error fetching city data:', fetchError.message);
-      return null;
+    if (fetchError && fetchError.code !== 'PGRST116') {
+      // PGRST116 indicates no row found
+      console.error('Error fetching city data:', fetchError.message)
+      return null
     }
 
     // If existing data has prices, return it
     if (existingData?.prices) {
       // Check if data is null and show toast if necessary
       if (!existingData.data) {
-        toast.error(ERROR_MESSAGES.NOT_FOUND_DATA);
+        toast.error(ERROR_MESSAGES.NOT_FOUND_DATA)
       }
-      return existingData;
+      return existingData
     }
 
     // Fetch prices from the API
-    const pricesData = await fetchCityPriceDataFromAPI(country, city);
+    const pricesData = await fetchCityPriceDataFromAPI(country, city)
 
     if (!pricesData) {
-      console.error('Error fetching prices from API.');
+      console.error('Error fetching prices from API.')
       // Show toast error for prices being null
-      toast.error(ERROR_MESSAGES.NOT_FOUND_COST_TO_LIVE);
-      return existingData || null;
+      toast.error(ERROR_MESSAGES.NOT_FOUND_COST_TO_LIVE)
+      return existingData || null
     }
 
     // If city data doesn't exist, insert new record with current timestamp
     if (!existingData) {
       const { data: newData, error: insertError } = await supabase
         .from('cities')
-        .insert([{
-          country,
-          city,
-          data: null,
-          prices: pricesData,
-          CreatedAt: new Date().toISOString() // Set current timestamp
-        }])
+        .insert([
+          {
+            country,
+            city,
+            data: null,
+            prices: pricesData,
+            CreatedAt: new Date().toISOString() // Set current timestamp
+          }
+        ])
         .select('id, country, city, data, prices')
-        .single();
+        .single()
 
       if (insertError) {
-        console.error('Error inserting new city data:', insertError.message);
-        return null;
+        console.error('Error inserting new city data:', insertError.message)
+        return null
       }
 
       // Check if data is null and show toast if necessary
       if (!newData.data) {
-        toast.error(ERROR_MESSAGES.NOT_FOUND_DATA);
+        toast.error(ERROR_MESSAGES.NOT_FOUND_DATA)
       }
-      return newData;
+      return newData
     }
 
     // If city data exists but prices are missing, update the record
     const { error: updateError } = await supabase
       .from('cities')
       .update({ prices: pricesData })
-      .eq('id', existingData.id);
+      .eq('id', existingData.id)
 
     if (updateError) {
-      console.error('Error updating prices in DB:', updateError.message);
+      console.error('Error updating prices in DB:', updateError.message)
       // Show toast error for prices being null
-      toast.error(ERROR_MESSAGES.NOT_FOUND_COST_TO_LIVE);
-      return existingData || null;
+      toast.error(ERROR_MESSAGES.NOT_FOUND_COST_TO_LIVE)
+      return existingData || null
     }
 
     // Retrieve the updated data from the database
@@ -158,25 +162,24 @@ export const fetchCityData = async (country: string, city: string) => {
       .from('cities')
       .select('id, country, city, data, prices')
       .eq('id', existingData.id)
-      .single();
+      .single()
 
     if (fetchUpdatedError) {
-      console.error('Error fetching updated city data:', fetchUpdatedError.message);
-      return existingData || null;
+      console.error('Error fetching updated city data:', fetchUpdatedError.message)
+      return existingData || null
     }
 
     // Check if data is null and show toast if necessary
     if (!updatedData.data) {
-      toast.error(ERROR_MESSAGES.NOT_FOUND_DATA);
+      toast.error(ERROR_MESSAGES.NOT_FOUND_DATA)
     }
 
-    return updatedData;
-
+    return updatedData
   } catch (error) {
-    console.error('Error fetching city data:', error.message);
-    return null;
+    console.error('Error fetching city data:', error.message)
+    return null
   }
-};
+}
 
 export const fetchCitiesByCountry = async (country) => {
   try {
@@ -196,10 +199,9 @@ export const fetchCitiesByCountry = async (country) => {
   }
 }
 
-
 interface CountryCityCount {
-  countryCount: number;
-  cityCount: number;
+  countryCount: number
+  cityCount: number
 }
 
 export const fetchCountryCityCounts = async (): Promise<CountryCityCount> => {
@@ -282,113 +284,121 @@ export const useDecodedParams = () => {
 
 export const getEmojiForCategory = (categoryName: string): string => {
   const emojiMap: { [key: string]: string } = {
-    "Buy Apartment": "🏠",
-    "Childcare": "🧒",
-    "Clothing And Shoes": "👗",
-    "Markets": "🛒",
-    "Rent Per Month": "🏢",
-    "Restaurants": "🍽️",
-    "Salaries And Financing": "💰",
-    "Sports And Leisure": "🎾",
-    "Transportation": "🚗",
-    "Utilities Per Month": "⚡",
-  };
+    'Buy Apartment': '🏠',
+    Childcare: '🧒',
+    'Clothing And Shoes': '👗',
+    Markets: '🛒',
+    'Rent Per Month': '🏢',
+    Restaurants: '🍽️',
+    'Salaries And Financing': '💰',
+    'Sports And Leisure': '🎾',
+    Transportation: '🚗',
+    'Utilities Per Month': '⚡'
+  }
 
-  return emojiMap[categoryName] || "❓";
-};
+  return emojiMap[categoryName] || '❓'
+}
 
 export const categories = Object.keys({
-  "Buy Apartment": "🏠",
-  "Childcare": "🧒",
-  "Clothing And Shoes": "👗",
-  "Markets": "🛒",
-  "Rent Per Month": "🏢",
-  "Restaurants": "🍽️",
-  "Salaries And Financing": "💰",
-  "Sports And Leisure": "🎾",
-  "Transportation": "🚗",
-  "Utilities Per Month": "⚡",
+  'Buy Apartment': '🏠',
+  Childcare: '🧒',
+  'Clothing And Shoes': '👗',
+  Markets: '🛒',
+  'Rent Per Month': '🏢',
+  Restaurants: '🍽️',
+  'Salaries And Financing': '💰',
+  'Sports And Leisure': '🎾',
+  Transportation: '🚗',
+  'Utilities Per Month': '⚡'
 }).map((category) => ({
   label: category,
-  value: category,
-}));
+  value: category
+}))
 
 const calculateInterestScore = (city) => {
-  const { data } = city;
-  let score = 0;
+  const { data } = city
+  let score = 0
 
   // Increase score based on certain criteria
-  if (data.internet_score >= 4) score += 10; // Good internet
-  if (data.safety_level >= 4) score += 8; // High safety
-  if (data.cost_score <= 3) score += 7; // Affordable cost of living
-  if (data.air_quality_score >= 4) score += 5; // Good air quality
-  if (data.likes_score >= 4) score += 4; // Popularity
-  if (data.overall_score >= 4) score += 10; // Overall score
-  if (data.population < 500000) score += 3; // Smaller cities get a slight boost
-  if (data.rank <= 10) score += 5; // High rank is desirable
+  if (data.internet_score >= 4) score += 10 // Good internet
+  if (data.safety_level >= 4) score += 8 // High safety
+  if (data.cost_score <= 3) score += 7 // Affordable cost of living
+  if (data.air_quality_score >= 4) score += 5 // Good air quality
+  if (data.likes_score >= 4) score += 4 // Popularity
+  if (data.overall_score >= 4) score += 10 // Overall score
+  if (data.population < 500000) score += 3 // Smaller cities get a slight boost
+  if (data.rank <= 10) score += 5 // High rank is desirable
 
-  return score;
-};
+  return score
+}
 
 // Function to select a random item based on weights
 const weightedRandom = (items) => {
-  const totalWeight = items.reduce((total, item) => total + item.interestScore, 0);
-  const randomNum = Math.random() * totalWeight;
-  let weightSum = 0;
+  const totalWeight = items.reduce((total, item) => total + item.interestScore, 0)
+  const randomNum = Math.random() * totalWeight
+  let weightSum = 0
 
   for (const item of items) {
-    weightSum += item.interestScore;
+    weightSum += item.interestScore
     if (randomNum < weightSum) {
-      return item;
+      return item
     }
   }
-};
+}
 
 // Main function to select 3 unique cities
 const selectFeaturedCities = (cities) => {
   // Filter out cities with incomplete data
-  const validCities = cities.filter(city => city.data && city.country && city.city);
+  const validCities = cities.filter((city) => city.data && city.country && city.city)
 
   // Calculate interest scores for each city
-  const scoredCities = validCities.map(city => ({
+  const scoredCities = validCities.map((city) => ({
     ...city,
-    interestScore: calculateInterestScore(city),
-  }));
+    interestScore: calculateInterestScore(city)
+  }))
 
   // Select 3 unique cities from different countries using weighted randomness
-  const selectedCities = [];
-  const countriesUsed = new Set();
+  const selectedCities = []
+  const countriesUsed = new Set()
 
   while (selectedCities.length < 4 && scoredCities.length > 0) {
-    const city = weightedRandom(scoredCities);
+    const city = weightedRandom(scoredCities)
     if (!countriesUsed.has(city.country)) {
-      selectedCities.push(city);
-      countriesUsed.add(city.country);
+      selectedCities.push(city)
+      countriesUsed.add(city.country)
     }
     // Remove the selected city from the pool to prevent it from being selected again
-    scoredCities.splice(scoredCities.indexOf(city), 1);
+    scoredCities.splice(scoredCities.indexOf(city), 1)
   }
 
-  return selectedCities;
-};
+  return selectedCities
+}
 
 export const fetchAndSelectFeaturedCities = async () => {
   try {
-    const { data: cities, error } = await supabase
-      .from('cities')
-      .select('id, country, city, data');
+    const { data: cities, error } = await supabase.from('cities').select('id, country, city, data')
 
     if (error) {
-      console.error('Error fetching cities:', error.message);
-      return [];
+      console.error('Error fetching cities:', error.message)
+      return []
     }
 
     // Pass the fetched cities to the selection algorithm
-    const featuredCities = selectFeaturedCities(cities);
+    const featuredCities = selectFeaturedCities(cities)
 
-    return featuredCities;
+    return featuredCities
   } catch (error) {
-    console.error('Error in fetchAndSelectFeaturedCities:', error.message);
-    return [];
+    console.error('Error in fetchAndSelectFeaturedCities:', error.message)
+    return []
+  }
+}
+
+export const getWeatherEmoji = (temperatureC: number): string => {
+  if (temperatureC < 10) {
+    return "☁️";
+  } else if (temperatureC >= 10 && temperatureC <= 20) {
+    return "🌤️";
+  } else {
+    return "☀️";
   }
 };

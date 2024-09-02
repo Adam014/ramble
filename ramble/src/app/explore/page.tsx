@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { useCities } from '@hooks/useCities'
 import tagData from '../../../public/tags.json'
 import Search from '@components/Search'
-import Tag from '@components/Tag'
-import CityCard from '@components/CityCard'
+import Tag from '@components/cards/Tag'
+import CityCard from '@components/cards/CityCard'
 import Loader from '@components/Loader'
 import ReactPaginate from 'react-paginate'
 
@@ -51,7 +51,6 @@ const Map = () => {
 
   return (
     <>
-
       <div className="ml-10 mr-5">
         <div>
           <h2 className="text-4xl mt-10 mb-10">

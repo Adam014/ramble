@@ -3,7 +3,7 @@
 import { NoCity } from '@components/NoCity'
 import React, { useEffect, useState } from 'react'
 import { fetchCitiesByCountry, useDecodedParams } from '@utils/utils'
-import CityCard from '@components/CityCard'
+import CityCard from '@components/cards/CityCard'
 import Loader from '@components/Loader'
 import Link from 'next/link'
 
@@ -52,7 +52,7 @@ const Country = () => {
         )}
       </div>
     </div>
-  );
+  )
 }
 
 export default Country

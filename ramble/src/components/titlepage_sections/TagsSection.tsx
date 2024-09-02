@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import StatsImage from './StatsImage';
-import statsData from '../../public/stats.json';
-import { fetchCountryCityCounts } from '@utils/utils';
+import React, { useState, useEffect } from 'react'
+import StatsImage from '@components/cards/StatsImage'
+import statsData from '../../../public/stats.json'
+import { fetchCountryCityCounts } from '@utils/utils'
 
 const TagsSection = () => {
-  const [counts, setCounts] = useState({ countryCount: 0, cityCount: 0 });
-  const [startCount, setStartCount] = useState(false);
+  const [counts, setCounts] = useState({ countryCount: 0, cityCount: 0 })
+  const [startCount, setStartCount] = useState(false)
 
   useEffect(() => {
     const getCounts = async () => {
-      const { countryCount, cityCount } = await fetchCountryCityCounts();
-      setCounts({ countryCount, cityCount });
+      const { countryCount, cityCount } = await fetchCountryCityCounts()
+      setCounts({ countryCount, cityCount })
       setStartCount(true)
-    };
-    getCounts();
-  }, []);
+    }
+    getCounts()
+  }, [])
 
   return (
-    <div className='pb-20 pt-20'>
-      <h1 className='tags-h1 text-center'>What you get with us?</h1>
+    <div className="pb-20 pt-20">
+      <h1 className="tags-h1 text-center">What you get with us?</h1>
       <div className="sm:block md:flex flex-wrap justify-center grid">
         <StatsImage
           icon="/assets/icons/globe_pink.png"
@@ -39,7 +39,7 @@ const TagsSection = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TagsSection;
+export default TagsSection

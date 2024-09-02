@@ -1,10 +1,10 @@
 // src/components/CitySlides.tsx
 
-import React from "react";
-import PriceList from "./PriceList";
+import React from 'react'
+import PriceList from './PriceList'
 
 const CitySlides = ({ cityData, cityCost }) => {
-  const SLIDE_CONTENT = [];
+  const SLIDE_CONTENT = []
 
   const {
     name,
@@ -17,12 +17,12 @@ const CitySlides = ({ cityData, cityCost }) => {
     cost_for_local_in_usd,
     internet_speed,
     safety_level,
-    descriptionFromReview,
-  } = cityData?.data || {};
+    descriptionFromReview
+  } = cityData?.data || {}
 
   if (name && population && temperatureC !== undefined && humidity !== undefined) {
     SLIDE_CONTENT.push({
-      title: "City Overview 🌍",
+      title: 'City Overview 🌍',
       content: (
         <div className="city-details-grid">
           <div className="city-detail-item">
@@ -66,24 +66,24 @@ const CitySlides = ({ cityData, cityCost }) => {
           <div className="city-detail-item">
             <span className="detail-title">📝 Description:</span>
             <span className="detail-content">
-              {descriptionFromReview || "No description available."}
+              {descriptionFromReview || 'No description available.'}
             </span>
           </div>
         </div>
       ),
-      filterable: false,
-    });
+      filterable: false
+    })
   }
 
   if (cityCost && cityCost.length > 0) {
     SLIDE_CONTENT.push({
-      title: "Cost to Live 💰",
+      title: 'Cost to Live 💰',
       content: <PriceList cityCost={cityCost} />, // Remove static categories
-      filterable: true,
-    });
+      filterable: true
+    })
   }
 
-  return SLIDE_CONTENT;
-};
+  return SLIDE_CONTENT
+}
 
-export default CitySlides;
+export default CitySlides

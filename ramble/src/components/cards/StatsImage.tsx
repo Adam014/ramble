@@ -1,13 +1,13 @@
-import React from 'react';
-import Image from 'next/image';
-import { CountUp } from 'use-count-up';
+import React from 'react'
+import Image from 'next/image'
+import { CountUp } from 'use-count-up'
 
 interface StatsImageProps {
-  icon: string;
-  count: number;
-  count_start: number;
-  label: string;
-  startCount: boolean;
+  icon: string
+  count: number
+  count_start: number
+  label: string
+  startCount: boolean
 }
 
 const StatsImage: React.FC<StatsImageProps> = ({ icon, count, count_start, label, startCount }) => (
@@ -18,13 +18,19 @@ const StatsImage: React.FC<StatsImageProps> = ({ icon, count, count_start, label
         <h3 className="text-5xl ml-12 font-bold">
           +
           {startCount && (
-            <CountUp isCounting start={count_start} end={count} duration={5} thousandsSeparator="," />
+            <CountUp
+              isCounting
+              start={count_start}
+              end={count}
+              duration={5}
+              thousandsSeparator=","
+            />
           )}
         </h3>
         <p className="ml-12">{label}</p>
       </div>
     </div>
   </div>
-);
+)
 
-export default StatsImage;
+export default StatsImage
