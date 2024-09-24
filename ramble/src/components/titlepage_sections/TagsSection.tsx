@@ -17,7 +17,7 @@ const TagsSection = () => {
   }, [])
 
   return (
-    <div className="pb-20 pt-20">
+    <section className="pb-20 pt-64">
       <h1 className="tags-h1 text-center">What you get with us?</h1>
       <div className="sm:block md:flex flex-wrap justify-center grid">
         <StatsImage
@@ -38,7 +38,7 @@ const TagsSection = () => {
           />
         ))}
       </div>
-    </div>
+    </section>
   )
 }
 

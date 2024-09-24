@@ -76,7 +76,7 @@ export default function Home() {
         <section className="w-full flex flex-col items-center p-10 pt-10 relative z-50">
           <h1 className="text-6xl font-bold text-center">Explore. Dream. Ramble.</h1>
           <div className="flex justify-center mt-20 w-full">
-            <div className="input-container relative w-full max-w-3xl pt-20">
+            <div className="input-container relative w-full max-w-3xl">
               <input
                 type="text"
                 value={searchValue}
@@ -93,7 +93,7 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <p className="title-description p-10 text-4xl w-full text-center mt-10">
+          {/* <p className="title-description p-10 text-4xl w-full text-center mt-10">
             "Easily explore new destinations and find out the cost of living with our app. Plan your
             travels and budget effortlessly—discover where to go and what to expect!"
           </p>
@@ -106,7 +106,7 @@ export default function Home() {
               <span className="down-arrow-2"></span>
               <span className="down-arrow-3"></span>
             </div>
-          </div>
+          </div> */}
           <style jsx>{`
             input::placeholder {
               opacity: ${showPlaceholder ? 1 : 0};
