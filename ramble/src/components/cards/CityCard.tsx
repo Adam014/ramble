@@ -2,10 +2,10 @@ import React from 'react'
 import { getWeatherEmoji } from '@utils/utils'
 
 const CityCard = (city, index: number) => {
-  const singleCity = city.city;
-  const imageSrc = singleCity?.data?.image;
-  const hasImage = Boolean(imageSrc);
-  const temperatureC = singleCity?.data?.temperatureC;
+  const singleCity = city.city
+  const imageSrc = singleCity?.data?.image
+  const hasImage = Boolean(imageSrc)
+  const temperatureC = singleCity?.data?.temperatureC
 
   return (
     <div className="city-card-container cursor-pointer" key={index}>
@@ -17,7 +17,11 @@ const CityCard = (city, index: number) => {
         <div className="overlay"></div>
         {hasImage && (
           <div className="image-container">
-            <img src={imageSrc} className="city-image rounded-xl" alt={`${singleCity.city} image`} />
+            <img
+              src={imageSrc}
+              className="city-image rounded-xl"
+              alt={`${singleCity.city} image`}
+            />
             <div className="top-left-text">📡 {singleCity.data.internet_speed} MB/s</div>
             <div className="top-right-text">#{singleCity.data.rank}</div>
             <div className="bottom-right-text">
@@ -27,7 +31,7 @@ const CityCard = (city, index: number) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CityCard;
+export default CityCard

@@ -4,14 +4,13 @@ import Image from 'next/image'
 import { getWeatherEmoji } from '@utils/utils'
 
 const FeaturedCityCard = ({ city }) => {
-
   return (
     <Link href={`/explore/${city.country}/${city.city}`} key={city.id}>
       <div className="featured-city-card">
-        <div className='image-container'>
+        <div className="image-container">
           <img src={city.data.image} alt={city.city} className="featured-city-image" />
           <div className="top-left-text">📡 {city.data.internet_speed} MB/s</div>
-          <div className='top-right-text'>#{city.data.rank}</div>
+          <div className="top-right-text">#{city.data.rank}</div>
           <div className="bottom-right-text">
             {getWeatherEmoji(city.data.temperatureC)} {city.data.temperatureC}°C
           </div>

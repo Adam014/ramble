@@ -395,10 +395,10 @@ export const fetchAndSelectFeaturedCities = async () => {
 
 export const getWeatherEmoji = (temperatureC: number): string => {
   if (temperatureC < 10) {
-    return "☁️";
+    return '☁️'
   } else if (temperatureC >= 10 && temperatureC <= 20) {
-    return "🌤️";
+    return '🌤️'
   } else {
-    return "☀️";
+    return '☀️'
   }
-};
+}

@@ -34,6 +34,15 @@ body {
   right: 50px;
 }
 
+.navbar-footer{
+  color: white;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  font-size: 0.7rem;
+}
+
 .footer-links:hover {
   color: var(--purple-hover);
 }
@@ -59,8 +68,8 @@ footer {
   padding: 5rem 0rem 5rem 0rem;
 }
 
-.featured-city-card{
-  position: relative; 
+.featured-city-card {
+  position: relative;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -93,7 +102,7 @@ footer {
 }
 
 .hamburger svg {
-  height: 4em;
+  height: 3em;
   transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -221,7 +230,8 @@ footer {
   transition: transform 0.3s ease-in-out;
 }
 
-.city-card-container:hover, .featured-city-card:hover {
+.city-card-container:hover,
+.featured-city-card:hover {
   transform: scale(1.05); /* Slight scaling effect on hover */
 }
 
@@ -235,29 +245,31 @@ footer {
   font-weight: bold;
 }
 
-.top-left-text, .top-right-text, .bottom-right-text {
+.top-left-text,
+.top-right-text,
+.bottom-right-text {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
-  color: white;  /* Text color */
+  color: white; /* Text color */
   padding: 5px 10px;
-  border-radius: 3px;  /* Optional: rounded corners */
-  font-size: 14px;  /* Adjust text size */
-  z-index: 10;  /* Ensure it appears on top */
+  border-radius: 3px; /* Optional: rounded corners */
+  font-size: 14px; /* Adjust text size */
+  z-index: 10; /* Ensure it appears on top */
 }
 
 .top-left-text {
-  top: 10px;  /* Adjust as needed */
-  left: 10px;  /* Adjust as needed */
+  top: 10px; /* Adjust as needed */
+  left: 10px; /* Adjust as needed */
 }
 
 .top-right-text {
-  top: 10px;  /* Adjust as needed */
-  right: 10px;  /* Adjust as needed */
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
 }
 
 .bottom-right-text {
-  bottom: 10px;  /* Adjust as needed */
-  right: 10px;  /* Adjust as needed */
+  bottom: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
 }
 .city-image-container {
   position: relative;
@@ -295,7 +307,7 @@ footer {
 
 .navbar-links ul li a {
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
   padding-left: 60px;
 }
 
@@ -426,7 +438,7 @@ rect {
 }
 
 .explore-button {
-  border: var(--purple) 3px solid; 
+  border: var(--purple) 3px solid;
   width: 75%;
   padding: 20px;
   color: var(--purple);
@@ -435,7 +447,13 @@ rect {
 }
 
 
-.title-container {  
+
+hr {
+  width: 80%;
+  margin-left: 4rem;
+}
+
+.title-container {
   display: flex;
   align-items: center;
   width: 100%;
@@ -557,17 +575,18 @@ code {
   z-index: 20;
 }
 
-.city-image, .featured-city-image{
+.city-image,
+.featured-city-image {
   object-fit: cover;
   border-radius: 20px;
   height: 20rem;
 }
 
-.featured-city-image{
+.featured-city-image {
   width: 20rem;
 }
 
-.city-image{
+.city-image {
   width: 100%;
 }
 

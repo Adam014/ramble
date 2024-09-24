@@ -69,26 +69,34 @@ const Navbar = () => {
               HOME
             </Link>
           </li>
+          <hr />
           <li>
             <Link href="/map" onClick={closeMenu}>
               MAP
             </Link>
           </li>
+          <hr />
           <li>
             <Link href="/contact" onClick={closeMenu}>
               ROADTRIPS
             </Link>
           </li>
+          <hr />
           <li>
             <Link href="/explore" onClick={closeMenu}>
               EXPLORE
             </Link>
           </li>
+          <hr />
           <li>
             <Link href="/contact" onClick={closeMenu}>
               CONTACT
             </Link>
           </li>
+          <hr />
+          <div className='navbar-footer'>
+            Powered by RapidApi | Crafted by Adam Stádník c {(new Date()).getFullYear()}
+          </div>
         </ul>
       </div>
     </div>
