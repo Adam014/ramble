@@ -4,6 +4,7 @@ import Navbar from '@components/titlepage_sections/Navbar'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from '@components/titlepage_sections/Footer'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata = {
   title: 'Ramble',
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         <div className="main"></div>
 
         <main className="app">
+          <Toaster position="bottom-left" />
           <Navbar />
           {children}
           <Footer />

@@ -2,6 +2,7 @@ import toast from 'react-hot-toast'
 import supabase from './db/supabaseConfig'
 import emailjs from 'emailjs-com'
 import { useParams } from 'next/navigation'
+import stringSimilarity from 'string-similarity'
 
 interface EmailFormEvent extends React.FormEvent<HTMLFormElement> {
   target: HTMLFormElement
@@ -401,4 +402,93 @@ export const getWeatherEmoji = (temperatureC: number): string => {
   } else {
     return '☀️'
   }
+}
+
+
+// Fetch cities and countries from Supabase
+export const fetchCitiesAndCountries = async () => {
+  try {
+    const { data, error } = await supabase.from('cities').select('city, country')
+
+    if (error) {
+      console.error('Error fetching cities and countries:', error.message)
+      return { cities: [], countries: [] } // Return empty lists in case of error
+    }
+
+    const cities = data.map((row) => row.city)
+    const countries = data.map((row) => row.country)
+
+    return { cities, countries }
+  } catch (error) {
+    console.error('Error fetching data:', error.message)
+    return { cities: [], countries: [] }
+  }
+}
+
+
+// Function to handle direct matches
+export const findDirectMatch = (input, cityList, countryList) => {
+  const directCityMatch = cityList.includes(input)
+  const directCountryMatch = countryList.includes(input)
+
+  return { directCityMatch, directCountryMatch }
+}
+
+// Function to handle fuzzy matching
+export const findClosestMatch = (input, cityList, countryList) => {
+  const closestCity = stringSimilarity.findBestMatch(input, cityList).bestMatch
+  const closestCountry = stringSimilarity.findBestMatch(input, countryList).bestMatch
+
+  return {
+    closestCity: closestCity.rating >= 0.6 ? closestCity.target : null,
+    closestCountry: closestCountry.rating >= 0.6 ? closestCountry.target : null
+  }
+}
+
+// Function to handle routing based on match type
+export const handleRouting = (input, cityList, countryList, router) => {
+  const { directCityMatch, directCountryMatch } = findDirectMatch(input, cityList, countryList)
+
+  // If there is a direct match for both city and country, route accordingly to /explore/country/city
+  const [inputCountry, inputCity] = input.split(',').map((item) => item.trim())
+
+  if (inputCity && inputCountry) {
+    const directCity = cityList.includes(inputCity)
+    const directCountry = countryList.includes(inputCountry)
+
+    if (directCity && directCountry) {
+      router.push(`/explore/${inputCountry}/${inputCity}`)
+      return true
+    }
+  }
+
+  // If there is a direct match for city or country, route accordingly
+  if (directCityMatch) {
+    const countryForCity = countryList[cityList.indexOf(input)]
+    router.push(`/explore/${countryForCity}`)
+    return true
+  }
+
+  if (directCountryMatch) {
+    router.push(`/explore/${input}`)
+    return true
+  }
+
+  // If no direct match, use fuzzy matching
+  const { closestCity, closestCountry } = findClosestMatch(input, cityList, countryList)
+
+  if (closestCity) {
+    const countryForCity = countryList[cityList.indexOf(closestCity)]
+    router.push(`/explore/${countryForCity}`)
+    return true
+  }
+
+  if (closestCountry) {
+    router.push(`/explore/${closestCountry}`)
+    return true
+  }
+
+  // No match found
+  toast.error('No matching city or country found. Please try again.')
+  return false
 }

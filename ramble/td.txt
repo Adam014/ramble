@@ -1,1 +1,2 @@
-TODO: New design of final route explore/country/city
+git ls-files | xargs wc -l
+oute explore/country/city

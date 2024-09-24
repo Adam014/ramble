@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import mapData from '../../public/map.json'
 import BackgroundVideo from '@components/titlepage_sections/BackgroundVideo'
 import TagsSection from '@components/titlepage_sections/TagsSection'
 import FeaturedDestinations from '@components/titlepage_sections/FeaturedDestinations'
+import { fetchCitiesAndCountries, handleRouting } from '@utils/utils'
 
 export default function Home() {
   const router = useRouter()
@@ -13,17 +13,30 @@ export default function Home() {
   const [placeholder, setPlaceholder] = useState('E.g., Czech Republic, Prague')
   const [showPlaceholder, setShowPlaceholder] = useState(true)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [cityList, setCityList] = useState([])
+  const [countryList, setCountryList] = useState([])
+
+  // Fetch cities and countries from Supabase on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      const { cities, countries } = await fetchCitiesAndCountries()
+      setCityList(cities)
+      setCountryList(countries)
+    }
+
+    fetchData()
+  }, [])
 
   useEffect(() => {
     // Function to update placeholder every 15 seconds
     const intervalId = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * mapData.objects.world.geometries.length)
-      const randomCountry = mapData.objects.world.geometries[randomIndex].properties.name
-      const randomCapital = mapData.objects.world.geometries[randomIndex].properties.capital
+      const randomIndex = Math.floor(Math.random() * cityList.length)
+      const randomCity = cityList[randomIndex]
+      const randomCountry = countryList[randomIndex]
 
       setShowPlaceholder(false)
       setTimeout(() => {
-        setPlaceholder(`E.g., ${randomCountry}, ${randomCapital}`)
+        setPlaceholder(`E.g., ${randomCountry}, ${randomCity}`)
         setShowPlaceholder(true)
       }, 300) // Delay placeholder change to sync with CSS animation
     }, 10000) // Change placeholder every 15 seconds
@@ -31,7 +44,7 @@ export default function Home() {
     return () => {
       clearInterval(intervalId) // Cleanup function to clear interval when component unmounts
     }
-  }, [])
+  }, [cityList, countryList])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,17 +62,12 @@ export default function Home() {
   }
 
   const handleSubmit = () => {
-    const [country, city] = searchValue.split(',').map((item) => item.trim())
+    const input = searchValue.trim()
 
-    if (country) {
-      router.push(`/explore/${country}`)
-    }
+    if (!input) return
 
-    if (country && city) {
-      const formattedCountry = country.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
-      const formattedCity = city.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
-      router.push(`/explore/${formattedCountry}/${formattedCity}`)
-    }
+    // Handle routing based on input match (direct or fuzzy)
+    handleRouting(input, cityList, countryList, router)
   }
 
   const handleKeyPress = (e) => {
@@ -70,7 +78,6 @@ export default function Home() {
 
   return (
     <>
-      {/* looks like shit now, need to finish this */}
       <BackgroundVideo />
       <div className={`title-container ${isScrolled ? 'black-bg' : ''}`}>
         <section className="w-full flex flex-col items-center p-10 pt-10 relative z-50">
@@ -93,20 +100,6 @@ export default function Home() {
               </button>
             </div>
           </div>
-          {/* <p className="title-description p-10 text-4xl w-full text-center mt-10">
-            "Easily explore new destinations and find out the cost of living with our app. Plan your
-            travels and budget effortlessly—discover where to go and what to expect!"
-          </p>
-          <div id="mouse-scroll">
-            <div className="mouse">
-              <div className="mouse-in"></div>
-            </div>
-            <div>
-              <span className="down-arrow-1"></span>
-              <span className="down-arrow-2"></span>
-              <span className="down-arrow-3"></span>
-            </div>
-          </div> */}
           <style jsx>{`
             input::placeholder {
               opacity: ${showPlaceholder ? 1 : 0};

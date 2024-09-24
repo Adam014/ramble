@@ -9,7 +9,6 @@ import tagData from '../../../../../public/tags-single.json'
 import Loader from '@components/Loader'
 import '../../../../styles/embla.css'
 import EmblaCarousel from '@components/carousel/EmblaCarousel'
-import { Toaster } from 'react-hot-toast'
 import { OPTIONS, SLIDE_CONTENT as STATIC_SLIDE_CONTENT } from '@utils/contants/slides'
 import CitySlides from '@components/cards/CitySlides'
 
@@ -51,7 +50,6 @@ const Page = () => {
         </div>
       </div>
       <EmblaCarousel slides={[...SLIDE_CONTENT, ...STATIC_SLIDE_CONTENT]} options={OPTIONS} />
-      <Toaster position="bottom-center" />
     </div>
   )
 }
