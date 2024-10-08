@@ -444,7 +444,7 @@ export const findClosestMatch = (input, cityList, countryList) => {
 
   return {
     closestCity: closestCity.rating >= 0.5 ? closestCity.target : null,
-    closestCountry: closestCountry.rating >= 0.5 ? closestCountry.target : null
+    closestCountry: closestCountry.rating >= 0.8 ? closestCountry.target : null
   }
 }
 
