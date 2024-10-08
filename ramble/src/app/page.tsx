@@ -5,16 +5,37 @@ import { useRouter } from 'next/navigation'
 import BackgroundVideo from '@components/titlepage_sections/BackgroundVideo'
 import TagsSection from '@components/titlepage_sections/TagsSection'
 import FeaturedDestinations from '@components/titlepage_sections/FeaturedDestinations'
-import { fetchCitiesAndCountries, handleRouting } from '@utils/utils'
+import { fetchCitiesAndCountries, handleRouting, fetchAndSelectFeaturedCities } from '@utils/utils'
 
 export default function Home() {
   const router = useRouter()
   const [searchValue, setSearchValue] = useState('')
-  const [placeholder, setPlaceholder] = useState('E.g., Czech Republic, Prague')
+  const [placeholder, setPlaceholder] = useState('E.g., Czechia, Prague')
   const [showPlaceholder, setShowPlaceholder] = useState(true)
   const [isScrolled, setIsScrolled] = useState(false)
   const [cityList, setCityList] = useState([])
   const [countryList, setCountryList] = useState([])
+  const [featuredCities, setFeaturedCities] = useState([])
+
+  console.log(featuredCities)
+
+  useEffect(() => {
+    const fetchCities = async () => {
+      const cities = await fetchAndSelectFeaturedCities()
+      if (cities) {
+        setFeaturedCities(cities)
+      }
+    }
+
+    // Fetch cities initially
+    fetchCities()
+
+    // Set an interval to fetch cities every 15 minutes (900000 milliseconds)
+    const intervalId = setInterval(fetchCities, 900000)
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId)
+  }, [])
 
   // Fetch cities and countries from Supabase on component mount
   useEffect(() => {
@@ -81,7 +102,7 @@ export default function Home() {
       <BackgroundVideo />
       <div className={`title-container ${isScrolled ? 'black-bg' : ''}`}>
         <section className="w-full flex flex-col items-center p-10 pt-10 relative z-50">
-          <h1 className="text-6xl font-bold text-center">Explore. Dream. Ramble.</h1>
+          <h1 className="text-5xl font-bold text-center">Explore🏛️. Dream💭. Ramble🚶.</h1>
           <div className="flex justify-center mt-20 w-full">
             <div className="input-container relative w-full max-w-3xl">
               <input
@@ -98,6 +119,7 @@ export default function Home() {
               >
                 Go
               </button>
+              <p className='pt-2'>🚀 Find the finest of the finest in the world. 🚂 Be prepared on your next journey.</p>
             </div>
           </div>
           <style jsx>{`

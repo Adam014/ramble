@@ -3,9 +3,15 @@ import supabase from './db/supabaseConfig'
 import emailjs from 'emailjs-com'
 import { useParams } from 'next/navigation'
 import stringSimilarity from 'string-similarity'
+import { maleProfiles, femaleProfiles } from '@api/profiles'
 
 interface EmailFormEvent extends React.FormEvent<HTMLFormElement> {
   target: HTMLFormElement
+}
+
+export interface Profile {
+  name: string;
+  image: string;
 }
 
 const API_ENDPOINT_TEMPLATE = 'https://cost-of-living-and-prices.p.rapidapi.com/prices'
@@ -22,7 +28,26 @@ const ERROR_MESSAGES = {
 export const fixDate = (date: Date): Date =>
   new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000)
 
-// WE NEED THIS FUNCTION FASTER
+// Fetch cities and countries from Supabase
+export const fetchCitiesAndCountries = async () => {
+  try {
+    const { data, error } = await supabase.from('cities').select('city, country')
+
+    if (error) {
+      console.error('Error fetching cities and countries:', error.message)
+      return { cities: [], countries: [] } // Return empty lists in case of error
+    }
+
+    const cities = data.map((row) => row.city)
+    const countries = data.map((row) => row.country)
+
+    return { cities, countries }
+  } catch (error) {
+    console.error('Error fetching data:', error.message)
+    return { cities: [], countries: [] }
+  }
+}
+
 export const fetchCitiesData = async (pageNumber: number) => {
   // Check the database for existing data for the given page number
   try {
@@ -404,28 +429,6 @@ export const getWeatherEmoji = (temperatureC: number): string => {
   }
 }
 
-
-// Fetch cities and countries from Supabase
-export const fetchCitiesAndCountries = async () => {
-  try {
-    const { data, error } = await supabase.from('cities').select('city, country')
-
-    if (error) {
-      console.error('Error fetching cities and countries:', error.message)
-      return { cities: [], countries: [] } // Return empty lists in case of error
-    }
-
-    const cities = data.map((row) => row.city)
-    const countries = data.map((row) => row.country)
-
-    return { cities, countries }
-  } catch (error) {
-    console.error('Error fetching data:', error.message)
-    return { cities: [], countries: [] }
-  }
-}
-
-
 // Function to handle direct matches
 export const findDirectMatch = (input, cityList, countryList) => {
   const directCityMatch = cityList.includes(input)
@@ -440,8 +443,8 @@ export const findClosestMatch = (input, cityList, countryList) => {
   const closestCountry = stringSimilarity.findBestMatch(input, countryList).bestMatch
 
   return {
-    closestCity: closestCity.rating >= 0.4 ? closestCity.target : null,
-    closestCountry: closestCountry.rating >= 0.4 ? closestCountry.target : null
+    closestCity: closestCity.rating >= 0.5 ? closestCity.target : null,
+    closestCountry: closestCountry.rating >= 0.5 ? closestCountry.target : null
   }
 }
 
@@ -492,3 +495,9 @@ export const handleRouting = (input, cityList, countryList, router) => {
   toast.error('No matching city or country found. Please try again.')
   return false
 }
+
+// Function to get a random profile
+export const getRandomProfile = (): Profile => {
+  const profiles = Math.random() < 0.5 ? maleProfiles : femaleProfiles;
+  return profiles[Math.floor(Math.random() * profiles.length)];
+};

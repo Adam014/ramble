@@ -19,6 +19,91 @@ nav {
   z-index: 999;
 }
 
+.navbar-links ul li:hover + hr,
+.navbar-links ul li:hover {
+  border-color: #f13e51; /* This will change the hr color right after the hovered li */
+}
+
+.navbar-links ul hr {
+  border-top: 1px solid #ddd; /* Default hr color */
+  transition: border-color 0.3s ease; /* Smooth transition for the color change */
+}
+.featured-city-card {
+  flex: none; 
+  width: 20rem; 
+  height: 20rem; 
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: white;
+}
+
+.featured-city-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.image-container {
+  position: relative;
+  flex-grow: 1;
+}
+
+.featured-city-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.top-left-text, .top-right-text, .bottom-right-text {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.top-left-text {
+  align-self: flex-start;
+}
+
+.top-right-text, .bottom-right-text {
+  align-self: flex-end;
+}
+
+.featured-city-info {
+  padding: 10px;
+}
+
+.featured-city-info h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.featured-city-country {
+  display: flex;
+  align-items: center;
+}
+
+.country-name {
+  margin-left: 5px;
+  font-size: 16px;
+}
+
 body {
   background-color: var(--background);
   font-family: var(--font);
@@ -58,6 +143,149 @@ footer {
   object-fit: cover;
   z-index: 10;
   filter: blur(4px);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  gap: 20px;
+  padding: 20px;
+  max-width: 70%; /* Limits width to leave space for image */
+}
+
+.card-detail {
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  font-size: 1rem;
+  overflow: hidden; /* Adjusted from auto to hidden for better design */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Adds shadow for depth */
+}
+
+.underline_purple{
+  text-decoration: underline #f13e51;
+}
+
+.card-1, .card-3 {
+  grid-column: span 2; /* Spans both columns */
+}
+
+.card-section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.card-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+  padding: 20px;
+}
+
+.profile-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Adds depth to the profile picture */
+}
+
+.multi-select {
+  color: black;
+  padding-bottom: 1rem;
+}
+
+.card-section p {
+  margin: 5px 0;
+  line-height: 1.6;
+}
+
+.card-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  gap: 20px;
+  align-items: start;
+  padding: 20px;
+}
+
+.card-3 {
+  display: grid;
+  grid-template-rows: auto 1fr; /* Header row and content row */
+  grid-gap: 10px;
+}
+
+.cost-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #444; /* Adds a subtle separator */
+  padding: 8px 0;
+}
+
+.cost-item:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr; /* One column on mobile */
+    max-width: 100%;
+  }
+
+  .card-detail {
+    transform: none; /* Remove tilt */
+    height: auto; /* Auto-adjust height */
+    padding: 15px;
+    font-size: 0.9rem; /* Smaller font size for readability */
+  }
+
+  .card-3 {
+    max-height: none; /* Allow it to expand for content */
+    overflow: visible; /* Disable overflow hidden for mobile */
+  }
+
+  .cost-item {
+    display: flex;
+    flex-direction: column; /* Stack item name and cost vertically */
+    align-items: flex-start; /* Align text to the left */
+    padding: 10px 0;
+    border-bottom: 1px solid #444; /* Keep separators between items */
+  }
+
+  .cost-item span {
+    font-size: 0.9rem; /* Adjust font size for better readability */
+  }
+
+  .cost-item:last-child {
+    border-bottom: none;
+  }
+  .card-1 {
+    grid-template-columns: 1fr; /* Single column layout on mobile */
+  }
 }
 
 .tags-container {
@@ -329,8 +557,12 @@ img {
 }
 
 .city-single-container {
-  padding-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Needed for positioning the image */
 }
+
 
 .city-single-title-container {
   height: auto;
@@ -472,6 +704,8 @@ hr {
   top: 1.9rem;
 }
 
+footer{}
+
 .custom_font {
   font-family: var(--handdraw-font);
   text-transform: uppercase;
@@ -495,9 +729,8 @@ hr {
 
 .input:focus,
 .input-title:focus {
-  outline: none;
-  border: 0.5px solid var(--purple);
-  box-shadow: -5px -5px 0px var(--purple);
+ border-bottom: 3px dashed #f13e51;
+ outline: 0;
 }
 
 .input-container:hover > .icon {
