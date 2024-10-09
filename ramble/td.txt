@@ -1,2 +1,3 @@
 git ls-files | xargs wc -l
-oute explore/country/city
+TD: Refactor all searches, they suck now
+TD: Add search or multiselect to /explore/country

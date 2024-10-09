@@ -58,7 +58,8 @@ const Map = () => {
           </h2>
         </div>
 
-        <Search />
+        {/* Hiding this search because it sucks */}
+        {/* <Search /> */}
 
         <div className="flex tags">
           {isLoading ? (
