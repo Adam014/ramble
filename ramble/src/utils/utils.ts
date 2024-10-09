@@ -443,8 +443,8 @@ export const findClosestMatch = (input, cityList, countryList) => {
   const closestCountry = stringSimilarity.findBestMatch(input, countryList).bestMatch
 
   return {
-    closestCity: closestCity.rating >= 0.5 ? closestCity.target : null,
-    closestCountry: closestCountry.rating >= 0.8 ? closestCountry.target : null
+    closestCity: closestCity.rating >= 0.6 ? closestCity.target : null,
+    closestCountry: closestCountry.rating >= 0.6 ? closestCountry.target : null
   }
 }
 
