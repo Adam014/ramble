@@ -95,7 +95,7 @@ const Navbar = () => {
           </li>
           <hr />
           <div className='navbar-footer'>
-            Powered by RapidApi | Crafted by Adam Stádník c {(new Date()).getFullYear()}
+            Powered by <a href='https://rapidapi.com'>RapidApi</a> | <a href='https://github.com/Adam014/ramble'>Crafted by Adam Stádník c {(new Date()).getFullYear()}</a>
           </div>
         </ul>
       </div>
