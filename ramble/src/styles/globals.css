@@ -53,7 +53,6 @@ nav {
 }
 
 .featured-city-image {
-  width: 100%;
   height: 100%;
   object-fit: cover;
 }
@@ -477,27 +476,27 @@ footer {
 .top-right-text,
 .bottom-right-text {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
-  color: white; /* Text color */
+  background-color: rgba(0, 0, 0, 0.5); 
+  color: white; 
   padding: 5px 10px;
-  border-radius: 3px; /* Optional: rounded corners */
-  font-size: 14px; /* Adjust text size */
-  z-index: 10; /* Ensure it appears on top */
+  border-radius: 3px; 
+  font-size: 14px; 
+  z-index: 10; 
 }
 
 .top-left-text {
-  top: 10px; /* Adjust as needed */
-  left: 10px; /* Adjust as needed */
+  top: 10px; 
+  left: 10px; 
 }
 
 .top-right-text {
-  top: 10px; /* Adjust as needed */
-  right: 10px; /* Adjust as needed */
+  top: 10px; 
+  right: 10px; 
 }
 
 .bottom-right-text {
-  bottom: 10px; /* Adjust as needed */
-  right: 10px; /* Adjust as needed */
+  bottom: 10px; 
+  right: 10px; 
 }
 .city-image-container {
   position: relative;
@@ -815,10 +814,6 @@ code {
   height: 20rem;
 }
 
-.featured-city-image {
-  width: 20rem;
-}
-
 .city-image {
   width: 100%;
 }
@@ -1074,7 +1069,6 @@ code {
     padding-top: 0;
   }
   .title-button {
-    top: 50%;
     padding: 10px;
   }
 }
@@ -1200,10 +1194,12 @@ code {
     width: 100%;
   }
 
-  .featured-city-card img {
-    width: 100%;
+  .featured-city-info img {
     height: auto;
-    border-radius: 20px;
+  }
+
+  .image-container img{
+    height: 14rem;
   }
 }
 
