@@ -17,8 +17,6 @@ export default function Home() {
   const [countryList, setCountryList] = useState([])
   const [featuredCities, setFeaturedCities] = useState([])
 
-  console.log(featuredCities)
-
   useEffect(() => {
     const fetchCities = async () => {
       const cities = await fetchAndSelectFeaturedCities()

@@ -31,7 +31,6 @@ nav {
 .featured-city-card {
   flex: none; 
   width: 20rem; 
-  height: 20rem; 
   border-radius: 20px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
   transition: transform 0.3s, box-shadow 0.3s;
