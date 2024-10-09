@@ -149,7 +149,6 @@ footer {
   grid-template-columns: 1fr 1fr; /* Two columns */
   gap: 20px;
   padding: 20px;
-  max-width: 70%; /* Limits width to leave space for image */
 }
 
 .card-detail {

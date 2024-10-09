@@ -29,15 +29,6 @@ const Page = () => {
     }
   }, [country, city]);
 
-  useEffect(() => {
-    const params = new URLSearchParams();
-    if (selectedCategories.length > 0) {
-      params.set('category', selectedCategories.join(','));
-    } else {
-      params.delete('category');
-    }
-  }, [selectedCategories]);
-
   if (loading) {
     return <Loader />;
   }
