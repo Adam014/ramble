@@ -121,6 +121,9 @@ const Page = () => {
             )}
           </div>
         )}
+        
+        <div className="card-detail card-2">Info</div>
+        <div className="card-detail card-4">Events</div>
 
         {/* Cost of Living */}
         {cityCost && cityCost.length > 0 && (
@@ -142,10 +145,6 @@ const Page = () => {
             ))}
           </div>
         )}
-
-        {/* Placeholder for other cards */}
-        <div className="card-detail card-2">Info</div>
-        <div className="card-detail card-4">Events</div>
       </div>
     </div>
   );

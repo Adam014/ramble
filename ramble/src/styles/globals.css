@@ -143,6 +143,7 @@ footer {
   grid-template-columns: 1fr 1fr; /* Two columns */
   gap: 20px;
   padding: 20px;
+  max-width: 85%;
 }
 
 .card-detail {
@@ -190,6 +191,7 @@ footer {
   gap: 30px;
   align-items: start;
   padding: 20px;
+  justify-content: center;
 }
 
 .profile-name {
