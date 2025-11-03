@@ -4,16 +4,16 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_APP_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  process.env.NEXT_PUBLIC_SUPABASE_APP_URL, 
+  process.env.SUPABASE_SERVICE_ROLE_KEY    
 );
 
 export async function GET() {
-  console.log('Spouštím Supabase keep-alive ping...');
+  console.log('Spouštím Supabase keep-alive ping (z GitHub Actions)...');
 
   try {
     const { data, error } = await supabase
-      .from('cities')
+      .from('cities') // <-- Název tvé tabulky
       .select('id, city, country') 
       .limit(1);
 
